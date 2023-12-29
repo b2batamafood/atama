@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreproductRequest;
 use App\Http\Requests\UpdateproductRequest;
+use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 
 class ProductController extends Controller
@@ -13,8 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {   
-        $categories = Product::distinct()->pluck('category_name');
-        $brands = Product::distinct()->pluck('brand_name');
+        $categories = Category::all();
+        $brands = Brand::all();
         return view('products', [
             "title" => "Products",
             "products" => Product::latest()->search(request(['search']))->paginate(40)->withQueryString(),
