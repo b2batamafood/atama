@@ -8,7 +8,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\registerController;
 use App\Http\Controllers\settingController;
+use App\Mail\UserRegistrationMail;
 use Illuminate\Routing\RouteBinding;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,3 +44,5 @@ Route::post('/setting', [settingController::class, 'edit']);
 Route::get('/dashboard', [dashboardController::class, 'index']);
 Route::get('/dashboard/products', [dashboardproductsController::class, 'index']);
 Route::post('/dashboard/products', [dashboardproductsController::class, 'uploadFile']);
+
+Route::get('mail', [registerController::class, 'mailTest'])->name('mail-test');

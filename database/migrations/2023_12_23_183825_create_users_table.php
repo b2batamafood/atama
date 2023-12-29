@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id()->autoIncrement();
-            $table->string('fname', 20);
-            $table->string('lname', 20);
+            $table->id();
+            $table->string('firstname');
+            $table->string('lastname');
             $table->string('company', 255);
             $table->string('email')->unique();
             $table->string('country');
@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('phone');
             $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

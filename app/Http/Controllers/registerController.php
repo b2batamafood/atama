@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Mail\signupEmail;
 use App\Models\User;
+use App\Notifications\UserRegistrationNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 
 class registerController extends Controller
@@ -27,8 +29,8 @@ class registerController extends Controller
     public function addUser(Request $request)
     {
         $validatedData = $request->validate([
-            'fname' => 'required ',
-            'lname' => 'required',
+            'firstname' => 'required ',
+            'lastname' => 'required',
             'company' => 'required',
             'email' => 'required|email:cfs,dns|unique:users',
             'country' => 'required',
@@ -43,6 +45,9 @@ class registerController extends Controller
 
         $password = $validatedData['password'];
 
+        Notification::route('mail', 'vickyfarenza@gmail.com')
+            ->notify(new UserRegistrationNotification($password));
+
         User::create($validatedData);
 
         // // send the password to email
@@ -51,5 +56,14 @@ class registerController extends Controller
         // Mail::to($validatedData['email']->email)->send(new signupEmail($validatedData['email'], $validatedData['password']));
 
         return redirect('/login')->with('success', 'Registration Successful. Use this password to login : ' . $password);
+    }
+
+    public function mailTest () {
+        $validatedData['password'] = $this->randomPassword();
+
+        $password = $validatedData['password'];
+
+        Notification::route('mail', 'vickyfarenza@gmail.com')
+            ->notify(new UserRegistrationNotification($password));
     }
 }
