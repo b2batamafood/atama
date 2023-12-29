@@ -37,9 +37,9 @@ class UserRegistrationNotification extends Notification
         return (new MailMessage)
             ->subject('Login status')
             ->from('sender@example.com', 'Sender')
-            ->greeting('Hello desu!')
+            ->greeting('Temporary Password Atama')
             ->line('Your new password is '.$this->password)
-            ->action('Login now', url('/'))
+            ->action('Login now', url('/login'))
             ->line('Best regards!');
     }
 

@@ -2,17 +2,19 @@
 
 @section('container')
     <!-- FILTER START -->
-    <div class="absolute left-0 h-screen w-0 md:w-32 lg:w-64 p-5 z-[1000] text-center">
+    <div class="absolute left-0 h-fit w-0 md:w-32 lg:w-64 p-5 z-[1000] text-center">
         <h1 class="text-2xl md:text-3xl capitalize font-bold text-primary">categories</h1>
 
         <div class="max-h-[300px] overflow-y-scroll mb-10">
             <ul class="p-3">
                 @foreach ($categories as $category)
-                    <li
-                        class="text-xs lg:text-base uppercase font-medium p-[6px] border-b-2 text-gray-600 hover:text-primary">
-                        <a href="/products/cat={{ $category }}">
-                            {{ $category }}
-                        </a>
+                    <li class="text-xs lg:text-sm uppercase font-medium p-[6px] border-b-2 text-gray-600 hover:text-primary">
+                        <form action="/products">
+                            @csrf
+                            <a href="/products?search={{ $category }}">
+                                {{ $category }}
+                            </a>
+                        </form>
                     </li>
                 @endforeach
             </ul>
@@ -22,10 +24,13 @@
         <div class="max-h-[300px] overflow-y-scroll">
             <ul class="p-3">
                 @foreach ($brands as $brand)
-                    <li class="text-base uppercase font-medium p-[6px] border-b-2 text-gray-600 hover:text-primary">
-                        <a href="/products/brand={{ $brand }}">
-                            {{ $brand }}
-                        </a>
+                    <li class="text-sm uppercase font-medium p-[6px] border-b-2 text-gray-600 hover:text-primary">
+                        <form action="/products">
+                            @csrf
+                            <a href="/products?search={{ $brand }}">
+                                {{ $brand }}
+                            </a>
+                        </form>
                     </li>
                 @endforeach
             </ul>
@@ -45,11 +50,11 @@
                 <!-- Carts -->
                 @foreach ($products as $product)
                     <div
-                        class="bg-white shadow-xl shadow-gray-500 rounded-lg overflow-hidden group h-[430px] flex flex-col">
+                        class="bg-white shadow-xl shadow-gray-500 rounded-lg overflow-hidden group h-[370px] flex flex-col">
                         <div class="relative flex-grow flex justify-center items-center">
                             <div class="flex justify-center pt-3">
                                 <img src="{{ $product->photo_url }}" alt="product"
-                                    class="max-w-[150px] max-h-[120px] lg:max-w-[200px] lg:max-h-[200px] object-cover">
+                                    class="max-w-[120px] max-h-[100px] lg:max-w-[200px] lg:max-h-[140px] object-cover">
                             </div>
                             <div
                                 class="absolute inset-0 bg-black bg-opacity-40 hidden md:flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition duration-300">
@@ -80,7 +85,6 @@
                                         class="capitalize text-sm px-2 py-1 bg-primary hover:bg-primary hover:opacity-70 text-white rounded-md">see
                                         price</a>
                                 @endauth
-
                             </div>
                         </div>
 
@@ -137,9 +141,12 @@
                     </div>
                 @endforeach
             </div>
+            @if ($products->count() <= 4)
+                <div class="mb-80"></div>
+            @endif
         @else
             {{-- if product not found --}}
-            <div class="w-full h-screen ml-32 lg:ml-64 mt-5">
+            <div class="h-screen ml-32 lg:ml-64 mb-20">
                 <h1 class="text-2xl font-bold">No product(s) found...</h1>
             </div>
         @endif
@@ -147,7 +154,7 @@
     <!-- PRODUCTS END -->
 
     {{-- PAGINATION START --}}
-    <div class="p-5">
+    <div class="p-5 w-full flex justify-end">
         {{ $products->links() }}
     </div>
     {{-- PAGINATION END --}}
@@ -160,10 +167,10 @@
             buttons.forEach(function(button) {
                 button.addEventListener('click', function() {
                     var productId = this.id;
-                    alert('/products/' + productId);
+                    alert(productId);
                     $.ajax({
                         type: 'get',
-                        url: '/products/' + productId,
+                        // url: '/products',
                         dataType: 'json',
                         success: function(response) {
                             // Populate modal with product details
@@ -186,4 +193,5 @@
             });
         });
     </script>
+
 @endsection

@@ -73,7 +73,7 @@
             </form>
 
             <p class="mt-4 text-center text-gray-600">Don't have account? <a href="/register"
-                    class="text-primary">Register
+                    class="text-primary font-semibold">Register
                     now</a></p>
         </div>
     </div>

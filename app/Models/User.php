@@ -28,7 +28,8 @@ class User extends Authenticatable
         'zipcode',
         'address',
         'phone',
-        'password'
+        'password',
+        'document'
     ];
 
     protected $guarded = ['id'];

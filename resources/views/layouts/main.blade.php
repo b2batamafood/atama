@@ -11,7 +11,7 @@
 
     <title>{{ $title }} | Atama</title>
 
-    @vite(['resources/css/app.css','resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
@@ -31,31 +31,31 @@
                 {{-- Dropdown --}}
                 <div
                     class="absolute w-full left-0 top-full bg-white shadow-md py-3 divide-y divide-solid divide-gray-300 opacity-0 group-hover:opacity-100 transition duration-300 invisible group-hover:visible z-[9999]">
-                    <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+                    <a href="/products?search=beverage" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
                         <span class="text-gray-600 text-sm capitalize">beverage</span>
                     </a>
-                    <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+                    <a href="/products?search=candy" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
                         <span class="text-gray-600 text-sm capitalize">candy</span>
                     </a>
-                    <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+                    <a href="/products?search=snack" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
                         <span class="text-gray-600 text-sm capitalize">snack</span>
                     </a>
-                    <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+                    <a href="/products?search=noodle" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
                         <span class="text-gray-600 text-sm capitalize">noodle</span>
                     </a>
-                    <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+                    <a href="/products?search=can food" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
                         <span class="text-gray-600 text-sm capitalize">can food</span>
                     </a>
-                    <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+                    <a href="/products?search=dessert" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
                         <span class="text-gray-600 text-sm capitalize">dessert</span>
                     </a>
-                    <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+                    <a href="/products?search=condiment" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
                         <span class="text-gray-600 text-sm capitalize">condiment</span>
                     </a>
-                    <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+                    <a href="/products?search=sauce" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
                         <span class="text-gray-600 text-sm capitalize">sauce</span>
                     </a>
-                    <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+                    <a href="/products?search=cooking oil" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
                         <span class="text-gray-600 text-sm capitalize">cooking oil</span>
                     </a>
                 </div>
@@ -77,7 +77,7 @@
                 <!-- Check if already login or not -->
                 @auth
                     <div class="flex items-center pl-2 space-x-4">
-                        <button href="#" class="text-center text-gray-200 hover:text-gray-500 transition relative">
+                        <a href="/cart" class="text-center text-gray-200 hover:text-gray-500 transition relative">
                             <div class="text-2xl">
                                 <i class="ri-shopping-cart-2-line"></i>
                             </div>
@@ -85,7 +85,7 @@
                             <div
                                 class="absolute -right-3 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-sm">
                                 0</div>
-                        </button>
+                        </a>
                         <button type="button" class="text-center text-gray-200 hover:text-gray-500 transition relative"
                             onclick="toggleProfileMenu()">
                             <div class="text-2xl">
