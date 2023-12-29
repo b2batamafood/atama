@@ -16,19 +16,27 @@ return new class extends Migration
             $table->string('code', 19);
             $table->string('name', 10);
             $table->string('description', 100);
-            $table->string('category_id', 15);
-            $table->string('category_name', 12);
-            $table->string('subcategory_name', 10);
-            $table->string('brand_name', 20);
+
             $table->string('barcode', 25);
-            $table->string('default_price', 10);
-            $table->string('default_cost', 10);
-            $table->string('default_tax', 1);
+            $table->string('price', 10);
+            $table->string('cost', 10);
+            $table->string('tax', 1);
             $table->string('photo_url', 255);
             $table->string('inventory', 10);
             $table->string('unit_of_measurement', 20);
             $table->string('location', 10);
             $table->string('retail_price', 1);
+
+            $table->foreignId('category_id')->nullable()
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->nullOnDelete();
+
+            $table->foreignId('brand_id')->nullable()
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->nullOnDelete();
+
             $table->timestamps();
         });
     }

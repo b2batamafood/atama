@@ -29,8 +29,8 @@ class registerController extends Controller
     public function addUser(Request $request)
     {
         $validatedData = $request->validate([
-            'fname' => 'required ',
-            'lname' => 'required',
+            'firstname' => 'required ',
+            'lastname' => 'required',
             'company' => 'required',
             'email' => 'required|email:cfs,dns|unique:users',
             'country' => 'required',
