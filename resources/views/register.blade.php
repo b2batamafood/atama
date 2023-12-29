@@ -73,34 +73,34 @@
                 <div class="space-y-2">
                     <div class="flex">
                         <div class="w-1/2 mr-4">
-                            <label for="company" class="text-gray-600 mb-2 block font-semibold">Company<span
+                            <label for="company" class="text-gray-600 mb-2 block font-semibold text-sm">Company<span
                                     class="text-red-500">*</span></label>
                             <input type="company" name="company" id="company" value="{{ old('company') }}"
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="Company name" required>
                         </div>
                         <div class="w-1/2 ml-4">
-                            <label for="email" class="text-gray-600 mb-2 block font-semibold">Email<span
+                            <label for="email" class="text-gray-600 mb-2 block font-semibold text-sm">Email<span
                                     class="text-red-500">*</span></label>
                             <input type="email" name="email" id="email" value="{{ old('email') }}"
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="youremail.@domain.com" required>
                             @error('email')
-                            <p id="standard_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400"><span
-                                    class="font-medium">Oh, snapp!</span> {{ $message }} </p>
+                                <p id="standard_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400"><span
+                                        class="font-medium">Oh, snapp!</span> {{ $message }} </p>
                             @enderror
                         </div>
                     </div>
                     <div class="flex">
                         <div class="w-1/2 mr-4">
-                            <label for="fname" class="text-gray-600 mb-2 block font-semibold">First name<span
+                            <label for="fname" class="text-gray-600 mb-2 block font-semibold text-sm">First name<span
                                     class="text-red-500">*</span></label>
                             <input type="text" name="fname" id="fname" value="{{ old('fname') }}"
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="First Name" required>
                         </div>
                         <div class="w-1/2 ml-4">
-                            <label for="lname" class="text-gray-600 mb-2 block font-semibold">Last name<span
+                            <label for="lname" class="text-gray-600 mb-2 block font-semibold text-sm">Last name<span
                                     class="text-red-500">*</span></label>
                             <input type="text" name="lname" id="lname" value="{{ old('lname') }}"
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
@@ -108,18 +108,27 @@
                         </div>
                     </div>
 
-                    <div>
-                        <label for="address" class="text-gray-600 mb-2 block font-semibold">Address<span
-                                class="text-red-500">*</span></label>
-                        <input type="text" name="address" id="address" value="{{ old('address') }}"
-                            class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                            placeholder="Enter your address" required>
+                    <div class="flex">
+                        <div class="w-1/2 mr-4">
+                            <label for="address" class="text-gray-600 mb-2 block font-semibold text-sm">Address<span
+                                    class="text-red-500">*</span></label>
+                            <input type="text" name="address" id="address" value="{{ old('address') }}"
+                                class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                                placeholder="Enter your address" required>
+                        </div>
+                        <div class="w-1/2 ml-4">
+                            <label for="phone" class="text-gray-600 mb-2 block font-semibold text-sm">Phone<span
+                                    class="text-red-500">*</span></label>
+                            <input type="text" name="phone" id="phone" value="{{ old('phone') }}"
+                                class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                                placeholder="Phone number" required>
+                        </div>
                     </div>
 
-                    <div class="flex items-center">
+                    <div class="flex pt-2">
                         <div class="w-1/4 mr-2">
                             <select id="country" name="country" value="{{ old('country') }}"
-                                class="w-full px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 text-sm">
+                                class="w-full px-2 py-3 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 text-sm">
                                 <option value="" disabled selected>Country</option>
                                 <option value="Afghanistan">Afghanistan</option>
                                 <option value="Åland Islands">Åland Islands</option>
@@ -394,31 +403,23 @@
                         </div>
                     </div>
 
-                    <div class="flex items-start">
+                    <div class="flex">
                         <div class="w-1/2 mr-4">
-                            <label for="phone" class="text-gray-600 mb-2 block font-semibold">Phone<span
-                                    class="text-red-500">*</span></label>
-                            <input type="text" name="phone" id="phone" value="{{ old('phone') }}"
+                            <label for="tax_id" class="text-gray-600 mb-2 block font-semibold text-sm">Tax ID, Seller
+                                Permit<span class="text-red-500">*</span></label>
+                            <input type="text" name="tax_id" id="tax_id" value="{{ old('tax_id') }}"
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                                placeholder="Phone number" required>
+                                placeholder="Tax ID, Seller Permit" required>
                         </div>
                         <div class="w-1/2 ml-4">
                             <!-- File Input -->
                             <label for="file" class="block text-gray-600 text-sm font-semibold mb-2">Document<span
                                     class="text-red-500">*</span></label>
-                            <input type="file" id="file" name="file"
-                                accept="" class="border w-full rounded-md text-sm relative" required>
+                            <input type="file" id="file" name="file" accept=".zip"
+                                class="border w-full rounded-md text-sm relative" required>
                             <p class="text-sm text-gray-400">Compressed file: Licenses, State permits, IDs.</p>
                         </div>
                     </div>
-                    <!-- <div>
-                            <label for="password" class="text-gray-600 mb-2 block font-semibold">Password<span class="text-red-500">*</span></label>
-                            <input type="password" name="password" id="password" class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400" placeholder="Enter your password" required>
-                        </div>
-                        <div>
-                            <label for="confirm" class="text-gray-600 mb-2 block font-semibold">Confirm password<span class="text-red-500">*</span></label>
-                            <input type="password" name="confirm" id="confirm" class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400" placeholder="Confirm your password" required>
-                        </div> -->
                 </div>
                 <div class="mt-6">
                     <div class="flex items-center">

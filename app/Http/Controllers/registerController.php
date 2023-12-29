@@ -32,13 +32,15 @@ class registerController extends Controller
             'firstname' => 'required ',
             'lastname' => 'required',
             'company' => 'required',
-            'email' => 'required|email:cfs,dns|unique:users',
+            'email' => 'required|email:dns|unique:users',
             'country' => 'required',
             'state' => 'required',
             'city' => 'required',
             'zipcode' => 'required',
             'address' => 'required',
             'phone' => 'required',
+            'tax_id' => 'required',
+            'document' => 'required|file|mimes:zip'
         ]);
 
         $validatedData['password'] = $this->randomPassword();
