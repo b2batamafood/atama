@@ -3,11 +3,12 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class signupEmail extends Mailable
 {
@@ -32,7 +33,8 @@ class signupEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Signup Email',
+            from: new Address('sales@b2batamafood.com'),
+            subject: 'Your Temporary Password For Atama',
         );
     }
 
@@ -42,7 +44,8 @@ class signupEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'mails.signupEmail',
+            with: ['password'=>$this->password]
         );
     }
 

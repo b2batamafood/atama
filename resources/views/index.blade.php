@@ -174,14 +174,14 @@
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
             <!-- Carts -->
             @foreach ($products1 as $recomProd)
-                <div class="bg-white shadow-xl shadow-gray-500 rounded-lg overflow-hidden group h-[430px] flex flex-col">
+                <div class="bg-white shadow-xl shadow-gray-500 rounded-lg overflow-hidden group h-[370px] flex flex-col">
                     <div class="relative flex-grow flex justify-center items-center">
                         <div class="absolute top-4 left-4 rounded-full bg-red-500 p-[1px] md:p-1">
                             <i class="ri-percent-line text-xl md:text-2xl text-white"></i>
                         </div>
                         <div class="flex justify-center pt-3">
                             <img src="{{ $recomProd->photo_url }}" alt="product"
-                                class="max-w-[150px] max-h-[120px] lg:max-w-[200px] lg:max-h-[200px] object-cover">
+                                class="max-w-[120px] max-h-[100px] lg:max-w-[200px] lg:max-h-[140px] object-cover">
                         </div>
                         <div
                             class="absolute inset-0 bg-black bg-opacity-40 hidden md:flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition duration-300">
@@ -208,7 +208,8 @@
                             @auth
                                 <p class="text-red-500 font-semibold text-2xl">
                                     {{ '$' . number_format(intval($recomProd->default_cost)) }}</p>
-                                <p class="font-semibold text-lg text-gray-400 line-through">{{ '$' . number_format(intval($recomProd->default_price)) }}</p>
+                                <p class="font-semibold text-lg text-gray-400 line-through">
+                                    {{ '$' . number_format(intval($recomProd->default_price)) }}</p>
                             @else
                                 <a href="/login"
                                     class="capitalize text-sm px-2 py-1 bg-primary hover:bg-primary hover:opacity-70 text-white rounded-md">see
@@ -249,9 +250,7 @@
                         </div>
                     </div>
                 </div>
-                <?php
-            endforeach
-            ?>
+            @endforeach
         </div>
     </div>
     {{-- RECOMMENDED FOR YOU END --}}
@@ -268,12 +267,12 @@
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
             <!-- Carts -->
             @foreach ($products2 as $allProd)
-                <div class="bg-white shadow-xl shadow-gray-500 rounded-lg overflow-hidden group h-[430px] flex flex-col">
+                <div class="bg-white shadow-xl shadow-gray-500 rounded-lg overflow-hidden group h-[370px] flex flex-col">
                     <!-- Cart Image -->
                     <div class="relative flex-grow flex justify-center items-center">
                         <div class="flex justify-center pt-3">
                             <img src="{{ $allProd->photo_url }}" alt="product"
-                                class="max-w-[150px] max-h-[120px] lg:max-w-[200px] lg:max-h-[200px] object-cover">
+                                class="max-w-[120px] max-h-[100px] lg:max-w-[200px] lg:max-h-[140px] object-cover">
                         </div>
                         <div
                             class="absolute inset-0 bg-black bg-opacity-40 hidden md:flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition duration-300">
@@ -341,9 +340,7 @@
                         </div>
                     </div>
                 </div>
-                <?php
-            endforeach
-            ?>
+            @endforeach
         </div>
     </div>
     {{-- ALL PRODUCTS END --}}

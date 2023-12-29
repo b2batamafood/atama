@@ -45,17 +45,13 @@ class registerController extends Controller
 
         $password = $validatedData['password'];
 
-        Notification::route('mail', 'vickyfarenza@gmail.com')
+        Notification::route('mail', $validatedData['email'])
             ->notify(new UserRegistrationNotification($password));
 
         User::create($validatedData);
 
-        // // send the password to email
-        // $email = $validatedData['email'];
-
-        // Mail::to($validatedData['email']->email)->send(new signupEmail($validatedData['email'], $validatedData['password']));
-
-        return redirect('/login')->with('success', 'Registration Successful. Use this password to login : ' . $password);
+        // return redirect('/login')->with('success', 'Registration Successful. Use this password to login : ' . $password);
+        return redirect('/login');
     }
 
     public function mailTest () {
