@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Mall;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 
 class landingPageController extends Controller
@@ -15,7 +16,8 @@ class landingPageController extends Controller
         return view('mall.index', [
             "title" => "Mall",
             "products1" => $records1,
-            "products2" => $records2
+            "products2" => $records2,
+            'categories' => Category::all(),
         ]);
     }
 }

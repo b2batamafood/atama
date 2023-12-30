@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Mall;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class profileController extends Controller
 {
     public function index()
     {
-        return view('profile', [
+        return view('mall.profile', [
             "title" => "Profile"
         ]);
     }
