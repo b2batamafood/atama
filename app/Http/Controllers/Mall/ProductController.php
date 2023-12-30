@@ -14,12 +14,14 @@ class ProductController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {   
+    {
         $categories = Category::all();
         $brands = Brand::all();
         return view('products', [
             "title" => "Products",
-            "products" => Product::latest()->search(request(['search']))->paginate(40)->withQueryString(),
+            "products" => Product::with(['brand','category'])
+                ->latest()
+                ->search(request(['search']))->paginate(40)->withQueryString(),
             "categories" => $categories,
             "brands" => $brands
         ]);
