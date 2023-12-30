@@ -36,9 +36,9 @@ class Product extends Model {
             return $query->where('description', 'like', '%' . $filters['search'] . '%')
                 ->orWhere('code', 'like', '%' . $filters['search'] . '%')
                 ->orWhere('name', 'like', '%' . $filters['search'] . '%')
-                ->orWhere('category_name', 'like', '%' . $filters['search'] . '%')
-                ->orWhere('brand_name', 'like', '%' . $filters['search'] . '%')
-                ->orWhere('barcode', 'like', '%' . $filters['search'] . '%');
+                ->orWhere('barcode', 'like', '%' . $filters['search'] . '%')
+                ->orWhereHas('brand', fn ($query) => $query->where('name', 'like', '%'.$filters['search'].'%'))
+                ->orWhereHas('category', fn ($query) => $query->where('name', 'like', '%'.$filters['search'].'%'));
         }
     }
 
