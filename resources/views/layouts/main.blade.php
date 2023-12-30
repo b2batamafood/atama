@@ -99,10 +99,6 @@
                         <ul id="profile"
                             class="w-[130px] border border-gray-100 shadow-lg shadow-black/5 py-2 rounded-md bg-white absolute top-20 right-4 md:right-8 hidden">
                             <li>
-                                <a href="/profile"
-                                    class="flex items-center text-center text-sm capitalize px-4 py-1.5 hover:text-primary hover:bg-gray-100">profile</a>
-                            </li>
-                            <li>
                                 <a href="/setting"
                                     class="flex items-center text-center text-sm capitalize px-4 py-1.5 hover:text-primary hover:bg-gray-100">setting</a>
                             </li>
