@@ -21,11 +21,13 @@ return new class extends Migration
             $table->string('price', 10);
             $table->string('cost', 10);
             $table->string('tax', 1);
-            $table->string('photo_url', 255);
+            $table->string('photo_url')->nullable();
+            /*
             $table->string('inventory', 10);
             $table->string('unit_of_measurement', 20);
             $table->string('location', 10);
             $table->string('retail_price', 1);
+            */
 
             $table->foreignId('category_id')->nullable()
                 ->constrained()

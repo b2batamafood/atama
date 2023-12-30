@@ -19,10 +19,12 @@ class Product extends Model {
         'cost',
         'tax',
         'photo_url',
+        /*
         'inventory',
         'unit_of_measurement',
         'location',
         'retail_price',
+        */
 
         'category_id',
         'brand_id',
