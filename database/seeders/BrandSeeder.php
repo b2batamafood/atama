@@ -12,11 +12,11 @@ class BrandSeeder extends Seeder {
      */
     public function run(): void {
         Brand::insert([
-            ['name'=>'BEVERAGE', 'created_at' => now(),'udpated_at' => now()],
-            ['name'=>'MILKITA', 'created_at' => now(),'udpated_at' => now()],
-            ['name'=>'WASUKA', 'created_at' => now(),'udpated_at' => now()],
-            ['name'=>'MAMA', 'created_at' => now(),'udpated_at' => now()],
-            ['name'=>'COCONUT MILK', 'created_at' => now(),'udpated_at' => now()],
+            ['name'=>'BEVERAGE', 'created_at' => now(),'updated_at' => now()],
+            ['name'=>'MILKITA', 'created_at' => now(),'updated_at' => now()],
+            ['name'=>'WASUKA', 'created_at' => now(),'updated_at' => now()],
+            ['name'=>'MAMA', 'created_at' => now(),'updated_at' => now()],
+            ['name'=>'COCONUT MILK', 'created_at' => now(),'updated_at' => now()],
         ]);
     }
 }

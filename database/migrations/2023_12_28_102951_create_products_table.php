@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('description', 100);
 
             $table->string('barcode', 25);
-            $table->string('price', 10);
-            $table->string('cost', 10);
-            $table->string('tax', 1);
+            $table->string('price');
+            $table->string('cost');
+            $table->string('tax');
             $table->string('photo_url')->nullable();
             /*
             $table->string('inventory', 10);

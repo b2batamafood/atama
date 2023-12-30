@@ -22,6 +22,7 @@ class ProductSeeder extends Seeder
                'price' => 81000000000000,
                'cost' => 28,
                'tax' => 8,
+               'photo_url' => 'https://insitusales.s3.us-east-1.amazonaws.com/web-app/data/10127/images/products/800003F9-1690223174_AT-20030',
 
                'category_id' => 1,
                'brand_id' => 1,
@@ -34,6 +35,7 @@ class ProductSeeder extends Seeder
                 'price' => 8200000000000,
                 'cost' => 22,
                 'tax' => 2,
+                'photo_url' => 'https://insitusales.s3.us-east-1.amazonaws.com/web-app/data/10127/images/products/80000388-1689549869_AT-22009',
 
                 'category_id' => 2,
                 'brand_id' => 2,
