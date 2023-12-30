@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Mall;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,7 +11,7 @@ class dashboardController extends Controller
     public function index()
     {
         return view(
-            'dashboard/index',
+            'mall.dashboard.index',
             [
                 "title" => "Dashboard"
             ]

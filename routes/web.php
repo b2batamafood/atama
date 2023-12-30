@@ -1,18 +1,14 @@
 <?php
 
-use App\Http\Controllers\cartController;
-use App\Http\Controllers\dashboardController;
-use App\Http\Controllers\dashboardproductsController;
-use App\Http\Controllers\landingPageController;
 use App\Http\Controllers\loginController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Mall\cartController;
+use App\Http\Controllers\Mall\dashboardController;
+use App\Http\Controllers\Mall\dashboardproductsController;
+use App\Http\Controllers\Mall\landingPageController;
+use App\Http\Controllers\Mall\ProductController;
+use App\Http\Controllers\Mall\settingController;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\registerController;
-use App\Http\Controllers\sendEmailController;
-use App\Http\Controllers\settingController;
-use App\Mail\UserRegistrationMail;
-use Illuminate\Routing\RouteBinding;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 
@@ -50,3 +46,8 @@ Route::get('/cart', [cartController::class, 'index'])->middleware('auth');
 Route::get('/dashboard', [dashboardController::class, 'index']);
 Route::get('/dashboard/products', [dashboardproductsController::class, 'index']);
 Route::post('/dashboard/products', [dashboardproductsController::class, 'uploadFile']);
+
+Route::get('mail', [registerController::class, 'mailTest'])->name('mail-test');
+
+
+Route::get('test', \App\Livewire\Test::class)->name('view-test');

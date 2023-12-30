@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Mall;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,8 +32,8 @@ class settingController extends Controller
                 'address' => $request->input('address')
             ]);
             return redirect('/setting')->with('successChangeProfile', 'Profile updated');
-        } 
-        
+        }
+
         elseif ($request->has('changePassword')) {
             $request->validate([
                 'current' => 'required',

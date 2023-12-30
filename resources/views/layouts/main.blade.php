@@ -11,7 +11,7 @@
 
     <title>{{ $title }} | Atama</title>
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ mix('css/mall/app.css') }}">
 </head>
 
 <body>
@@ -186,7 +186,7 @@
     </div>
     <!-- COPYRIGHT END -->
 
-    <script src="js/script.js"></script>
+    <script src="{{ mix('js/mall/app.js') }}"></script>
 </body>
 
 </html>

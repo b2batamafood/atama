@@ -1,6 +1,6 @@
-@extends('layouts.main')
+<x-mall.layouts.app>
+    <x-slot:title>Mall Desu</x-slot:title>
 
-@section('container')
     {{-- CAROUSEL START --}}
     <div id="carousel" class="relative w-full">
         <!-- Carousel wrapper -->
@@ -344,4 +344,5 @@
         </div>
     </div>
     {{-- ALL PRODUCTS END --}}
-@endsection
+
+</x-mall.layouts.app>
