@@ -40,16 +40,16 @@
                     @csrf
                     <div class="flex mb-5">
                         <div class="w-1/3 mr-4">
-                            <label for="fname" class="text-gray-600 mb-2 block font-semibold capitalize">first
+                            <label for="firstname" class="text-gray-600 mb-2 block font-semibold capitalize">first
                                 name</label>
-                            <input type="text" name="fname" id="fname"
+                            <input type="text" name="firstname" id="firstname"
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded"
                                 required>
                         </div>
                         <div class="w-1/3 mx-4">
-                            <label for="lname" class="text-gray-600 mb-2 block font-semibold capitalize">last
+                            <label for="lastname" class="text-gray-600 mb-2 block font-semibold capitalize">last
                                 name</label>
-                            <input type="text" name="lname" id="lname"
+                            <input type="text" name="lastname" id="lastname"
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded"
                                 required>
                         </div>

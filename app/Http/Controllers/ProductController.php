@@ -15,8 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {   
-        $categories = Category::all();
-        $brands = Brand::all();
+        $categories = Category::pluck('name');
+        $brands = Brand::pluck('name');
         return view('products', [
             "title" => "Products",
             "products" => Product::latest()->search(request(['search']))->paginate(40)->withQueryString(),

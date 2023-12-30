@@ -207,9 +207,9 @@
                         <div class="flex items-baseline justify-start mb-1 space-x-2">
                             @auth
                                 <p class="text-red-500 font-semibold text-2xl">
-                                    {{ '$' . number_format(intval($recomProd->default_cost)) }}</p>
+                                    {{ '$' . number_format(intval($recomProd->cost)) }}</p>
                                 <p class="font-semibold text-lg text-gray-400 line-through">
-                                    {{ '$' . number_format(intval($recomProd->default_price)) }}</p>
+                                    {{ '$' . number_format(intval($recomProd->price)) }}</p>
                             @else
                                 <a href="/login"
                                     class="capitalize text-sm px-2 py-1 bg-primary hover:bg-primary hover:opacity-70 text-white rounded-md">see
@@ -297,7 +297,7 @@
 
                         @auth
                             <p class="text-red-500 font-semibold text-2xl">
-                                {{ '$' . number_format(intval($allProd->default_price)) }}</p>
+                                {{ '$' . number_format(intval($allProd->price)) }}</p>
                         @else
                             <div class="flex items-baseline justify-start mb-1 space-x-2">
                                 <a href="/login"

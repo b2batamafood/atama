@@ -92,7 +92,7 @@
                                 <i class="ri-account-circle-line"></i>
                             </div>
                             <div class="text-sm leading-3 capitalize">
-                                {{ auth()->user()->fname }}
+                                {{ auth()->user()->firstname }}
                             </div>
                         </button>
 

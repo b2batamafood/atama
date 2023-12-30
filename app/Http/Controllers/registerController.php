@@ -28,8 +28,9 @@ class registerController extends Controller
 
     public function addUser(Request $request)
     {
+        // dd($request->all());
         $validatedData = $request->validate([
-            'firstname' => 'required ',
+            'firstname' => 'required',
             'lastname' => 'required',
             'company' => 'required',
             'email' => 'required|email:dns|unique:users',
@@ -43,25 +44,25 @@ class registerController extends Controller
             'document' => 'required|file|mimes:zip'
         ]);
 
-        $validatedData['password'] = $this->randomPassword();
+        // dd($validatedData);
 
+        $validatedData['password'] = $this->randomPassword();
         $password = $validatedData['password'];
+
+        User::create($validatedData);
 
         Notification::route('mail', $validatedData['email'])
             ->notify(new UserRegistrationNotification($password));
 
-        User::create($validatedData);
-
-        // return redirect('/login')->with('success', 'Registration Successful. Use this password to login : ' . $password);
-        return redirect('/login');
+        return redirect('/login')->with('success', 'Registration Success. Check your email for the password');
     }
 
-    public function mailTest () {
-        $validatedData['password'] = $this->randomPassword();
+    // public function mailTest () {
+    //     $validatedData['password'] = $this->randomPassword();
 
-        $password = $validatedData['password'];
+    //     $password = $validatedData['password'];
 
-        Notification::route('mail', 'vickyfarenza@gmail.com')
-            ->notify(new UserRegistrationNotification($password));
-    }
+    //     Notification::route('mail', 'vickyfarenza@gmail.com')
+    //         ->notify(new UserRegistrationNotification($password));
+    // }
 }

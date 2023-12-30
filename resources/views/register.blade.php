@@ -60,15 +60,23 @@
         </div>
     </nav>
 
-
     <!-- REGISTER START -->
     <div class="contain py-16">
+        @if ($errors->any())
+            <div class="max-w-lg mx-auto p-4 mb-4 text-sm text-white rounded-lg bg-red-400 text-center" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="max-w-[700px] mx-auto border-2 shadow-lg px-6 py-7 rounded overflow-hidden">
             <h2 class="text-2xl uppercase font-medium mb-1 text-center">Create an account</h2>
             <p class="text-gray-600 mb-6 text-sm text-center">
                 Register for new customer
             </p>
-            <form action="/register" method="post" autocomplete="on">
+            <form action="/register" method="post" autocomplete="on" enctype="multipart/form-data">
                 @csrf
                 <div class="space-y-2">
                     <div class="flex">
@@ -93,16 +101,16 @@
                     </div>
                     <div class="flex">
                         <div class="w-1/2 mr-4">
-                            <label for="fname" class="text-gray-600 mb-2 block font-semibold text-sm">First name<span
+                            <label for="firstname" class="text-gray-600 mb-2 block font-semibold text-sm">First name<span
                                     class="text-red-500">*</span></label>
-                            <input type="text" name="fname" id="fname" value="{{ old('fname') }}"
+                            <input type="text" name="firstname" id="firstname" value="{{ old('firstname') }}"
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="First Name" required>
                         </div>
                         <div class="w-1/2 ml-4">
-                            <label for="lname" class="text-gray-600 mb-2 block font-semibold text-sm">Last name<span
+                            <label for="lastname" class="text-gray-600 mb-2 block font-semibold text-sm">Last name<span
                                     class="text-red-500">*</span></label>
-                            <input type="text" name="lname" id="lname" value="{{ old('lname') }}"
+                            <input type="text" name="lastname" id="lastname" value="{{ old('lastname') }}"
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="Last Name" required>
                         </div>
@@ -405,7 +413,8 @@
 
                     <div class="flex">
                         <div class="w-1/2 mr-4">
-                            <label for="tax_id" class="text-gray-600 mb-2 block font-semibold text-sm">Tax ID, Seller
+                            <label for="tax_id" class="text-gray-600 mb-2 block font-semibold text-sm">Tax ID,
+                                Seller
                                 Permit<span class="text-red-500">*</span></label>
                             <input type="text" name="tax_id" id="tax_id" value="{{ old('tax_id') }}"
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
@@ -415,7 +424,7 @@
                             <!-- File Input -->
                             <label for="file" class="block text-gray-600 text-sm font-semibold mb-2">Document<span
                                     class="text-red-500">*</span></label>
-                            <input type="file" id="file" name="file" accept=".zip"
+                            <input type="file" id="file" name="document" accept=".zip"
                                 class="border w-full rounded-md text-sm relative" required>
                             <p class="text-sm text-gray-400">Compressed file: Licenses, State permits, IDs.</p>
                         </div>
@@ -423,7 +432,7 @@
                 </div>
                 <div class="mt-6">
                     <div class="flex items-center">
-                        <input type="checkbox" name="agreement" id="agreement"
+                        <input type="checkbox" id="agreement"
                             class="text-primary focus:ring-0 rounded-sm cursor-pointer" required>
                         <label for="agreement" class="text-gray-600 ml-3 cursor-pointer">Check here to indicate that
                             you have read and agree to our <a href="#" class="text-primary capitalize">terms &
