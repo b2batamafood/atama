@@ -11,9 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .js('resources/js/script.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
+mix.js('resources/js/mall/app.js', 'public/js/mall')
+    .postCss('resources/css/mall/app.css', 'public/css/mall', [
         require("tailwindcss"),
         require("autoprefixer")
     ]);
