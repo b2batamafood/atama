@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Mall;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreproductRequest;
 use App\Http\Requests\UpdateproductRequest;
 use App\Models\Brand;
@@ -17,7 +18,7 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $brands = Brand::all();
-        return view('products', [
+        return view('mall.products', [
             "title" => "Products",
             "products" => Product::with(['brand','category'])
                 ->latest()

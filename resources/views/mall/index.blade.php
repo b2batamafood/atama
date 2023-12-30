@@ -1,4 +1,4 @@
-<x-layouts.mall-app>
+<x-mall.layouts.app>
     <x-slot:title>Mall Desu</x-slot:title>
 
     {{-- CAROUSEL START --}}
@@ -345,4 +345,4 @@
     </div>
     {{-- ALL PRODUCTS END --}}
 
-</x-layouts.mall-app>
+</x-mall.layouts.app>

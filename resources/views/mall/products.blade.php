@@ -1,6 +1,5 @@
-{{--<x-slot:title>Mall Desu</x-slot:title>--}}
-<x-layouts.mall-app>
-    <x-title name="Mall Desu"/>
+<x-mall.layouts.app>
+    <x-slot:title>Mall Desu</x-slot:title>
     <!-- FILTER START -->
     <div class="absolute left-0 h-fit w-0 md:w-32 lg:w-64 p-5 z-[1000] text-center">
         <h1 class="text-2xl md:text-3xl capitalize font-bold text-primary">categories</h1>
@@ -193,4 +192,4 @@
             });
         });
     </script>
-</x-layouts.mall-app>
+</x-mall.layouts.app>
