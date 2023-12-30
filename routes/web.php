@@ -6,8 +6,8 @@ use App\Http\Controllers\Mall\dashboardController;
 use App\Http\Controllers\Mall\dashboardproductsController;
 use App\Http\Controllers\Mall\landingPageController;
 use App\Http\Controllers\Mall\ProductController;
+use App\Http\Controllers\Mall\profileController;
 use App\Http\Controllers\Mall\settingController;
-use App\Http\Controllers\profileController;
 use App\Http\Controllers\registerController;
 use Illuminate\Support\Facades\Route;
 
@@ -50,4 +50,13 @@ Route::post('/dashboard/products', [dashboardproductsController::class, 'uploadF
 Route::get('mail', [registerController::class, 'mailTest'])->name('mail-test');
 
 
+/* Admin */
+/*
+Route::get('admin', \App\Http\Livewire\Admin\Dashboard::class)->name('dashboard');
+
+
 Route::get('test', \App\Livewire\Test::class)->name('view-test');
+Route::get('temp', function () {
+    return view('temp');
+});
+*/
