@@ -12,7 +12,7 @@ class settingController extends Controller
 {
     public function index()
     {
-        return view('setting', [
+        return view('mall.setting', [
             "title" => "Setting"
         ]);
     }
@@ -24,7 +24,7 @@ class settingController extends Controller
 
         if ($request->has('editField')) {
             User::where('id', $user['id'])->update([
-                'firstname' => $request->input('firstname'), 
+                'firstname' => $request->input('firstname'),
                 'lastname' => $request->input('lastname'),
                 'company' => $request->input('company'),
                 'email' => $request->input('email'),

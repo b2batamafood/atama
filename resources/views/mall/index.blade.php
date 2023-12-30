@@ -111,11 +111,14 @@
     <div class="container px-5 pt-5 pb-16">
         <h2 class="text-2xl font-medium text-gray-800 uppercase mb-6">shop by category</h2>
         <div class="grid grid-cols-3 gap-5">
-            <div class="relative rounded-sm overflow-hidden group w-full h-48 md:h-60">
-                <img src="img/beverage.jpg" alt="beverage" class="w-full h-full object-cover brightness-90">
-                <a href="/products/"
-                    class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-2xl md:text-3xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition capitalize hover:ease-in-out hover:duration-500">beverage</a>
-            </div>
+            @foreach($categories as $item)
+                <div class="relative rounded-sm overflow-hidden group w-full h-48 md:h-60">
+                    <img src="img/{{ $item->image }}" alt="beverage" class="w-full h-full object-cover brightness-90">
+                    <a href="/products/"
+                       class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-2xl md:text-3xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition capitalize hover:ease-in-out hover:duration-500">{{ $item->name }}</a>
+                </div>
+            @endforeach
+            {{--
             <div class="relative rounded-sm overflow-hidden group w-full h-48 md:h-60">
                 <img src="img/candy.jpeg" alt="candy" class="w-full h-full object-cover brightness-90">
                 <a href="/products/"
@@ -158,6 +161,7 @@
                     class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-2xl md:text-3xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition capitalize hover:ease-in-out hover:duration-500">cooking
                     oil</a>
             </div>
+            --}}
         </div>
     </div>
     {{-- CATEGORIES END --}}

@@ -31,33 +31,11 @@
             {{-- Dropdown --}}
             <div
                 class="absolute w-full left-0 top-full bg-white shadow-md py-3 divide-y divide-solid divide-gray-300 opacity-0 group-hover:opacity-100 transition duration-300 invisible group-hover:visible z-[9999]">
-                <a href="/products?search=beverage" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
-                    <span class="text-gray-600 text-sm capitalize">beverage</span>
-                </a>
-                <a href="/products?search=candy" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
-                    <span class="text-gray-600 text-sm capitalize">candy</span>
-                </a>
-                <a href="/products?search=snack" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
-                    <span class="text-gray-600 text-sm capitalize">snack</span>
-                </a>
-                <a href="/products?search=noodle" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
-                    <span class="text-gray-600 text-sm capitalize">noodle</span>
-                </a>
-                <a href="/products?search=can food" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
-                    <span class="text-gray-600 text-sm capitalize">can food</span>
-                </a>
-                <a href="/products?search=dessert" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
-                    <span class="text-gray-600 text-sm capitalize">dessert</span>
-                </a>
-                <a href="/products?search=condiment" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
-                    <span class="text-gray-600 text-sm capitalize">condiment</span>
-                </a>
-                <a href="/products?search=sauce" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
-                    <span class="text-gray-600 text-sm capitalize">sauce</span>
-                </a>
-                <a href="/products?search=cooking oil" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
-                    <span class="text-gray-600 text-sm capitalize">cooking oil</span>
-                </a>
+                @foreach($categories as $item)
+                    <a href="/products?search={{ $item->name }}" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+                        <span class="text-gray-600 text-sm capitalize">{{ $item->name }}</span>
+                    </a>
+                @endforeach
             </div>
         </div>
 
