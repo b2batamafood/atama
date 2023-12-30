@@ -12,11 +12,16 @@ class BrandSeeder extends Seeder {
      */
     public function run(): void {
         Brand::insert([
-            ['name'=>'BEVERAGE', 'created_at' => now(),'updated_at' => now()],
+            ['name'=>'SFC', 'created_at' => now(),'updated_at' => now()],
+            ['name'=>'PARROT', 'created_at' => now(),'updated_at' => now()],
+            ['name'=>'FOCO', 'created_at' => now(),'updated_at' => now()],
+            ['name'=>'COJO-COJO', 'created_at' => now(),'updated_at' => now()],
+            ['name'=>'SIJI', 'created_at' => now(),'updated_at' => now()],
+            ['name'=>'MOGU', 'created_at' => now(),'updated_at' => now()],
+            ['name'=>'NOH FOODS', 'created_at' => now(),'updated_at' => now()],
+            ['name'=>'CARABAO', 'created_at' => now(),'updated_at' => now()],
             ['name'=>'MILKITA', 'created_at' => now(),'updated_at' => now()],
-            ['name'=>'WASUKA', 'created_at' => now(),'updated_at' => now()],
-            ['name'=>'MAMA', 'created_at' => now(),'updated_at' => now()],
-            ['name'=>'COCONUT MILK', 'created_at' => now(),'updated_at' => now()],
+            ['name'=>'LAURA', 'created_at' => now(),'updated_at' => now()],
         ]);
     }
 }

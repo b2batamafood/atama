@@ -24,8 +24,8 @@ class settingController extends Controller
 
         if ($request->has('editField')) {
             User::where('id', $user['id'])->update([
-                'fname' => $request->input('fname'),
-                'lname' => $request->input('lname'),
+                'firstname' => $request->input('firstname'), 
+                'lastname' => $request->input('lastname'),
                 'company' => $request->input('company'),
                 'email' => $request->input('email'),
                 'phone' => $request->input('phone'),

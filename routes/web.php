@@ -34,6 +34,7 @@ Route::post('/logout', [loginController::class, 'logout']);
 
 Route::get('/register', [registerController::class, 'index'])->middleware('guest');
 Route::post('/register', [registerController::class, 'addUser']);
+// Route::get('mail', [registerController::class, 'mailTest'])->name('mail-test');
 
 Route::get('/profile', [profileController::class, 'index'])->middleware('auth');
 

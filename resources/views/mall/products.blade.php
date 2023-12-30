@@ -75,10 +75,10 @@
                                 <h4 class="uppercase font-normal text-sm mb-2 text-gray-800 hover:text-primary transition">
                                     {{ $product->description }}</h4>
                             </button>
-                            <div class="flex items-baseline justify-start mb-1 space-x-2">
+                        <div class="flex items-baseline justify-start mb-1 space-x-2">
                                 @auth
                                     <p class="text-red-500 font-semibold text-2xl">
-                                        {{ '$' . number_format(intval($product->default_price)) }}</p>
+                                        {{ '$' . number_format(intval($product->price)) }}</p>
                                 @else
                                     <a href="/login"
                                         class="capitalize text-sm px-2 py-1 bg-primary hover:bg-primary hover:opacity-70 text-white rounded-md">see

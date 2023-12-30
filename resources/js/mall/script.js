@@ -47,3 +47,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Carousel slide change every 5 seconds
     setInterval(showNextItem, 5000);
 });
+
+
+// COUNTRY, STATE, CITY DROPDOWN
