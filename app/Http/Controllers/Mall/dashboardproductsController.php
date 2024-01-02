@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Mall;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class dashboardproductsController extends Controller
 {
     public function index(){
         return view(
-            'dashboard/products',
+            'mall.dashboard.products',
             [
                 "title" => "Dashboard Products"
             ]

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Mall;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +12,7 @@ class settingController extends Controller
 {
     public function index()
     {
-        return view('setting', [
+        return view('mall.setting', [
             "title" => "Setting"
         ]);
     }
@@ -23,7 +24,7 @@ class settingController extends Controller
 
         if ($request->has('editField')) {
             User::where('id', $user['id'])->update([
-                'firstname' => $request->input('firstname'), 
+                'firstname' => $request->input('firstname'),
                 'lastname' => $request->input('lastname'),
                 'company' => $request->input('company'),
                 'email' => $request->input('email'),
@@ -31,8 +32,8 @@ class settingController extends Controller
                 'address' => $request->input('address')
             ]);
             return redirect('/setting')->with('successChangeProfile', 'Profile updated');
-        } 
-        
+        }
+
         elseif ($request->has('changePassword')) {
             $request->validate([
                 'current' => 'required',

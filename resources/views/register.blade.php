@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    @vite('resources/css/app.css')
+    <link rel="stylesheet" href="{{ mix('css/mall/app.css') }}">
 
     <title>{{ $title }} | Atama</title>
 
@@ -142,17 +142,17 @@
                             </select> --}}
                             <input type="text" name="country" id="country" value=""
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                                placeholder="Country" readonly>
+                                placeholder="State" >
                         </div>
                         <div class="w-1/4 mx-2">
                             <input type="text" name="state" id="state" value=""
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                            placeholder="State" readonly>
+                                placeholder="State" >
                         </div>
                         <div class="w-1/4 mx-2">
                             <input type="text" name="city" id="city" value=""
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                                placeholder="City" readonly>
+                                placeholder="City" >
                         </div>
                         <div class="w-1/4 ml-2">
                             <input type="text" name="zipcode" id="zipcode" value="{{ old('zipcode') }}"

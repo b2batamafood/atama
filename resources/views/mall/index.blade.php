@@ -1,6 +1,5 @@
-@extends('layouts.main')
-
-@section('container')
+<x-mall.layouts.app>
+    <x-slot:title>Mall Desu</x-slot:title>
 
     {{-- CAROUSEL START --}}
     <div id="carousel" class="relative w-full">
@@ -159,6 +158,7 @@
                     class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-md sm:text-2xl md:text-3xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition capitalize hover:ease-in-out hover:duration-500">cooking
                     oil</a>
             </div>
+            --}}
         </div>
     </div>
     {{-- CATEGORIES END --}}
@@ -346,4 +346,5 @@
         </div>
     </div>
     {{-- ALL PRODUCTS END --}}
-@endsection
+
+</x-mall.layouts.app>

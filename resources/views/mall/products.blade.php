@@ -1,6 +1,5 @@
-@extends('layouts.main')
-
-@section('container')
+<x-mall.layouts.app>
+    <x-slot:title>Mall</x-slot:title>
     <!-- FILTER START -->
     <div class="absolute left-0 h-fit hidden md:block md:w-48 lg:w-64 p-5 z-[1000] text-center">
         <h1 class="text-2xl md:text-3xl capitalize font-bold text-primary">categories</h1>
@@ -11,8 +10,8 @@
                     <li class="text-xs lg:text-sm uppercase font-medium p-[6px] border-b-2 text-gray-600 hover:text-primary">
                         <form action="/products">
                             @csrf
-                            <a href="/products?search={{ $category }}">
-                                {{ $category }}
+                            <a href="/products?search={{ $category->name }}">
+                                {{ $category->name }}
                             </a>
                         </form>
                     </li>
@@ -27,8 +26,8 @@
                     <li class="text-sm uppercase font-medium p-[6px] border-b-2 text-gray-600 hover:text-primary">
                         <form action="/products">
                             @csrf
-                            <a href="/products?search={{ $brand }}">
-                                {{ $brand }}
+                            <a href="/products?search={{ $brand->name }}">
+                                {{ $brand->name }}
                             </a>
                         </form>
                     </li>
@@ -193,5 +192,4 @@
             });
         });
     </script>
-
-@endsection
+</x-mall.layouts.app>

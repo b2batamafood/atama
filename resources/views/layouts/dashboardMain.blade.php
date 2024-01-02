@@ -10,7 +10,7 @@
     {{-- Remix Icon --}}
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ mix('css/mall/app.css') }}">
 </head>
 
 <body>
@@ -134,7 +134,7 @@
 
     {{-- CONTENT START --}}
     <div class="p-4 sm:ml-64 bg-gray-100">
-        @yield('container')        
+        @yield('container')
     </div>
     {{-- CONTENT END --}}
 

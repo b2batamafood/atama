@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Mall;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreproductRequest;
 use App\Http\Requests\UpdateproductRequest;
 use App\Models\Brand;
@@ -14,12 +15,14 @@ class ProductController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {   
-        $categories = Category::pluck('name');
-        $brands = Brand::pluck('name');
-        return view('products', [
+    {
+        $categories = Category::all();
+        $brands = Brand::all();
+        return view('mall.products', [
             "title" => "Products",
-            "products" => Product::latest()->search(request(['search']))->paginate(40)->withQueryString(),
+            "products" => Product::with(['brand','category'])
+                ->latest()
+                ->search(request(['search']))->paginate(40)->withQueryString(),
             "categories" => $categories,
             "brands" => $brands
         ]);
