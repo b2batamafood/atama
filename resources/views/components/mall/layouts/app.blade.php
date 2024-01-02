@@ -9,7 +9,7 @@
     {{-- Remix Icon --}}
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
-    <title>{{ $title ?? 'Mall' }} | Atama</title>
+    <title>{{ $title ?? 'Atama' }} | Atama</title>
 
     <link rel="stylesheet" href="{{ mix('css/mall/app.css') }}">
 </head>

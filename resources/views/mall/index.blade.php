@@ -1,5 +1,5 @@
 <x-mall.layouts.app>
-    <x-slot:title>Atama | Mall</x-slot:title>
+    <x-slot:title>Mall</x-slot:title>
 
     {{-- CAROUSEL START --}}
     <div id="carousel" class="relative w-full">
@@ -110,15 +110,16 @@
     {{-- CATEGORIES START --}}
     <div class="container px-5 pt-5 pb-16">
         <h2 class="text-lg sm:text-xl md:text-2xl font-medium text-gray-800 uppercase mb-6">shop by category</h2>
-        @foreach ( as )
-        <div class="flex overflow-x-scroll max-w-full space-x-4 sm:grid sm:grid-cols-3 sm:gap-5">
-            <div class="relative rounded-sm sm:w-full h-32 w-32 sm:h-48 md:h-60 flex-shrink-0">
-                <img src="img/beverage.jpg" alt="beverage" class="w-full h-full object-cover brightness-90">
-                <a href="/products/"
-                    class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-md sm:text-2xl md:text-3xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition capitalize hover:ease-in-out hover:duration-500">beverage</a>
-            </div>
+        <div class="flex overflow-x-scroll space-x-4 max-w-full sm:space-x-0 sm:grid sm:grid-cols-3 sm:gap-5">
+            @foreach ($categories as $category)
+                <div class="relative rounded-sm sm:w-full h-32 w-32 sm:h-48 md:h-60 flex-shrink-0">
+                    <img src="img/{{ $category->image }}" alt="{{ $category->name }}"
+                        class="w-full h-full object-cover brightness-90 hover:brightness-75 transition duration-500 ease-in-out">
+                    <a href="/products?search={{ $category->name }}"
+                        class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-md sm:text-2xl md:text-3xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition capitalize hover:ease-in-out hover:duration-500">{{ $category->name }}</a>
+                </div>
+            @endforeach
         </div>
-        @endforeach
     </div>
     {{-- CATEGORIES END --}}
 
@@ -263,8 +264,6 @@
                         <div class="flex items-baseline justify-start mb-1 space-x-2">
                             @auth
                                 <p class="text-red-500 font-semibold text-2xl">
-                                    {{ '$' . number_format(intval($allProd->cost)) }}</p>
-                                <p class="font-semibold text-lg text-gray-400 line-through">
                                     {{ '$' . number_format(intval($allProd->price)) }}</p>
                             @else
                                 <a href="/login"

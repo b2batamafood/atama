@@ -46,7 +46,7 @@ Route::get('/dashboard', [dashboardController::class, 'index']);
 Route::get('/dashboard/products', [dashboardproductsController::class, 'index']);
 Route::post('/dashboard/products', [dashboardproductsController::class, 'uploadFile']);
 
-Route::get('mail', [registerController::class, 'mailTest'])->name('mail-test');
+// Route::get('mail', [registerController::class, 'mailTest'])->name('mail-test');
 
 
 /* Admin */
