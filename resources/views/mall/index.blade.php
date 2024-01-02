@@ -1,5 +1,5 @@
 <x-mall.layouts.app>
-    <x-slot:title>Mall Desu</x-slot:title>
+    <x-slot:title>Mall</x-slot:title>
 
     {{-- CAROUSEL START --}}
     <div id="carousel" class="relative w-full">
@@ -7,8 +7,8 @@
         <div class="relative h-40 md:h-56 overflow-hidden xl:h-80 2xl:h-96">
             <!-- Item 1 -->
             <div id="carousel-item-1" class="hidden duration-700 ease-in-out">
-                <img src="img/carousel1.jpeg" class="absolute left-1/2 top-1/2 block w-full -translate-x-1/2 -translate-y-1/2"
-                    alt="carousel" />
+                <img src="img/carousel1.jpeg"
+                    class="absolute left-1/2 top-1/2 block w-full -translate-x-1/2 -translate-y-1/2" alt="carousel" />
             </div>
             <!-- Item 2 -->
             <div id="carousel-item-2" class="hidden duration-700 ease-in-out">
@@ -77,30 +77,30 @@
     {{-- CAROUSEL END --}}
 
     {{-- FEATURES START --}}
-    <div class="container py-16 border-primary">
+    <div class="container sm:py-16 border-primary">
         <div class="flex mb-4">
-            <h1 class="text-2xl font-semibold m-auto capitalize">why choose us?</h1>
+            <h1 class="text-lg sm:text-xl md:text-2xl font-semibold m-auto capitalize">why choose us?</h1>
         </div>
-        <div class="w-10/12 grid grid-cols-1 md:grid-cols-3 gap-6 mx-auto justify-center">
-            <div class="border shadow-lg rounded-lg px-3 py-6 flex justify-center items-center gap-5">
-                <i class="ri-truck-line text-3xl"></i>
+        <div class="w-11/12 grid grid-cols-1 sm:grid-cols-3 gap-6 mx-auto justify-center">
+            <div class="border shadow-lg rounded-lg px-2 py-4 sm:px-3 sm:py-4 flex justify-center items-center gap-5">
+                <i class="ri-truck-line text-lg sm:text-2xl md:text-3xl"></i>
                 <div>
-                    <h4 class="font-medium capitalize text-lg">Free Shipping</h4>
-                    <p class="text-gray-500 text-sm">Order over 1.000 items</p>
+                    <h4 class="font-medium capitalize text-sm sm:text-base md:text-lg">Free Shipping</h4>
+                    <p class="text-gray-500 text-xs sm:text-sm">Order over 1.000 items</p>
                 </div>
             </div>
-            <div class="border shadow-lg rounded-lg px-3 py-6 flex justify-center items-center gap-5">
-                <i class="ri-percent-line text-3xl"></i>
+            <div class="border shadow-lg rounded-lg px-2 py-4 sm:px-3 sm:py-4 flex justify-center items-center gap-5">
+                <i class="ri-percent-line text-lg sm:text-2xl md:text-3xl"></i>
                 <div>
-                    <h4 class="font-medium capitalize text-lg">promos</h4>
-                    <p class="text-gray-500 text-sm">Discount everyday</p>
+                    <h4 class="font-medium capitalize text-sm sm:text-base md:text-lg">promos</h4>
+                    <p class="text-gray-500 text-xs sm:text-sm">Discount everyday</p>
                 </div>
             </div>
-            <div class="border shadow-lg rounded-lg px-3 py-6 flex justify-center items-center gap-5">
-                <i class="ri-customer-service-line text-3xl"></i>
+            <div class="border shadow-lg rounded-lg px-2 py-4 sm:px-3 sm:py-4 flex justify-center items-center gap-5">
+                <i class="ri-customer-service-line text-lg sm:text-2xl md:text-3xl"></i>
                 <div>
-                    <h4 class="font-medium capitalize text-lg">24/7 Support</h4>
-                    <p class="text-gray-500 text-sm">Customer support</p>
+                    <h4 class="font-medium capitalize text-sm sm:text-base md:text-lg">24/7 Support</h4>
+                    <p class="text-gray-500 text-xs sm:text-sm">Customer support</p>
                 </div>
             </div>
         </div>
@@ -109,59 +109,16 @@
 
     {{-- CATEGORIES START --}}
     <div class="container px-5 pt-5 pb-16">
-        <h2 class="text-2xl font-medium text-gray-800 uppercase mb-6">shop by category</h2>
-        <div class="grid grid-cols-3 gap-5">
-            @foreach($categories as $item)
-                <div class="relative rounded-sm overflow-hidden group w-full h-48 md:h-60">
-                    <img src="img/{{ $item->image }}" alt="beverage" class="w-full h-full object-cover brightness-90">
-                    <a href="/products/"
-                       class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-2xl md:text-3xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition capitalize hover:ease-in-out hover:duration-500">{{ $item->name }}</a>
+        <h2 class="text-lg sm:text-xl md:text-2xl font-medium text-gray-800 uppercase mb-6">shop by category</h2>
+        <div class="flex overflow-x-scroll space-x-4 max-w-full sm:space-x-0 sm:grid sm:grid-cols-3 sm:gap-5">
+            @foreach ($categories as $category)
+                <div class="relative rounded-sm sm:w-full h-32 w-32 sm:h-48 md:h-60 flex-shrink-0">
+                    <img src="img/{{ $category->image }}" alt="{{ $category->name }}"
+                        class="w-full h-full object-cover brightness-90 hover:brightness-75 transition duration-500 ease-in-out">
+                    <a href="/products?search={{ $category->name }}"
+                        class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-md sm:text-2xl md:text-3xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition capitalize hover:ease-in-out hover:duration-500">{{ $category->name }}</a>
                 </div>
             @endforeach
-            {{--
-            <div class="relative rounded-sm overflow-hidden group w-full h-48 md:h-60">
-                <img src="img/candy.jpeg" alt="candy" class="w-full h-full object-cover brightness-90">
-                <a href="/products/"
-                    class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-2xl md:text-3xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition capitalize hover:ease-in-out hover:duration-500">candy</a>
-            </div>
-            <div class="relative rounded-sm overflow-hidden group w-full h-48 md:h-60">
-                <img src="img/snack.jpg" alt="snack" class="w-full h-full object-cover brightness-90">
-                <a href="/products/"
-                    class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-2xl md:text-3xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition capitalize hover:ease-in-out hover:duration-500">snack</a>
-            </div>
-            <div class="relative rounded-sm overflow-hidden group w-full h-48 md:h-60">
-                <img src="img/noodle.jpg" alt="noodle" class="w-full h-full object-cover brightness-90">
-                <a href="/products/"
-                    class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-2xl md:text-3xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition capitalize hover:ease-in-out hover:duration-500">noodle</a>
-            </div>
-            <div class="relative rounded-sm overflow-hidden group w-full h-48 md:h-60">
-                <img src="img/can_food.jpg" alt="can_food" class="w-full h-full object-cover brightness-90">
-                <a href="/products/"
-                    class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-2xl md:text-3xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition capitalize hover:ease-in-out hover:duration-500">can
-                    food</a>
-            </div>
-            <div class="relative rounded-sm overflow-hidden group w-full h-48 md:h-60">
-                <img src="img/dessert.jpeg" alt="dessert" class="w-full h-full object-cover brightness-90">
-                <a href="/products/"
-                    class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-2xl md:text-3xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition capitalize hover:ease-in-out hover:duration-500">dessert</a>
-            </div>
-            <div class="relative rounded-sm overflow-hidden group w-full h-48 md:h-60">
-                <img src="img/condiments.jpg" alt="condiment" class="w-full h-full object-cover brightness-90">
-                <a href="/products/"
-                    class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-2xl md:text-3xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition capitalize hover:ease-in-out hover:duration-500">condiment</a>
-            </div>
-            <div class="relative rounded-sm overflow-hidden group w-full h-48 md:h-60">
-                <img src="img/sauce.jpg" alt="sauce" class="w-full h-full object-cover brightness-90">
-                <a href="/products/"
-                    class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-2xl md:text-3xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition capitalize hover:ease-in-out hover:duration-500">sauce</a>
-            </div>
-            <div class="relative rounded-sm overflow-hidden group w-full h-48 md:h-60">
-                <img src="img/cooking_oil.jpeg" alt="cooking_oil" class="w-full h-full object-cover brightness-90">
-                <a href="#"
-                    class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-2xl md:text-3xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition capitalize hover:ease-in-out hover:duration-500">cooking
-                    oil</a>
-            </div>
-            --}}
         </div>
     </div>
     {{-- CATEGORIES END --}}
@@ -169,21 +126,24 @@
     {{-- RECOMMENDED FOR YOU START --}}
     <div class="container px-5 pb-16">
         <div class="flex justify-between h-fit mb-6">
-            <h2 class="text-2xl font-medium text-gray-800 uppercase items-center">recommended for you</h2>
-            <a href="/products" class="capitalize text-blue-500 h-fit">
+            <h2 class="text-lg sm:text-xl md:text-2xl font-medium text-gray-800 uppercase items-center">recommended for
+                you</h2>
+            <a href="/products"
+                class="capitalize text-blue-500 h-fit text-xs sm:text-sm md:text-base flex items-center">
                 see more
-                <i class="ri-arrow-right-s-line text-xl"></i>
+                <i class="ri-arrow-right-s-line text-base sm:text-lg md:text-xl"></i>
             </a>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
             <!-- Carts -->
             @foreach ($products1 as $recomProd)
-                <div class="bg-white shadow-xl shadow-gray-500 rounded-lg overflow-hidden group h-[370px] flex flex-col">
+                <div
+                    class="bg-white shadow-xl shadow-gray-500 rounded-lg overflow-hidden group h-[300px] md:h-[370px] flex flex-col">
                     <div class="relative flex-grow flex justify-center items-center">
-                        <div class="absolute top-4 left-4 rounded-full bg-red-500 p-[1px] md:p-1">
-                            <i class="ri-percent-line text-xl md:text-2xl text-white"></i>
+                        <div class="absolute top-2 left-2 sm:top-4 sm:left-4 rounded-full bg-red-500 p-[1px] md:p-1">
+                            <i class="ri-percent-line text-lg sm:text-xl md:text-2xl text-white"></i>
                         </div>
-                        <div class="flex justify-center pt-3">
+                        <div class="flex justify-center pt-1 sm:pt-3">
                             <img src="{{ $recomProd->photo_url }}" alt="product"
                                 class="max-w-[120px] max-h-[100px] lg:max-w-[200px] lg:max-h-[140px] object-cover">
                         </div>
@@ -200,7 +160,7 @@
                     </div>
 
                     <!-- Cart Description -->
-                    <div class="flex flex-col pt-4 pb-3 px-4">
+                    <div class="flex flex-col p-[6px] sm:pt-4 sm:pb-3 sm:px-4">
                         <h3 class="uppercase font-semibold text-sm md:text-base">{{ $recomProd->name }}</h3>
                         <!-- Modal toggle 2 -->
                         <button id="{{ $recomProd->id }}" class="product-modal text-left flex-grow"
@@ -224,12 +184,12 @@
 
                     @auth
                         <button
-                            class="block w-full py-2 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition"
+                            class="block w-full py-[6px] sm:py-2 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition"
                             onclick="addToCart()">Add
                             to cart</button>
                     @else
                         <button
-                            class="block w-full py-2 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition pointer-events-none">Add
+                            class="block w-full py-[6px] sm:py-2 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition pointer-events-none">Add
                             to cart</button>
                     @endauth
                 </div>
@@ -262,63 +222,65 @@
     {{-- ALL PRODUCTS START --}}
     <div class="container px-5 pb-16">
         <div class="flex justify-between h-fit mb-6">
-            <h2 class="text-2xl font-medium text-gray-800 uppercase items-center">all products</h2>
-            <a href="/products" class="capitalize text-blue-500 h-fit">
+            <h2 class="text-lg sm:text-xl md:text-2xl font-medium text-gray-800 uppercase items-center">all products
+            </h2>
+            <a href="/products"
+                class="capitalize text-blue-500 h-fit text-xs sm:text-sm md:text-base flex items-center">
                 see more
-                <i class="ri-arrow-right-s-line text-xl"></i>
+                <i class="ri-arrow-right-s-line text-base sm:text-lg md:text-xl"></i>
             </a>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
             <!-- Carts -->
             @foreach ($products2 as $allProd)
-                <div class="bg-white shadow-xl shadow-gray-500 rounded-lg overflow-hidden group h-[370px] flex flex-col">
-                    <!-- Cart Image -->
+                <div
+                    class="bg-white shadow-xl shadow-gray-500 rounded-lg overflow-hidden group h-[300px] md:h-[370px] flex flex-col">
                     <div class="relative flex-grow flex justify-center items-center">
-                        <div class="flex justify-center pt-3">
+                        <div class="flex justify-center pt-1 sm:pt-3">
                             <img src="{{ $allProd->photo_url }}" alt="product"
                                 class="max-w-[120px] max-h-[100px] lg:max-w-[200px] lg:max-h-[140px] object-cover">
                         </div>
                         <div
                             class="absolute inset-0 bg-black bg-opacity-40 hidden md:flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition duration-300">
                             <!-- Modal toggle 1 -->
-                            <button id="{{ $allProd->id }}" data-modal-target="product-modal2"
-                                data-modal-toggle="product-modal2" href="#"
-                                class="product-modal2 text-white text-lg w-9 h-8 rounded-full bg-primary flex items-center justify-center hover:bg-gray-800 transition"
+                            <button id="{{ $allProd->id }}" data-modal-target="product-modal"
+                                data-modal-toggle="product-modal"
+                                class="product-modal text-white text-lg w-9 h-8 rounded-full bg-primary flex items-center justify-center hover:bg-gray-800 transition"
                                 title="view product">
                                 <i class="ri-eye-line"></i>
                             </button>
                         </div>
                     </div>
+
                     <!-- Cart Description -->
-                    <div class="flex flex-col pt-4 pb-3 px-4">
+                    <div class="flex flex-col p-[6px] sm:pt-4 sm:pb-3 sm:px-4">
                         <h3 class="uppercase font-semibold text-sm md:text-base">{{ $allProd->name }}</h3>
                         <!-- Modal toggle 2 -->
-                        <button id="{{ $allProd->id }}" class="product-modal2 text-left flex-grow"
-                            data-modal-target="product-modal2" data-modal-toggle="product-modal2">
+                        <button id="{{ $recomProd->id }}" class="product-modal text-left flex-grow"
+                            data-modal-target="product-modal" data-modal-toggle="product-modal">
                             <h4 class="uppercase font-normal text-sm mb-2 text-gray-800 hover:text-primary transition">
                                 {{ $allProd->description }}</h4>
                         </button>
-
-                        @auth
-                            <p class="text-red-500 font-semibold text-2xl">
-                                {{ '$' . number_format(intval($allProd->price)) }}</p>
-                        @else
-                            <div class="flex items-baseline justify-start mb-1 space-x-2">
+                        <div class="flex items-baseline justify-start mb-1 space-x-2">
+                            @auth
+                                <p class="text-red-500 font-semibold text-2xl">
+                                    {{ '$' . number_format(intval($allProd->price)) }}</p>
+                            @else
                                 <a href="/login"
                                     class="capitalize text-sm px-2 py-1 bg-primary hover:bg-primary hover:opacity-70 text-white rounded-md">see
                                     price</a>
-                            </div>
-                        @endauth
+                            @endauth
+                        </div>
                     </div>
 
                     @auth
                         <button
-                            class="block w-full py-2 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition"
+                            class="block w-full py-[6px] sm:py-2 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition"
                             onclick="addToCart()">Add
                             to cart</button>
                     @else
                         <button
-                            class="block w-full py-2 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition pointer-events-none cursor-pointer">Add
+                            class="block w-full py-[6px] sm:py-2 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition pointer-events-none">Add
                             to cart</button>
                     @endauth
                 </div>
