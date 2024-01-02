@@ -2,7 +2,7 @@
 
 @section('container')
     <!-- FILTER START -->
-    <div class="absolute left-0 h-fit w-0 md:w-32 lg:w-64 p-5 z-[1000] text-center">
+    <div class="absolute left-0 h-fit hidden md:block md:w-48 lg:w-64 p-5 z-[1000] text-center">
         <h1 class="text-2xl md:text-3xl capitalize font-bold text-primary">categories</h1>
 
         <div class="max-h-[300px] overflow-y-scroll mb-10">
@@ -46,7 +46,7 @@
 
         {{-- if product found --}}
         @if ($products->count())
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 ml-32 lg:ml-64 mt-5">
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5 ml-0 md:ml-48 lg:ml-64 mt-5">
                 <!-- Carts -->
                 @foreach ($products as $product)
                     <div
@@ -167,7 +167,7 @@
             buttons.forEach(function(button) {
                 button.addEventListener('click', function() {
                     var productId = this.id;
-                    alert(productId);
+                    // alert(productId);
                     $.ajax({
                         type: 'get',
                         // url: '/products',

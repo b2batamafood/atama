@@ -71,8 +71,8 @@
                 </ul>
             </div>
         @endif
-        <div class="max-w-[700px] mx-auto border-2 shadow-lg px-6 py-7 rounded overflow-hidden">
-            <h2 class="text-2xl uppercase font-medium mb-1 text-center">Create an account</h2>
+        <div class="max-w-[700px] mx-auto shadow-none sm:border-2 sm:shadow-lg px-4 sm:px-6 py-7 rounded overflow-hidden">
+            <h2 class="text-lg sm:text-xl uppercase font-medium text-center">Create an account</h2>
             <p class="text-gray-600 mb-6 text-sm text-center">
                 Register for new customer
             </p>
@@ -81,14 +81,14 @@
                 <div class="space-y-2">
                     <div class="flex">
                         <div class="w-1/2 mr-4">
-                            <label for="company" class="text-gray-600 mb-2 block font-semibold text-sm">Company<span
+                            <label for="company" class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Company<span
                                     class="text-red-500">*</span></label>
                             <input type="company" name="company" id="company" value="{{ old('company') }}"
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="Company name" required>
                         </div>
                         <div class="w-1/2 ml-4">
-                            <label for="email" class="text-gray-600 mb-2 block font-semibold text-sm">Email<span
+                            <label for="email" class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Email<span
                                     class="text-red-500">*</span></label>
                             <input type="email" name="email" id="email" value="{{ old('email') }}"
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
@@ -101,14 +101,14 @@
                     </div>
                     <div class="flex">
                         <div class="w-1/2 mr-4">
-                            <label for="firstname" class="text-gray-600 mb-2 block font-semibold text-sm">First
+                            <label for="firstname" class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">First
                                 name<span class="text-red-500">*</span></label>
                             <input type="text" name="firstname" id="firstname" value="{{ old('firstname') }}"
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="First Name" required>
                         </div>
                         <div class="w-1/2 ml-4">
-                            <label for="lastname" class="text-gray-600 mb-2 block font-semibold text-sm">Last name<span
+                            <label for="lastname" class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Last name<span
                                     class="text-red-500">*</span></label>
                             <input type="text" name="lastname" id="lastname" value="{{ old('lastname') }}"
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
@@ -118,14 +118,14 @@
 
                     <div class="flex">
                         <div class="w-1/2 mr-4">
-                            <label for="address" class="text-gray-600 mb-2 block font-semibold text-sm">Address<span
+                            <label for="address" class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Address<span
                                     class="text-red-500">*</span></label>
                             <input type="text" name="address" id="address" value="{{ old('address') }}"
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="Enter your address" required>
                         </div>
                         <div class="w-1/2 ml-4">
-                            <label for="phone" class="text-gray-600 mb-2 block font-semibold text-sm">Phone<span
+                            <label for="phone" class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Phone<span
                                     class="text-red-500">*</span></label>
                             <input type="text" name="phone" id="phone" value="{{ old('phone') }}"
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
@@ -142,12 +142,12 @@
                             </select> --}}
                             <input type="text" name="country" id="country" value=""
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                                placeholder="State" readonly>
+                                placeholder="Country" readonly>
                         </div>
                         <div class="w-1/4 mx-2">
                             <input type="text" name="state" id="state" value=""
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                                placeholder="State" readonly>
+                            placeholder="State" readonly>
                         </div>
                         <div class="w-1/4 mx-2">
                             <input type="text" name="city" id="city" value=""
@@ -163,7 +163,7 @@
 
                     <div class="flex">
                         <div class="w-1/2 mr-4">
-                            <label for="tax_id" class="text-gray-600 mb-2 block font-semibold text-sm">Tax ID,
+                            <label for="tax_id" class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Tax ID,
                                 Seller
                                 Permit<span class="text-red-500">*</span></label>
                             <input type="text" name="tax_id" id="tax_id" value="{{ old('tax_id') }}"
@@ -172,7 +172,7 @@
                         </div>
                         <div class="w-1/2 ml-4">
                             <!-- File Input -->
-                            <label for="file" class="block text-gray-600 text-sm font-semibold mb-2">Document<span
+                            <label for="file" class="block text-gray-600 text-sm sm:text-base font-semibold mb-1 sm:mb-2">Document<span
                                     class="text-red-500">*</span></label>
                             <input type="file" id="file" name="document" accept=".zip"
                                 class="border w-full rounded-md text-sm relative" required>

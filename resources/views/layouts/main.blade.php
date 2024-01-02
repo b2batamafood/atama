@@ -7,11 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     {{-- Remix Icon --}}
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="{{ asset('https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css') }}" rel="stylesheet">
 
     <title>{{ $title }} | Atama</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    {{-- <style>
+        *{
+            border: 1px solid red;
+        }
+    </style> --}}
 </head>
 
 <body>
@@ -84,7 +90,7 @@
                             <div class="text-sm leading-3">Cart</div>
                             <div
                                 class="absolute -right-3 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-sm">
-                                0</div>
+                                </div>
                         </a>
                         <button type="button" class="text-center text-gray-200 hover:text-gray-500 transition relative"
                             onclick="toggleProfileMenu()">
@@ -124,19 +130,19 @@
     </main>
 
     <!-- FOOTER START -->
-    <footer class="bg-neutral-200 p-8 w-full h-fit">
+    <footer class="bg-neutral-200 p-2 sm:p-4 md:p-8 w-full h-fit">
         <div class="mx-auto w-full max-w-screen-xl">
-            <div class="grid grid-cols-1 gap-8 px-4 md:grid-cols-2">
+            <div class="grid grid-cols-2 gap-8 px-4">
                 <div>
-                    <h2 class="mb-6 text-md font-bold uppercase text-gray-800">contact</h2>
+                    <h2 class="mb-3 md:mb-6 text-base font-bold uppercase text-gray-800">contact</h2>
                     <ul class="text-opacity-70 font-medium">
                         <li class="opacity-50 text-sm">
                             4010 W Valley Blvd #109
                         </li>
-                        <li class="mb-4 opacity-50 text-sm">
+                        <li class="mb-2 md:mb-4 opacity-50 text-sm">
                             Walnut, CA 91789
                         </li>
-                        <li class="mb-4 opacity-50 text-sm">
+                        <li class="mb-2 md:mb-4 opacity-50 text-sm">
                             Phone : <span>213-320-0280</span>
                         </li>
                         <li class="mb-1 opacity-50 text-sm">
@@ -155,15 +161,15 @@
                     </ul>
                 </div>
                 <div>
-                    <h2 class="mb-6 text-md font-bold uppercase text-gray-800">Company</h2>
+                    <h2 class="mb-3 md:mb-6 text-md font-bold uppercase text-gray-800">Company</h2>
                     <ul class="font-medium">
-                        <li class="mb-4">
+                        <li class="mb-2 md:mb-4">
                             <a href="#" class="text-sm opacity-50 capitalize">About</a>
                         </li>
-                        <li class="mb-4">
+                        <li class="mb-2 md:mb-4">
                             <a href="#" class="text-sm opacity-50 capitalize">Location</a>
                         </li>
-                        <li class="mb-4">
+                        <li class="mb-2 md:mb-4">
                             <a href="#" class="text-sm opacity-50 capitalize">Shipping</a>
                         </li>
                         <li class="mb-4">
@@ -177,8 +183,8 @@
     <!-- FOOTER END -->
 
     <!-- COPYRIGHT START -->
-    <div class="bg-gray-800 py-4">
-        <div class="container flex items-center justify-center ">
+    <div class="bg-gray-800 p-4">
+        <div class="container flex items-center justify-center text-sm md:text-base">
             <p class="text-white">2023 ® All Rights Reserved
                 <span class="uppercase font-semibold text-red-400 cursor-pointer"> atama premier foods</span>
             </p>
@@ -186,7 +192,7 @@
     </div>
     <!-- COPYRIGHT END -->
 
-    <script src="js/script.js"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
 </body>
 
 </html>

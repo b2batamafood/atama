@@ -46,4 +46,58 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Carousel slide change every 5 seconds
     setInterval(showNextItem, 5000);
- });
+});
+
+
+//  CART
+var price = (document.getElementById('price').textContent).substring(1);
+var strWithPeriod = price.replace(',', '.');
+var pricePerItem = parseFloat(strWithPeriod);
+var initialQuantity = 1;
+
+// Initialize quantity and total price
+document.getElementById('quantity').value = initialQuantity;
+updateTotalPrice();
+
+function incrementQuantity() {
+    var quantityInput = document.getElementById('quantity');
+    var currentQuantity = parseInt(quantityInput.value) || 1;
+
+    quantityInput.value = currentQuantity + 1;
+
+    updateTotalPrice();
+    updateDecrementButtonState();
+}
+
+function decrementQuantity() {
+    var quantityInput = document.getElementById('quantity');
+    var currentQuantity = parseInt(quantityInput.value) || 1;
+
+    if (currentQuantity > 1) {
+        quantityInput.value = currentQuantity - 1;
+    }
+
+    updateTotalPrice();
+    updateDecrementButtonState();
+}
+
+function updateDecrementButtonState() {
+    var quantityInput = document.getElementById('quantity');
+    var decrementButton = document.getElementById('decrement-button');
+    var currentQuantity = parseInt(quantityInput.value) || 1;
+
+    // Disable the decrement button if the quantity is 1
+    decrementButton.disabled = currentQuantity === 1;
+}
+
+function updateTotalPrice() {
+    var quantityInput = document.getElementById('quantity');
+    var totalAmountElement = document.getElementById('total');
+    var currentQuantity = parseInt(quantityInput.value) || 1;
+
+    // Calculate total price based on quantity and price per item
+    var totalAmount = currentQuantity * pricePerItem;
+
+    // Update the total amount in the UI
+    totalAmountElement.textContent = totalAmount.toFixed(2);
+}

@@ -35,8 +35,8 @@
             </div>
         @endif
 
-        <div class="max-w-lg mx-auto border-2 shadow-lg px-6 py-7 rounded overflow-hidden">
-            <h2 class="text-2xl uppercase font-medium text-center">Login</h2>
+        <div class="max-w-lg mx-auto shadow-none px-4 py-7 rounded overflow-hidden sm:border-2 sm:shadow-lg sm:px-6">
+            <h2 class="text-lg sm:text-xl uppercase font-medium text-center">Login</h2>
             <p class="text-gray-600 mb-6 text-sm text-center">
                 Welcome back
             </p>
@@ -44,7 +44,7 @@
                 @csrf
                 <div class="space-y-2">
                     <div>
-                        <label for="email" class="text-gray-600 mb-2 block">Email address<span
+                        <label for="email" class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Email address<span
                                 class="text-red-500">*</span></label>
                         <input type="email" name="email" id="email"
                             class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
@@ -55,7 +55,7 @@
                         @enderror
                     </div>
                     <div>
-                        <label for="password" class="text-gray-600 mb-2 block">Password<span class="text-red-500">*</span></label>
+                        <label for="password" class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Password<span class="text-red-500">*</span></label>
                         <input type="password" name="password" id="password" class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400" placeholder="Enter your password" required>
                     </div>
                 </div>
