@@ -41,7 +41,7 @@ class registerController extends Controller
             'address' => 'required',
             'phone' => 'required',
             'tax_id' => 'required',
-            'document' => 'required|file|mimes:zip'
+            'document' => 'file|mimes:zip,pdf|nullable'
         ]);
 
         // dd($validatedData);

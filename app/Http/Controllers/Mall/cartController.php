@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Mall;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class cartController extends Controller
 {
     public function index()
     {
-        return view('cart', [
+        return view('Mall/cart', [
             "title" => "Cart"
         ]);
     }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Mall;
 
-use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class landingPageController extends Controller
 {
@@ -15,9 +15,8 @@ class landingPageController extends Controller
         $records2 = Product::orderByRaw('RAND()')->take(4)->get();
 
         $cart = session()->get('cart', []);
-        // dd($cart);
 
-        return view('index', [
+        return view('mall/index', [
             "title" => "Mall",
             "products1" => $records1,
             "products2" => $records2,

@@ -26,7 +26,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [landingPageController::class, 'index']);
 
 Route::get('/products', [ProductController::class, 'index']);
-// Route::get('/products/{id}', [ProductController::class, 'show']);
 
 Route::get('/login',[loginController::class, 'index'])->middleware('guest')->name('login');
 Route::post('/login',[loginController::class, 'login']);
@@ -34,7 +33,6 @@ Route::post('/logout', [loginController::class, 'logout']);
 
 Route::get('/register', [registerController::class, 'index'])->middleware('guest');
 Route::post('/register', [registerController::class, 'addUser']);
-// Route::get('mail', [registerController::class, 'mailTest'])->name('mail-test');
 
 Route::get('/profile', [profileController::class, 'index'])->middleware('auth');
 
@@ -42,7 +40,7 @@ Route::get('/setting', [settingController::class, 'index'])->middleware('auth');
 Route::post('/setting', [settingController::class, 'edit']);
 
 Route::get('/cart', [cartController::class, 'index'])->middleware('auth');
-Route::get('/add-to-cart/{productId}/{quantity}', [CartController::class, 'addToCart'])->name('addToCart');
+// Route::get('/add-to-cart/{productId}/{quantity}', [CartController::class, 'addToCart'])->name('addToCart');
 
 Route::get('/dashboard', [dashboardController::class, 'index']);
 Route::get('/dashboard/products', [dashboardproductsController::class, 'index']);

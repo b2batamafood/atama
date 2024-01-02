@@ -48,7 +48,6 @@ document.addEventListener('DOMContentLoaded', function () {
     setInterval(showNextItem, 5000);
 });
 
-
 //  CART
 var price = (document.getElementById('price').textContent).substring(1);
 var strWithPeriod = price.replace(',', '.');

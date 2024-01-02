@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('password');
             $table->string('tax_id');
-            $table->string('document');
+            $table->string('document')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
