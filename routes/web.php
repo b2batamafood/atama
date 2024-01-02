@@ -6,8 +6,8 @@ use App\Http\Controllers\Mall\dashboardController;
 use App\Http\Controllers\Mall\dashboardproductsController;
 use App\Http\Controllers\Mall\landingPageController;
 use App\Http\Controllers\Mall\ProductController;
+use App\Http\Controllers\Mall\profileController;
 use App\Http\Controllers\Mall\settingController;
-use App\Http\Controllers\profileController;
 use App\Http\Controllers\registerController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,7 +26,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [landingPageController::class, 'index']);
 
 Route::get('/products', [ProductController::class, 'index']);
-// Route::get('/products/{id}', [ProductController::class, 'show']);
 
 Route::get('/login',[loginController::class, 'index'])->middleware('guest')->name('login');
 Route::post('/login',[loginController::class, 'login']);
@@ -34,7 +33,6 @@ Route::post('/logout', [loginController::class, 'logout']);
 
 Route::get('/register', [registerController::class, 'index'])->middleware('guest');
 Route::post('/register', [registerController::class, 'addUser']);
-// Route::get('mail', [registerController::class, 'mailTest'])->name('mail-test');
 
 Route::get('/profile', [profileController::class, 'index'])->middleware('auth');
 
@@ -42,12 +40,22 @@ Route::get('/setting', [settingController::class, 'index'])->middleware('auth');
 Route::post('/setting', [settingController::class, 'edit']);
 
 Route::get('/cart', [cartController::class, 'index'])->middleware('auth');
+// Route::get('/add-to-cart/{productId}/{quantity}', [CartController::class, 'addToCart'])->name('addToCart');
 
 Route::get('/dashboard', [dashboardController::class, 'index']);
 Route::get('/dashboard/products', [dashboardproductsController::class, 'index']);
 Route::post('/dashboard/products', [dashboardproductsController::class, 'uploadFile']);
 
-Route::get('mail', [registerController::class, 'mailTest'])->name('mail-test');
+// Route::get('mail', [registerController::class, 'mailTest'])->name('mail-test');
+
+
+/* Admin */
+/*
+Route::get('admin', \App\Http\Livewire\Admin\Dashboard::class)->name('dashboard');
 
 
 Route::get('test', \App\Livewire\Test::class)->name('view-test');
+Route::get('temp', function () {
+    return view('temp');
+});
+*/

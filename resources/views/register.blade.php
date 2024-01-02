@@ -8,47 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    @vite('resources/css/app.css')
+    <link rel="stylesheet" href="{{ mix('css/mall/app.css') }}">
 
     <title>{{ $title }} | Atama</title>
-
-    <!-- <script>
-        const apiKey = 'AIzaSyC8I8FkR7xLsoXR9QZEOSUIh3lbEucPirs';
-        const zipcode = document.getElementById('zipcode').value;
-
-        // Construct the Geocoding API URL
-        const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${zipcode}&key=${apiKey}`;
-
-        // Make a request to the Geocoding API
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-                // Check if the response is OK
-                if (data.status === 'OK') {
-                    // Extract country, state, and city from the first result
-                    const addressComponents = data.results[0].address_components;
-                    const country = addressComponents.find(component => component.types.includes('country'));
-                    const state = addressComponents.find(component => component.types.includes(
-                        'administrative_area_level_1'));
-                    const city = addressComponents.find(component => component.types.includes('locality'));
-
-                    // Log or use the retrieved details
-                    console.log('Country:', country.long_name);
-                    console.log('State:', state.long_name);
-                    if (city != undefined) {
-                        console.log('City:', city.long_name);
-                    } else {
-                        console.log('City : undefined');
-                    }
-                } else {
-                    // Handle API errors
-                    console.error('Geocoding API error:', data.status);
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching Geocoding API:', error);
-            });
-    </script> -->
 </head>
 
 <body>
@@ -71,8 +33,9 @@
                 </ul>
             </div>
         @endif
-        <div class="max-w-[700px] mx-auto border-2 shadow-lg px-6 py-7 rounded overflow-hidden">
-            <h2 class="text-2xl uppercase font-medium mb-1 text-center">Create an account</h2>
+        <div
+            class="max-w-[700px] mx-auto shadow-none sm:border-2 sm:shadow-lg px-4 sm:px-6 py-7 rounded overflow-hidden">
+            <h2 class="text-lg sm:text-xl uppercase font-medium text-center">Create an account</h2>
             <p class="text-gray-600 mb-6 text-sm text-center">
                 Register for new customer
             </p>
@@ -81,14 +44,16 @@
                 <div class="space-y-2">
                     <div class="flex">
                         <div class="w-1/2 mr-4">
-                            <label for="company" class="text-gray-600 mb-2 block font-semibold text-sm">Company<span
+                            <label for="company"
+                                class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Company<span
                                     class="text-red-500">*</span></label>
                             <input type="company" name="company" id="company" value="{{ old('company') }}"
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="Company name" required>
                         </div>
                         <div class="w-1/2 ml-4">
-                            <label for="email" class="text-gray-600 mb-2 block font-semibold text-sm">Email<span
+                            <label for="email"
+                                class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Email<span
                                     class="text-red-500">*</span></label>
                             <input type="email" name="email" id="email" value="{{ old('email') }}"
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
@@ -101,15 +66,17 @@
                     </div>
                     <div class="flex">
                         <div class="w-1/2 mr-4">
-                            <label for="firstname" class="text-gray-600 mb-2 block font-semibold text-sm">First
+                            <label for="firstname"
+                                class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">First
                                 name<span class="text-red-500">*</span></label>
                             <input type="text" name="firstname" id="firstname" value="{{ old('firstname') }}"
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="First Name" required>
                         </div>
                         <div class="w-1/2 ml-4">
-                            <label for="lastname" class="text-gray-600 mb-2 block font-semibold text-sm">Last name<span
-                                    class="text-red-500">*</span></label>
+                            <label for="lastname"
+                                class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Last
+                                name<span class="text-red-500">*</span></label>
                             <input type="text" name="lastname" id="lastname" value="{{ old('lastname') }}"
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="Last Name" required>
@@ -118,14 +85,16 @@
 
                     <div class="flex">
                         <div class="w-1/2 mr-4">
-                            <label for="address" class="text-gray-600 mb-2 block font-semibold text-sm">Address<span
+                            <label for="address"
+                                class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Address<span
                                     class="text-red-500">*</span></label>
                             <input type="text" name="address" id="address" value="{{ old('address') }}"
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="Enter your address" required>
                         </div>
                         <div class="w-1/2 ml-4">
-                            <label for="phone" class="text-gray-600 mb-2 block font-semibold text-sm">Phone<span
+                            <label for="phone"
+                                class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Phone<span
                                     class="text-red-500">*</span></label>
                             <input type="text" name="phone" id="phone" value="{{ old('phone') }}"
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
@@ -142,17 +111,17 @@
                             </select> --}}
                             <input type="text" name="country" id="country" value=""
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                                placeholder="State" >
+                                placeholder="Country" readonly>
                         </div>
                         <div class="w-1/4 mx-2">
                             <input type="text" name="state" id="state" value=""
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                                placeholder="State" >
+                                placeholder="State" readonly>
                         </div>
                         <div class="w-1/4 mx-2">
                             <input type="text" name="city" id="city" value=""
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                                placeholder="City" >
+                                placeholder="City" readonly>
                         </div>
                         <div class="w-1/4 ml-2">
                             <input type="text" name="zipcode" id="zipcode" value="{{ old('zipcode') }}"
@@ -163,7 +132,8 @@
 
                     <div class="flex">
                         <div class="w-1/2 mr-4">
-                            <label for="tax_id" class="text-gray-600 mb-2 block font-semibold text-sm">Tax ID,
+                            <label for="tax_id"
+                                class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Tax ID,
                                 Seller
                                 Permit<span class="text-red-500">*</span></label>
                             <input type="text" name="tax_id" id="tax_id" value="{{ old('tax_id') }}"
@@ -172,10 +142,10 @@
                         </div>
                         <div class="w-1/2 ml-4">
                             <!-- File Input -->
-                            <label for="file" class="block text-gray-600 text-sm font-semibold mb-2">Document<span
-                                    class="text-red-500">*</span></label>
-                            <input type="file" id="file" name="document" accept=".zip"
-                                class="border w-full rounded-md text-sm relative" required>
+                            <label for="file"
+                                class="block text-gray-600 text-sm sm:text-base font-semibold mb-1 sm:mb-2">Document</label>
+                            <input type="file" id="file" name="document" accept=".zip,.pdf"
+                                class="border w-full rounded-md text-sm relative">
                             <p class="text-sm text-gray-400">Compressed file: Licenses, State permits, IDs.</p>
                         </div>
                     </div>
