@@ -275,7 +275,7 @@
                     @auth
                         <button
                             class="addToCart block w-full py-[6px] sm:py-2 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition"
-                            {{--onclick="addToCart()"--}} data-product-id="{{ $allProd->id }}">Add to cart</button>
+                            data-product-id="{{ $allProd->id }}">Add to cart</button>
                     @else
                         <button
                             class="block w-full py-[6px] sm:py-2 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition pointer-events-none">Add
