@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\loginController;
-use App\Http\Controllers\Mall\CartController;
+use App\Http\Controllers\Mall\cartController;
+use App\Http\Controllers\Mall\checkoutController;
 use App\Http\Controllers\Mall\dashboardController;
 use App\Http\Controllers\Mall\dashboardproductsController;
 use App\Http\Controllers\Mall\landingPageController;
@@ -44,20 +45,8 @@ Route::post('/add-to-cart/{product_id}/{quantity?}', [CartController::class, 'ad
 Route::post('/update-cart-item', [CartController::class, 'updateCartItem'])->name('cart.update');
 Route::post('/delete-cart-item', [CartController::class, 'deleteCart'])->name('cart.delete');
 
+Route::get('/checkout', [checkoutController::class, 'index'])->middleware('auth');
+
 Route::get('/dashboard', [dashboardController::class, 'index']);
 Route::get('/dashboard/products', [dashboardproductsController::class, 'index']);
 Route::post('/dashboard/products', [dashboardproductsController::class, 'uploadFile']);
-
-// Route::get('mail', [registerController::class, 'mailTest'])->name('mail-test');
-
-
-/* Admin */
-/*
-Route::get('admin', \App\Http\Livewire\Admin\Dashboard::class)->name('dashboard');
-
-
-Route::get('test', \App\Livewire\Test::class)->name('view-test');
-Route::get('temp', function () {
-    return view('temp');
-});
-*/
