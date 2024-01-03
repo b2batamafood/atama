@@ -265,6 +265,6 @@
     </div>
 
     <div class="flex justify-end mb-10 mx-8 capitalize">
-        <a href="#" class="px-4 py-2 bg-primary text-white rounded-lg shadow-md hover:brightness-75 transition ease-in-out">proceed to checkout</a>
+        <a href="/checkout" class="px-4 py-2 bg-primary text-white rounded-lg shadow-md hover:brightness-75 transition ease-in-out">proceed to checkout</a>
     </div>
 </x-mall.layouts.app>

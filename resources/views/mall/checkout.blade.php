@@ -227,8 +227,6 @@
                     </div>
                 </div>
             </div>
-
-
             {{-- SHIPPING DETAILS END --}}
 
             {{-- PAYMENT DETAILS START --}}
