@@ -89,9 +89,8 @@
 
                         @auth
                             <button
-                                class="block w-full py-2 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition"
-                                onclick="addToCart()">Add
-                                to cart</button>
+                                class="addToCart block w-full py-2 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition"
+                                data-product-id="{{ $product->id }}">Add to cart</button>
                         @else
                             <button
                                 class="block w-full py-2 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition pointer-events-none cursor-pointer">Add
@@ -159,6 +158,7 @@
     {{-- PAGINATION END --}}
 
     <!-- Modal : Get Product Details -->
+    <x-slot:scripts>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var buttons = document.querySelectorAll('.product-modal');
@@ -191,5 +191,33 @@
                 });
             });
         });
+
+
+        $(document).ready(function() {
+            $('.addToCart').click(function() {
+                const productId = $(this).data('product-id');
+                let url = '{{ route("cart.add", ["product_id" => ":id"]) }}'
+                url = url.replace(':id', productId);
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(response) {
+                        alert(response.success);
+                        console.log(response);
+                        location.reload();
+                    },
+                    error: function(error) {
+                        console.error('Error adding to cart:', error);
+                    }
+                });
+            });
+        });
+
+
     </script>
+    </x-slot:scripts>
 </x-mall.layouts.app>

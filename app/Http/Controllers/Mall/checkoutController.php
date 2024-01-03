@@ -8,7 +8,7 @@ class checkoutController extends Controller
 {
     public function index()
     {
-        return view('Mall/checkout', [
+        return view('mall.checkout', [
             "title" => "Checkout"
         ]);
     }

@@ -113,7 +113,7 @@
         <div class="flex overflow-x-scroll space-x-4 max-w-full sm:space-x-0 sm:grid sm:grid-cols-3 sm:gap-5">
             @foreach ($categories as $category)
                 <div class="relative rounded-sm sm:w-full h-32 w-32 sm:h-48 md:h-60 flex-shrink-0">
-                    <img src="{{ asset('img/'.$category->image) }}" alt="{{ $category->name }}"
+                    <img src="{{ asset('img/' . $category->image) }}" alt="{{ $category->name }}"
                         class="w-full h-full object-cover brightness-90 hover:brightness-75 transition duration-500 ease-in-out">
                     <a href="/products?search={{ $category->name }}"
                         class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-md sm:text-2xl md:text-3xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition capitalize hover:ease-in-out hover:duration-500">{{ $category->name }}</a>
@@ -185,7 +185,7 @@
                     @auth
                         <button
                             class="addToCart block w-full py-[6px] sm:py-2 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition"
-                            {{--onclick="addToCart()"--}} data-product-id="{{ $recomProd->id }}">Add to cart</button>
+                            {{-- onclick="addToCart()" --}} data-product-id="{{ $recomProd->id }}">Add to cart</button>
                     @else
                         <button
                             class="block w-full py-[6px] sm:py-2 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition pointer-events-none">Add
@@ -275,7 +275,7 @@
                     @auth
                         <button
                             class="addToCart block w-full py-[6px] sm:py-2 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition"
-                            {{--onclick="addToCart()"--}} data-product-id="{{ $allProd->id }}">Add to cart</button>
+                            data-product-id="{{ $allProd->id }}">Add to cart</button>
                     @else
                         <button
                             class="block w-full py-[6px] sm:py-2 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition pointer-events-none">Add
@@ -311,10 +311,57 @@
 
     <x-slot:scripts>
         <script>
+            // CAROUSEL
+            document.addEventListener('DOMContentLoaded', function() {
+                const totalItems = 7; // Total number of carousel items
+                let currentItem = 1; // Initial item
+
+                const showItem = (index) => {
+                    // Hide all items
+                    for (let i = 1; i <= totalItems; i++) {
+                        document.getElementById(`carousel-item-${i}`).classList.add('hidden');
+                        document.getElementById(`carousel-indicator-${i}`).setAttribute('aria-current', 'false');
+                    }
+
+                    // Show the selected item
+                    document.getElementById(`carousel-item-${index}`).classList.remove('hidden');
+                    document.getElementById(`carousel-indicator-${index}`).setAttribute('aria-current', 'true');
+                };
+
+                const showNextItem = () => {
+                    currentItem = currentItem < totalItems ? currentItem + 1 : 1;
+                    showItem(currentItem);
+                };
+
+                const showPrevItem = () => {
+                    currentItem = currentItem > 1 ? currentItem - 1 : totalItems;
+                    showItem(currentItem);
+                };
+
+                // Attach click event listeners to carousel controls
+                document.getElementById('data-carousel-prev').addEventListener('click', showPrevItem);
+                document.getElementById('data-carousel-next').addEventListener('click', showNextItem);
+
+                // Attach click event listeners to carousel indicators
+                for (let i = 1; i <= totalItems; i++) {
+                    document.getElementById(`carousel-indicator-${i}`).addEventListener('click', () => {
+                        showItem(i);
+                        currentItem = i;
+                    });
+                }
+
+                showItem(currentItem);
+
+                // Carousel slide change every 5 seconds
+                setInterval(showNextItem, 5000);
+            });
+
+
+            // ADD TO CART
             $(document).ready(function() {
                 $('.addToCart').click(function() {
                     const productId = $(this).data('product-id');
-                    let url = '{{ route("cart.add", ["product_id" => ":id"]) }}'
+                    let url = '{{ route('cart.add', ['product_id' => ':id']) }}'
                     url = url.replace(':id', productId);
                     $.ajax({
                         type: 'POST',
