@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Mall;
 
+use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,14 +18,15 @@ class landingPageController extends Controller
 
         $categories = Category::all();
 
-        $cart = session()->get('cart', []);
+        //$cart = session()->get('cart', []);
+        $cart = Cart::where('user_id', auth()->id())->sum('quantity');
 
         return view('mall/index', [
             "title" => "Mall",
             "products1" => $records1,
             "products2" => $records2,
             "categories" => $categories,
-            "cart" => count($cart),
+            "cart" => $cart,
         ]);
     }
 }
