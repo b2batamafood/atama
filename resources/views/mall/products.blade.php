@@ -159,6 +159,7 @@
     {{-- PAGINATION END --}}
 
     <!-- Modal : Get Product Details -->
+    <x-slot:scripts>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var buttons = document.querySelectorAll('.product-modal');
@@ -191,5 +192,8 @@
                 });
             });
         });
+
+
     </script>
+    </x-slot:scripts>
 </x-mall.layouts.app>

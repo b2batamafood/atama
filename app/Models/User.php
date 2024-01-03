@@ -58,4 +58,10 @@ class User extends Authenticatable
     public function carts(): HasMany {
         return $this->hasMany(Cart::class);
     }
+
+    public function getTotalPriceAttribute()
+    {
+        return $this->carts()->join('products', 'carts.product_id', '=', 'products.id')
+            ->sum(\DB::raw('products.price * carts.quantity'));
+    }
 }
