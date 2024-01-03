@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\loginController;
-use App\Http\Controllers\Mall\cartController;
+use App\Http\Controllers\Mall\CartController;
 use App\Http\Controllers\Mall\dashboardController;
 use App\Http\Controllers\Mall\dashboardproductsController;
 use App\Http\Controllers\Mall\landingPageController;
@@ -41,6 +41,8 @@ Route::post('/setting', [settingController::class, 'edit']);
 
 Route::get('/cart', [CartController::class, 'index'])->middleware('auth');
 Route::post('/add-to-cart/{product_id}/{quantity?}', [CartController::class, 'addToCart'])->name('cart.add');
+Route::post('/update-cart-item', [CartController::class, 'updateCartItem'])->name('cart.update');
+Route::post('/delete-cart-item', [CartController::class, 'deleteCart'])->name('cart.delete');
 
 Route::get('/dashboard', [dashboardController::class, 'index']);
 Route::get('/dashboard/products', [dashboardproductsController::class, 'index']);
