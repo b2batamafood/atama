@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     {{-- Remix Icon --}}
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -12,6 +13,9 @@
     <title>{{ $title ?? 'Atama' }} | Atama</title>
 
     <link rel="stylesheet" href="{{ mix('css/mall/app.css') }}">
+
+    <!-- Include the slot for styles -->
+    {{ $styles ?? '' }}
 </head>
 
 <body>
@@ -63,7 +67,13 @@
                             <div class="text-sm leading-3">Cart</div>
                             <div
                                 class="absolute -right-3 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-sm">
-                                0</div>
+                                @auth
+                                {{ $cartQuantity }}
+                                @else
+                                    0
+                                @endif
+
+                            </div>
                         </a>
                         <button type="button" class="text-center text-gray-200 hover:text-gray-500 transition relative"
                             onclick="toggleProfileMenu()">
@@ -165,8 +175,12 @@
     </div>
     <!-- COPYRIGHT END -->
 
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{{ mix('js/mall/app.js') }}"></script>
     <script src="{{ mix('js/mall/script.js') }}"></script>
+
+    <!-- Include the slot for scripts -->
+    {{ $scripts ?? '' }}
 </body>
 
 </html>

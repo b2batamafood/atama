@@ -39,8 +39,8 @@ Route::get('/profile', [profileController::class, 'index'])->middleware('auth');
 Route::get('/setting', [settingController::class, 'index'])->middleware('auth');
 Route::post('/setting', [settingController::class, 'edit']);
 
-Route::get('/cart', [cartController::class, 'index'])->middleware('auth');
-// Route::get('/add-to-cart/{productId}/{quantity}', [CartController::class, 'addToCart'])->name('addToCart');
+Route::get('/cart', [CartController::class, 'index'])->middleware('auth');
+Route::post('/add-to-cart/{product_id}/{quantity?}', [CartController::class, 'addToCart'])->name('cart.add');
 
 Route::get('/dashboard', [dashboardController::class, 'index']);
 Route::get('/dashboard/products', [dashboardproductsController::class, 'index']);

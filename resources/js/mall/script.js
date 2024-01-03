@@ -109,44 +109,49 @@ var pricePerItem2 = parseFloat(strWithPeriod2);
 var initialQuantity2 = 1;
 
 // Initialize quantity and total price
-document.getElementById('quantity2').value = initialQuantity2;
+//document.getElementById('quantity2').value = initialQuantity2;
 updateTotalPrice2();
 
-function incrementQuantity2() {
-    var quantityInput = document.getElementById('quantity2');
+function incrementQuantity2(btnAddId, btnMinId, totalId, priceId) {
+    var quantityInput = document.getElementById(btnAddId);
     var currentQuantity = parseInt(quantityInput.value) || 1;
 
     quantityInput.value = currentQuantity + 1;
 
-    updateTotalPrice2();
-    updateDecrementButtonState2();
+    updateTotalPrice2(btnAddId, totalId, priceId);
+    updateDecrementButtonState2(btnAddId, btnMinId);
 }
 
-function decrementQuantity2() {
-    var quantityInput = document.getElementById('quantity2');
+function decrementQuantity2(btnAddId, btnMinId, totalId, priceId) {
+    var quantityInput = document.getElementById(btnAddId);
     var currentQuantity = parseInt(quantityInput.value) || 1;
 
     if (currentQuantity > 1) {
         quantityInput.value = currentQuantity - 1;
     }
 
-    updateTotalPrice2();
-    updateDecrementButtonState2();
+    updateTotalPrice2(btnAddId, totalId, priceId);
+    updateDecrementButtonState2(btnAddId, btnMinId);
 }
 
-function updateDecrementButtonState2() {
-    var quantityInput = document.getElementById('quantity2');
-    var decrementButton = document.getElementById('decrement-button2');
+function updateDecrementButtonState2(btnAddId, btnMinId) {
+    var quantityInput = document.getElementById(btnAddId);
+    var decrementButton = document.getElementById(btnMinId);
     var currentQuantity = parseInt(quantityInput.value) || 1;
 
     // Disable the decrement button if the quantity is 1
     decrementButton.disabled = currentQuantity === 1;
 }
 
-function updateTotalPrice2() {
-    var quantityInput = document.getElementById('quantity2');
-    var totalAmountElement = document.getElementById('total2');
+function updateTotalPrice2(btnAddId, totalId, priceId) {
+    var quantityInput = document.getElementById(btnAddId);
+    var totalAmountElement = document.getElementById(totalId);
     var currentQuantity = parseInt(quantityInput.value) || 1;
+
+
+    var price2 = (document.getElementById(priceId).textContent).substring(1);
+    var strWithPeriod2 = price2.replace(',', '.');
+    var pricePerItem2 = parseFloat(strWithPeriod2);
 
     // Calculate total price based on quantity and price per item
     var totalAmount = currentQuantity * pricePerItem2;
