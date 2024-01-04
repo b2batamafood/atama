@@ -7,7 +7,8 @@
         <div class="max-h-[300px] overflow-y-scroll mb-10">
             <ul class="p-3">
                 @foreach ($categories as $category)
-                    <li class="text-xs lg:text-sm uppercase font-medium p-[6px] border-b-2 text-gray-600 hover:text-primary">
+                    <li
+                        class="text-xs lg:text-sm uppercase font-medium p-[6px] border-b-2 text-gray-600 hover:text-primary">
                         <form action="/products">
                             @csrf
                             <a href="/products?search={{ $category->name }}">
@@ -72,13 +73,14 @@
                             <!-- Modal toggle 2 -->
                             <button id="{{ $product->id }}" class="product-modal text-left flex-grow"
                                 data-modal-target="product-modal" data-modal-toggle="product-modal">
-                                <h4 class="uppercase font-normal text-sm mb-2 text-gray-800 hover:text-primary transition">
+                                <h4
+                                    class="uppercase font-normal text-sm mb-2 text-gray-800 hover:text-primary transition">
                                     {{ $product->description }}</h4>
                             </button>
-                        <div class="flex items-baseline justify-start mb-1 space-x-2">
+                            <div class="flex items-baseline justify-start mb-1 space-x-2">
                                 @auth
-                                    <p class="text-red-500 font-semibold text-2xl">
-                                        {{ '$' . number_format(intval($product->price)) }}</p>
+                                    <p class="text-red-500 font-semibold text-xl">
+                                        {{ '$' . number_format(floatval($product->price), 2, '.', ',') }}</p>
                                 @else
                                     <a href="/login"
                                         class="capitalize text-sm px-2 py-1 bg-primary hover:bg-primary hover:opacity-70 text-white rounded-md">see
@@ -97,46 +99,6 @@
                                 to cart</button>
                         @endauth
                     </div>
-
-                    <!-- Modal -->
-                    <div id="product-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
-                        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[1000] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                        <div class="fixed inset-0 bg-black opacity-50 z-50"></div>
-                        <div class="relative p-4 w-full max-w-2xl max-h-full bg-white rounded-md z-[1000]">
-                            <div class="absolute top-5 right-5">
-                                <button type="button" class="text-gray-400" data-modal-hide="product-modal">
-                                    <i class="ri-close-line text-xl"></i>
-                                    <span class="sr-only">Close modal</span>
-                                </button>
-                            </div>
-                            <!-- Modal Body -->
-                            <div id="modal-body" class="modal-body grid grid-cols-2 p-4 md:p-5">
-                                <div class="w-full">
-                                    <div class="w-full flex justify-center">
-                                        <img id="product-modal-image" src="" alt="product"
-                                            class="max-w-[300px] max-h-[320px]">
-                                    </div>
-                                    <div class="w-full">
-                                        <h3 id="product-modal-name" class="uppercase font-semibold text-sm md:text-base">
-                                        </h3>
-                                        <h3 id="product-modal-description"
-                                            class="uppercase font-medium text-base lg:text-base mb-2 text-primary"></h3>
-                                        <h3 id="product-modal-brand" class="font-medium text-base lg:text-base mb-2">Brand :
-                                        </h3>
-                                    </div>
-
-                                    {{-- Modal Footer --}}
-                                    @auth
-                                        <p id="product-modal-price" class="text-red-500 font-semibold text-2xl"></p>
-                                    @else
-                                        <a href="/login"
-                                            class="capitalize text-sm px-2 py-1 bg-primary hover:bg-primary hover:opacity-70 text-white rounded-md">see
-                                            price</a>
-                                    @endauth
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 @endforeach
             </div>
             @if ($products->count() <= 4)
@@ -148,6 +110,47 @@
                 <h1 class="text-2xl font-bold">No product(s) found...</h1>
             </div>
         @endif
+
+        <!-- Modal -->
+        <div id="product-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
+            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[1000] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div class="fixed inset-0 bg-black opacity-50 z-50"></div>
+            <div class="relative p-4 w-full max-w-2xl max-h-full bg-white rounded-md z-[1000]">
+                <div class="absolute top-5 right-5">
+                    <button type="button" class="text-gray-400" data-modal-hide="product-modal">
+                        <i class="ri-close-line text-xl"></i>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal Body -->
+                <div id="modal-body" class="modal-body grid grid-cols-2 p-4 md:p-5">
+                    <div class="w-full flex justify-center">
+                        <img id="product-modal-image" src="" alt="product" class="max-w-[300px] max-h-[320px]">
+                    </div>
+                    <div class="w-full">
+                        <h3 id="product-modal-name" class="uppercase font-semibold text-sm md:text-base"></h3>
+                        <h3 id="product-modal-description"
+                            class="uppercase font-medium text-base lg:text-base mb-2 text-primary"></h3>
+                        <h3 id="product-modal-brand" class="font-medium text-base lg:text-base mb-2">
+                            Brand :
+                        </h3>
+
+                        {{-- Modal Footer --}}
+                        @auth
+                            <p id="product-modal-price" class="text-red-500 font-semibold text-xl">$</p>
+                            <button id="product-modal-addCart"
+                                class="addToCart w-1/2 mt-3 py-2 text-center text-white bg-primary border border-primary rounded-lg hover:bg-transparent hover:text-primary transition"
+                                data-product-id="">Add to cart</button>
+                        @else
+                            <a href="/login"
+                                class="capitalize text-sm px-2 py-1 bg-primary hover:bg-primary hover:opacity-70 text-white rounded-md">see
+                                price</a>
+                        @endauth
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
     <!-- PRODUCTS END -->
 
@@ -159,65 +162,75 @@
 
     <!-- Modal : Get Product Details -->
     <x-slot:scripts>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var buttons = document.querySelectorAll('.product-modal');
+        <script>
+            // Show Product Modal
+            document.addEventListener('DOMContentLoaded', function() {
+                var buttons = document.querySelectorAll('.product-modal');
 
-            buttons.forEach(function(button) {
-                button.addEventListener('click', function() {
-                    var productId = this.id;
-                    // alert(productId);
+                buttons.forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        var productId = this.id;
+                        // alert(productId);
+
+                        $.ajax({
+                            url: '/modal-product',
+                            type: 'POST',
+                            data: {
+                                productId: productId
+                            },
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            dataType: 'json',
+                            success: function(response) {
+                                var product = response.product;
+
+                                var formattedPrice = new Intl.NumberFormat('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD', // You can change the currency based on your needs
+                                    minimumFractionDigits: 2,
+                                }).format(product.price);
+
+                                document.getElementById('product-modal-image').src = product.photo_url;
+                                document.getElementById('product-modal-name').innerText = product.name;
+                                document.getElementById('product-modal-description').innerText = product.description;
+                                // document.getElementById('product-modal-brand').innerText = product.brand;
+                                document.getElementById('product-modal-price').innerText = formattedPrice
+                                document.getElementById('product-modal-addCart').setAttribute('data-product-id', productId);
+                            },
+                            error: function(request, status, error) {
+                                $('.modal-body').html(request.responseText);
+                            }
+                        });
+                    });
+                });
+            });
+
+
+            // Add To Cart
+            $(document).ready(function() {
+                $('.addToCart').click(function() {
+                    const productId = $(this).data('product-id');
+                    let url = '{{ route('cart.add', ['product_id' => ':id']) }}'
+                    url = url.replace(':id', productId);
                     $.ajax({
-                        type: 'get',
-                        // url: '/products',
+                        type: 'POST',
+                        url: url,
                         dataType: 'json',
-                        success: function(response) {
-                            // Populate modal with product details
-                            $('#product-modal-image').text(response.product.photo_url);
-                            $('#product-modal-name').text(response.product.name);
-                            $('#product-modal-description').text(response.product
-                                .description);
-                            $('#product-modal-brand').text(response.product.brand);
-                            $('#product-modal-price').text(response.product
-                                .default_price);
-
-                            // Show the modal
-                            $('#product-modal').modal('show');
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
-                        error: function(request, status, error) {
-                            $('.modal-body').html(request.responseText);
+                        success: function(response) {
+                            alert(response.success);
+                            console.log(response);
+                            location.reload();
+                        },
+                        error: function(error) {
+                            console.error('Error adding to cart:', error);
                         }
                     });
                 });
             });
-        });
-
-
-        $(document).ready(function() {
-            $('.addToCart').click(function() {
-                const productId = $(this).data('product-id');
-                let url = '{{ route("cart.add", ["product_id" => ":id"]) }}'
-                url = url.replace(':id', productId);
-                $.ajax({
-                    type: 'POST',
-                    url: url,
-                    dataType: 'json',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success: function(response) {
-                        alert(response.success);
-                        console.log(response);
-                        location.reload();
-                    },
-                    error: function(error) {
-                        console.error('Error adding to cart:', error);
-                    }
-                });
-            });
-        });
-
-
-    </script>
+        </script>
     </x-slot:scripts>
 </x-mall.layouts.app>
