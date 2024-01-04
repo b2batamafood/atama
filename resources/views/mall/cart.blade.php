@@ -110,7 +110,7 @@
         <div class="capitalize space-y-3">
             <div class="flex justify-between space-x-20">
                 <div class="font-semibold">subtotal : </div>
-                <div id="data-subtotal">$<span>{{ auth()->user()->totalPrice }}</span></div>
+                <div id="data-subtotal">$0</div>
             </div>
             {{-- <div class="flex justify-between border-b-2 space-x-20">
                 <div class="font-semibold">Shipping : </div>
@@ -122,7 +122,7 @@
             </div>
             <div class="flex justify-between space-x-20">
                 <div class="font-semibold">grand total : </div>
-                <div id="data-grandtotal">${{ auth()->user()->totalPrice }}</div>
+                <div id="data-grandtotal">$0</div>
             </div>
         </div>
     </div>
