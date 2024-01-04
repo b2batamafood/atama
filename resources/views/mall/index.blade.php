@@ -112,9 +112,10 @@
         <h2 class="text-lg sm:text-xl md:text-2xl font-medium text-gray-800 uppercase mb-6">shop by category</h2>
         <div class="flex overflow-x-scroll space-x-4 max-w-full sm:space-x-0 sm:grid sm:grid-cols-3 sm:gap-5">
             @foreach ($categories as $category)
-                <div class="relative rounded-sm sm:w-full h-32 w-32 sm:h-48 md:h-60 flex-shrink-0">
+                <div
+                    class="relative rounded-sm sm:w-full h-32 w-32 sm:h-48 md:h-60 flex-shrink-0 hover:brightness-50 transition duration-500 ease-in-out">
                     <img src="{{ asset('img/' . $category->image) }}" alt="{{ $category->name }}"
-                        class="w-full h-full object-cover brightness-90 hover:brightness-75 transition duration-500 ease-in-out">
+                        class="w-full h-full object-cover brightness-90 ">
                     <a href="/products?search={{ $category->name }}"
                         class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-md sm:text-2xl md:text-3xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition capitalize hover:ease-in-out hover:duration-500">{{ $category->name }}</a>
                 </div>
@@ -170,10 +171,10 @@
                         </button>
                         <div class="flex items-baseline justify-start mb-1 space-x-2">
                             @auth
-                                <p class="text-red-500 font-semibold text-2xl">
-                                    {{ '$' . number_format(intval($recomProd->cost)) }}</p>
-                                <p class="font-semibold text-lg text-gray-400 line-through">
-                                    {{ '$' . number_format(intval($recomProd->price)) }}</p>
+                            <p class="text-red-500 font-semibold text-xl">
+                                {{ '$' . number_format(floatval($recomProd->cost), 2, '.', ',') }}</p>
+                                <p class="font-semibold text-md text-gray-400 line-through">
+                                    {{ '$' . number_format(floatval($recomProd->price), 2, '.', ',') }}</p>
                             @else
                                 <a href="/login"
                                     class="capitalize text-sm px-2 py-1 bg-primary hover:bg-primary hover:opacity-70 text-white rounded-md">see
@@ -192,28 +193,46 @@
                             to cart</button>
                     @endauth
                 </div>
+            @endforeach
+        </div>
+        <!-- Modal -->
+        <div id="product-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
+            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[1000] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div class="fixed inset-0 bg-black opacity-50 z-50"></div>
+            <div class="relative p-4 w-full max-w-2xl max-h-full bg-white rounded-md z-[1000]">
+                <div class="absolute top-5 right-5">
+                    <button type="button" class="text-gray-400" data-modal-hide="product-modal">
+                        <i class="ri-close-line text-xl"></i>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal Body -->
+                <div id="modal-body" class="modal-body grid grid-cols-2 p-4 md:p-5">
+                    <div class="w-full flex justify-center">
+                        <img id="product-modal-image" src="" alt="product" class="max-w-[300px] max-h-[320px]">
+                    </div>
+                    <div class="w-full">
+                        <h3 id="product-modal-name" class="uppercase font-semibold text-sm md:text-base"></h3>
+                        <h3 id="product-modal-description"
+                            class="uppercase font-medium text-base lg:text-base mb-2 text-primary"></h3>
+                        <h3 id="product-modal-brand" class="font-medium text-base lg:text-base mb-2">
+                            Brand :
+                        </h3>
 
-                <!-- Modal -->
-                <div id="product-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
-                    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[1000] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                    <div class="fixed inset-0 bg-black opacity-50 z-50"></div>
-                    <div class="relative p-4 w-full max-w-2xl max-h-full bg-white rounded-md z-[1000]">
-                        <div class="absolute top-5 right-5">
-                            <button type="button" class="text-gray-400" data-modal-hide="product-modal">
-                                <i class="ri-close-line text-xl"></i>
-                                <span class="sr-only">Close modal</span>
-                            </button>
-                        </div>
-                        <!-- Modal Body -->
-                        <div class="modal-body grid grid-cols-2 p-4 md:p-5">
-                            <div class="w-full">
-
-
-                            </div>
-                        </div>
+                        {{-- Modal Footer --}}
+                        @auth
+                            <p id="product-modal-price" class="text-red-500 font-semibold text-xl">$</p>
+                            <button id="product-modal-addCart"
+                                class="addToCart w-1/2 mt-3 py-2 text-center text-white bg-primary border border-primary rounded-lg hover:bg-transparent hover:text-primary transition"
+                                data-product-id="">Add to cart</button>
+                        @else
+                            <a href="/login"
+                                class="capitalize text-sm px-2 py-1 bg-primary hover:bg-primary hover:opacity-70 text-white rounded-md">see
+                                price</a>
+                        @endauth
                     </div>
                 </div>
-            @endforeach
+            </div>
         </div>
     </div>
     {{-- RECOMMENDED FOR YOU END --}}
@@ -262,8 +281,8 @@
                         </button>
                         <div class="flex items-baseline justify-start mb-1 space-x-2">
                             @auth
-                                <p class="text-red-500 font-semibold text-2xl">
-                                    {{ '$' . number_format(intval($allProd->price)) }}</p>
+                            <p class="text-red-500 font-semibold text-xl">
+                                {{ '$' . number_format(floatval($allProd->price), 2, '.', ',') }}</p>
                             @else
                                 <a href="/login"
                                     class="capitalize text-sm px-2 py-1 bg-primary hover:bg-primary hover:opacity-70 text-white rounded-md">see
@@ -354,6 +373,49 @@
 
                 // Carousel slide change every 5 seconds
                 setInterval(showNextItem, 5000);
+            });
+
+            // Show Product Modal
+            document.addEventListener('DOMContentLoaded', function() {
+                var buttons = document.querySelectorAll('.product-modal');
+
+                buttons.forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        var productId = this.id;
+                        // alert(productId);
+
+                        $.ajax({
+                            url: '/modal-product',
+                            type: 'POST',
+                            data: {
+                                productId: productId
+                            },
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            dataType: 'json',
+                            success: function(response) {
+                                var product = response.product;
+
+                                var formattedPrice = new Intl.NumberFormat('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD', // You can change the currency based on your needs
+                                    minimumFractionDigits: 2,
+                                }).format(product.price);
+
+                                document.getElementById('product-modal-image').src = product.photo_url;
+                                document.getElementById('product-modal-name').innerText = product.name;
+                                document.getElementById('product-modal-description').innerText = product.description;
+                                // document.getElementById('product-modal-brand').innerText = product.brand;
+                                document.getElementById('product-modal-price').innerText = formattedPrice
+                                document.getElementById('product-modal-addCart').setAttribute('data-product-id', productId);
+                            },
+                            error: function(request, status, error) {
+                                $('.modal-body').html(request.responseText);
+                            }
+                        });
+                    });
+                });
             });
 
 

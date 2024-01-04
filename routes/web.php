@@ -27,9 +27,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [landingPageController::class, 'index']);
 
 Route::get('/products', [ProductController::class, 'index']);
+Route::post('/modal-product', [ProductController::class, 'getProductById'])->name('modal-product');
 
-Route::get('/login',[loginController::class, 'index'])->middleware('guest')->name('login');
-Route::post('/login',[loginController::class, 'login']);
+Route::get('/login', [loginController::class, 'index'])->middleware('guest')->name('login');
+Route::post('/login', [loginController::class, 'login']);
 Route::post('/logout', [loginController::class, 'logout']);
 
 Route::get('/register', [registerController::class, 'index'])->middleware('guest');
