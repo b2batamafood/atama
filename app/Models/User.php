@@ -59,9 +59,15 @@ class User extends Authenticatable
         return $this->hasMany(Cart::class);
     }
 
-    public function getTotalPriceAttribute()
-    {
+    public function getTotalPriceAttribute() {
         return $this->carts()->join('products', 'carts.product_id', '=', 'products.id')
             ->sum(\DB::raw('products.price * carts.quantity'));
+    }
+
+    public function getTotalPriceWithTax($taxRate) {
+        $totalPriceWithoutTax = $this->totalPrice;
+        $taxAmount = $totalPriceWithoutTax * ($taxRate / 100);
+
+        return $totalPriceWithoutTax + $taxAmount;
     }
 }
