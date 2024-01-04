@@ -7,14 +7,14 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class UserRegistrationNotification extends Notification
+class CheckoutNotification extends Notification
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct(private $password)
+    public function __construct()
     {
         //
     }
@@ -24,7 +24,7 @@ class UserRegistrationNotification extends Notification
      *
      * @return array<int, string>
      */
-    public function via($notifiable): array
+    public function via(object $notifiable): array
     {
         return ['mail'];
     }
@@ -32,14 +32,14 @@ class UserRegistrationNotification extends Notification
     /**
      * Get the mail representation of the notification.
      */
-    public function toMail($notifiable): MailMessage
+    public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('Login status')
+            ->subject('Checkout Order')
             ->from('sender@example.com', 'Atama Bot')
-            ->greeting('Temporary Password Atama')
-            ->line('Your new password is '.$this->password)
-            ->action('Login now', url('/login'))
+            ->greeting('Checkout Order')
+            ->line('Hello there, Your order are now being processed. And thank you for using our application!')
+            ->action('Browse More Product', url('/'))
             ->line('Best regards!');
     }
 
