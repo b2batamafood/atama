@@ -69,17 +69,17 @@
                         </div>
                         <!-- Cart Description -->
                         <div class="flex flex-col pt-4 pb-3 px-4">
-                            <h3 class="uppercase font-semibold text-sm md:text-base">{{ $product->name }}</h3>
+                            <h3 class="uppercase font-semibold text-sm lg:text-base">{{ $product->name }}</h3>
                             <!-- Modal toggle 2 -->
                             <button id="{{ $product->id }}" class="product-modal text-left flex-grow"
                                 data-modal-target="product-modal" data-modal-toggle="product-modal">
                                 <h4
-                                    class="uppercase font-normal text-sm mb-2 text-gray-800 hover:text-primary transition">
+                                    class="uppercase font-normal text-xs md:text-sm mb-2 text-gray-800 hover:text-primary transition">
                                     {{ $product->description }}</h4>
                             </button>
                             <div class="flex items-baseline justify-start mb-1 space-x-2">
                                 @auth
-                                    <p class="text-red-500 font-semibold text-xl">
+                                    <p class="text-red-500 font-semibold text-lg md:text-xl">
                                         {{ '$' . number_format(floatval($product->price), 2, '.', ',') }}</p>
                                 @else
                                     <a href="/login"
@@ -113,7 +113,7 @@
 
         <!-- Modal -->
         <div id="product-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
-            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[1000] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[1000] w-10/12 sm:w-full md:inset-0 h-[calc(100%)] max-h-full mx-auto my-auto">
             <div class="fixed inset-0 bg-black opacity-50 z-50"></div>
             <div class="relative p-4 w-full max-w-2xl max-h-full bg-white rounded-md z-[1000]">
                 <div class="absolute top-5 right-5">
@@ -124,16 +124,14 @@
                 </div>
                 <!-- Modal Body -->
                 <div id="modal-body" class="modal-body grid grid-cols-2 p-4 md:p-5">
-                    <div class="w-full flex justify-center">
-                        <img id="product-modal-image" src="" alt="product" class="max-w-[300px] max-h-[320px]">
+                    <div class="w-full flex items-center justify-center">
+                        <img id="product-modal-image" src="" alt="product" class="max-w-[170px] max-h-[150px] sm:max-w-[300px] sm:max-h-[320px]">
                     </div>
                     <div class="w-full">
                         <h3 id="product-modal-name" class="uppercase font-semibold text-sm md:text-base"></h3>
                         <h3 id="product-modal-description"
-                            class="uppercase font-medium text-base lg:text-base mb-2 text-primary"></h3>
-                        <h3 id="product-modal-brand" class="font-medium text-base lg:text-base mb-2">
-                            Brand :
-                        </h3>
+                            class="uppercase font-medium text-sm sm:text-base mb-2 text-primary"></h3>
+                        <h3 id="product-modal-brand" class="font-medium text-sm sm:text-base mb-2"></h3>
 
                         {{-- Modal Footer --}}
                         @auth
@@ -170,7 +168,6 @@
                 buttons.forEach(function(button) {
                     button.addEventListener('click', function() {
                         var productId = this.id;
-                        // alert(productId);
 
                         $.ajax({
                             url: '/modal-product',
@@ -184,6 +181,7 @@
                             dataType: 'json',
                             success: function(response) {
                                 var product = response.product;
+                                var brand = response.brand;
 
                                 var formattedPrice = new Intl.NumberFormat('en-US', {
                                     style: 'currency',
@@ -194,7 +192,7 @@
                                 document.getElementById('product-modal-image').src = product.photo_url;
                                 document.getElementById('product-modal-name').innerText = product.name;
                                 document.getElementById('product-modal-description').innerText = product.description;
-                                // document.getElementById('product-modal-brand').innerText = product.brand;
+                                document.getElementById('product-modal-brand').innerText = "Brand : " + brand;
                                 document.getElementById('product-modal-price').innerText = formattedPrice
                                 document.getElementById('product-modal-addCart').setAttribute('data-product-id', productId);
                             },

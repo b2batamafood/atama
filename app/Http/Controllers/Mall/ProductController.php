@@ -52,7 +52,14 @@ class ProductController extends Controller
     {
         $pid = $request->input('productId');
         $product = Product::find($pid);
-        return response()->json(['product' => $product]);
+
+        $bid = $product->brand_id;
+        $brand = Brand::find($bid)->name;
+
+        return response()->json([
+            'product' => $product,
+            'brand' => $brand
+        ]);
     }
 
     /**
