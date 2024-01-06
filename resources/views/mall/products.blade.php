@@ -248,7 +248,8 @@
                         success: function(response) {
                             alert(response.success);
                             console.log(response);
-                            location.reload();
+                            $('#data-cart-quantity').text(response.data)
+                            //location.reload();
                         },
                         error: function(error) {
                             console.error('Error adding to cart:', error);

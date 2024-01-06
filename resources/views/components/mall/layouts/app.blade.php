@@ -68,7 +68,7 @@
                             <i class="ri-shopping-cart-2-line"></i>
                         </div>
                         <div class="text-xs sm:text-sm leading-3">Cart</div>
-                        <div
+                        <div id="data-cart-quantity"
                             class="absolute -right-2 -top-0 sm:-right-3 sm:-top-1 w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs sm:text-sm">
                             @auth
                                 {{ $cartQuantity }}

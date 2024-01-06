@@ -21,10 +21,12 @@ class CartController extends Controller {
     }
 
     public function addToCart($productId, $quantity = null) {
+        $userId = auth()->id();
+
         $quantity = $quantity ?? 1;
 
         // Check if the product already exists in the user's cart
-        $existingCart = Cart::where('user_id', auth()->id())
+        $existingCart = Cart::where('user_id', $userId)
             ->where('product_id', $productId)
             ->first();
 
@@ -40,8 +42,13 @@ class CartController extends Controller {
             $cart->save();
         }
 
+        $cartQuantity = Cart::where('user_id', $userId)->sum('quantity');
+
         //return redirect()->back()->with('success', 'Item added to cart successfully.');
-        return response()->json(['success' => 'Item added to cart successfully']);
+        return response()->json([
+            'success' => 'Item added to cart successfully',
+            'data' => $cartQuantity
+        ]);
     }
 
     public function updateCartItem(Request $request) {
