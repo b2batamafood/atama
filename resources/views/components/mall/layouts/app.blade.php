@@ -29,11 +29,11 @@
                 </a>
             </div>
             {{-- All Categories --}}
-            <div class="px-8 py-4 bg-primary flex md:hidden items-center cursor-pointer relative group">
-                <span class="text-white">
+            <div class="px-5 py-[14px] md:px-8 md:py-4 bg-primary flex md:hidden items-center cursor-pointer relative group">
+                <span class="text-white text-sm : md:text-base">
                     <i class="ri-menu-line"></i>
                 </span>
-                <span class="capitalize ml-2 text-white font-semibold">All Categories</span>
+                <span class="capitalize ml-2 text-white font-semibold text-sm md:text-base">All Categories</span>
 
                 {{-- Dropdown --}}
                 <div
@@ -74,7 +74,6 @@
                             @else
                                 0
                                 @endif
-
                             </div>
                         </a>
                         <button type="button" class="text-center text-gray-200 hover:text-gray-500 transition relative"
