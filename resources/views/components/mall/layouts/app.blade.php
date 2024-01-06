@@ -22,53 +22,54 @@
     {{-- NAVBAR START --}}
     <nav class="bg-gray-800 sticky top-0 left-0 w-full z-[9999] py-4">
         <div class="container flex items-center justify-between px-4">
-            {{-- Logo --}}
-            <div class="flex items-center justify-center">
-                <a href="/" class="mr-4 md:mr-8">
+            <div class="items-center justify-center">
+                {{-- Logo --}}
+                <a href="/" class="mr-4 md:mr-8 hidden md:flex">
                     <img src="../img/atama_logo.jpg" alt="Logo" class="w-32 max-w-[50px] max-h-[50px]">
                 </a>
-            </div>
-            {{-- All Categories --}}
-            <div class="px-5 py-[14px] md:px-8 md:py-4 bg-primary flex md:hidden items-center cursor-pointer relative group">
-                <span class="text-white text-sm : md:text-base">
-                    <i class="ri-menu-line"></i>
-                </span>
-                <span class="capitalize ml-2 text-white font-semibold text-sm md:text-base">All Categories</span>
 
-                {{-- Dropdown --}}
+                {{-- All Categories --}}
                 <div
-                    class="absolute w-full left-0 top-full bg-white shadow-md py-3 divide-y divide-solid divide-gray-300 opacity-0 group-hover:opacity-100 transition duration-300 invisible group-hover:visible z-[9999]">
-                    @foreach ($categories as $item)
-                        <a href="/products?search={{ $item->name }}"
-                            class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
-                            <span class="text-gray-600 text-sm capitalize">{{ $item->name }}</span>
-                        </a>
-                    @endforeach
+                    class="flex md:hidden items-center cursor-pointer relative group">
+                    <span class="text-white text-lg md:text-xl">
+                        <i class="ri-menu-line"></i>
+                    </span>
+
+                    {{-- Dropdown --}}
+                    <div
+                        class="absolute min-w-40 left-0 top-full bg-white shadow-md py-1 divide-y divide-solid divide-gray-300 opacity-0 group-hover:opacity-100 transition duration-300 invisible group-hover:visible z-[9999] rounded-lg">
+                        @foreach ($categories as $item)
+                            <a href="/products?search={{ $item->name }}"
+                                class="flex items-center px-3 py-2 hover:bg-gray-100 transition">
+                                <span class="text-gray-600 text-xs capitalize">{{ $item->name }}</span>
+                            </a>
+                        @endforeach
+                    </div>
                 </div>
             </div>
 
             {{-- Search --}}
-            <div class="hidden md:flex items-center justify-center space-x-4 capitalize w-3/5">
+            <div class="flex items-center justify-center space-x-4 capitalize w-3/5">
                 <form action="/products" class="w-full max-w-xl flex">
-                    <i class="ri-search-line flex items-center h-full absolute top-0 pl-4"></i>
+                    <i class="ri-search-line flex items-center h-full absolute top-0 pl-[6px] sm:pl-2 md:pl-4 text-sm sm:text-base"></i>
                     <input type="text" name="search" id="keyword"
-                        class="w-full border border-primary border-r-0 pl-12 py-3 pr-3 rounded-l-md focus:outline-none"
+                        class="w-full border border-primary border-r-0 pl-6 sm:pl-8 md:pl-12 py-[6px] sm:py-2 md:py-3 pr-3 rounded-l-md focus:outline-none text-xs sm:text-sm md:text-base"
                         placeholder="Search something" value="{{ request('search') }}">
                     <button type="submit"
-                        class="bg-primary text-white px-6 rounded-r-md hover:opacity-80 transition">Search</button>
+                        class="bg-primary text-white px-2 sm:px-4 md:px-6 rounded-r-md hover:opacity-80 transition text-xs sm:text-sm md:text-base">Search</button>
                 </form>
             </div>
 
             <!-- Check if already login or not -->
             @auth
-                <div class="flex items-center pl-2 space-x-4">
+                <div class="flex items-center space-x-4">
                     <a href="/cart" class="text-center text-gray-200 hover:text-gray-500 transition relative">
-                        <div class="text-2xl">
+                        <div class="text-xl sm:text-2xl">
                             <i class="ri-shopping-cart-2-line"></i>
                         </div>
-                        <div class="text-sm leading-3">Cart</div>
+                        <div class="text-xs sm:text-sm leading-3">Cart</div>
                         <div
-                            class="absolute -right-3 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-sm">
+                            class="absolute -right-2 -top-0 sm:-right-3 sm:-top-1 w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs sm:text-sm">
                             @auth
                                 {{ $cartQuantity }}
                             @else
@@ -78,10 +79,10 @@
                         </a>
                         <button type="button" class="text-center text-gray-200 hover:text-gray-500 transition relative"
                             onclick="toggleProfileMenu()">
-                            <div class="text-2xl">
+                            <div class="text-xl sm:text-2xl">
                                 <i class="ri-account-circle-line"></i>
                             </div>
-                            <div class="text-sm leading-3 capitalize">
+                            <div class="text-xs sm:text-sm leading-3 capitalize">
                                 {{ auth()->user()->firstname }}
                             </div>
                         </button>
