@@ -83,8 +83,8 @@
     {{-- CAROUSEL END --}}
 
     {{-- FEATURES START --}}
-    <div class="container py-5 md:pt-16 border-primary">
-        <div class="flex mb-4">
+    <div class="container px-5 py-5 md:pt-16 border-primary">
+        <div class="flex mb-2">
             <h1 class="text-lg sm:text-xl md:text-2xl font-semibold m-auto capitalize">why choose us?</h1>
         </div>
         <div class="w-11/12 grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-6 mx-auto">
@@ -124,9 +124,13 @@
     </div>
     {{-- FEATURES END --}}
 
+    {{-- DIVIDER --}}
+    <div class="w-full border-4 border-gray-200 my-5 md:mt-16">
+    </div>
+
     {{-- CATEGORIES START --}}
     <div class="container px-5 py-5 md:pt-16">
-        <h2 class="text-lg sm:text-xl md:text-2xl font-medium text-gray-800 uppercase mb-6">shop by category</h2>
+        <h2 class="text-lg sm:text-xl md:text-2xl font-medium text-gray-800 uppercase mb-3">categories</h2>
         <div class="flex overflow-x-scroll space-x-4 max-w-full sm:space-x-0 sm:grid sm:grid-cols-3 sm:gap-5">
             @foreach ($categories as $category)
                 <div
@@ -143,7 +147,7 @@
 
     {{-- RECOMMENDED FOR YOU START --}}
     <div class="container px-5 py-5 md:pt-16">
-        <div class="flex justify-between h-fit mb-6">
+        <div class="flex justify-between h-fit mb-3">
             <h2 class="text-lg sm:text-xl md:text-2xl font-medium text-gray-800 uppercase items-center">recommended for
                 you</h2>
             <a href="/products"
@@ -217,7 +221,7 @@
 
     {{-- ALL PRODUCTS START --}}
     <div class="container px-5 pt-5 pb-14 md:py-16">
-        <div class="flex justify-between h-fit mb-6">
+        <div class="flex justify-between h-fit mb-3">
             <h2 class="text-lg sm:text-xl md:text-2xl font-medium text-gray-800 uppercase items-center">all products
             </h2>
             <a href="/products"
@@ -286,7 +290,7 @@
 
     {{-- Modal --}}
     <div id="product-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
-        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[1000] w-10/12 sm:w-full md:inset-0 h-[calc(100%)] max-h-full mx-auto my-auto">
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[1000] w-10/12 lg:w-full md:inset-0 h-[calc(100%)] max-h-full mx-auto my-auto">
         <div class="fixed inset-0 bg-black opacity-50 z-50"></div>
         <div class="relative p-4 w-full max-w-2xl max-h-full bg-white rounded-md z-[1000]">
             <div class="absolute top-5 right-5">
@@ -296,21 +300,21 @@
                 </button>
             </div>
             <!-- Modal Body -->
-            <div id="modal-body" class="modal-body grid grid-cols-2 p-4 md:p-5">
+            <div id="modal-body" class="modal-body grid grid-cols-2 p-4 md:p-5 space-x-5">
                 <div class="w-full flex items-center justify-center">
-                    <img id="product-modal-image" src="" alt="product" class="max-w-[170px] max-h-[150px] sm:max-w-[300px] sm:max-h-[320px]">
+                    <img id="product-modal-image" src="" alt="product" class="max-w-[130px] max-h-[150px] sm:max-w-[300px] sm:max-h-[320px]">
                 </div>
                 <div class="w-full">
-                    <h3 id="product-modal-name" class="uppercase font-semibold text-sm sm:text-base"></h3>
+                    <h3 id="product-modal-name" class="uppercase font-semibold text-xs sm:text-sm"></h3>
                     <h3 id="product-modal-description"
-                        class="uppercase font-medium text-sm sm:text-base mb-2 text-primary"></h3>
-                    <h3 id="product-modal-brand" class="font-medium text-sm sm:text-base mb-2"></h3>
+                        class="uppercase font-medium text-xs sm:text-sm mb-2 text-primary"></h3>
+                    <h3 id="product-modal-brand" class="font-medium text-xs sm:text-sm mb-2"></h3>
 
                     {{-- Modal Footer --}}
                     @auth
-                        <p id="product-modal-price" class="text-red-500 font-semibold text-lg sm:text-xl">$</p>
+                        <p id="product-modal-price" class="text-red-500 font-semibold text-base sm:text-lg">$</p>
                         <button id="product-modal-addCart"
-                            class="addToCart w-1/2 mt-3 py-2 text-center text-white bg-primary border border-primary rounded-lg hover:bg-transparent hover:text-primary transition"
+                            class="addToCart w-2/3 mt-3 py-1 sm:py-2 text-sm sm:text-base text-center text-white bg-primary border border-primary rounded-lg hover:bg-transparent hover:text-primary transition"
                             data-product-id="">Add to cart</button>
                     @else
                         <a href="/login"

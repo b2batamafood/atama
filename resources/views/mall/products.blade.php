@@ -1,8 +1,9 @@
 <x-mall.layouts.app>
     <x-slot:title>Products</x-slot:title>
+
     <!-- FILTER START -->
-    <div class="absolute left-0 h-fit hidden md:block md:w-48 lg:w-64 p-5 z-[1000] text-center">
-        <h1 class="text-2xl md:text-3xl capitalize font-bold text-primary">categories</h1>
+    <div class="absolute left-0 h-fit hidden md:block md:w-48 lg:w-56 p-5 z-[1000] text-center">
+        <h1 class="text-xl md:text-2xl capitalize font-bold text-primary">categories</h1>
 
         <div class="max-h-[300px] overflow-y-scroll mb-10">
             <ul class="p-3">
@@ -20,7 +21,7 @@
             </ul>
         </div>
 
-        <h1 class="text-2xl md:text-3xl capitalize font-bold text-primary mt-51">Brand</h1>
+        <h1 class="text-xl md:text-2xl capitalize font-bold text-primary mt-51">Brand</h1>
         <div class="max-h-[300px] overflow-y-scroll">
             <ul class="p-3">
                 @foreach ($brands as $brand)
@@ -40,13 +41,32 @@
 
     <!-- PRODUCTS START -->
     <main class="p-5 w-full h-fit">
-        {{-- <div class="w-full flex">
-            <h1 class="text-4xl ml-32 lg:ml-64">filter bar</h1>
-        </div> --}}
+        {{-- Breadcrumbs --}}
+        <nav class="w-full flex items-center ml-0 md:ml-48 lg:ml-56" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+                <li class="inline-flex items-center">
+                    <a href="/"
+                        class="inline-flex items-center text-sm sm:text-base font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 9 4-4-4-4" />
+                        </svg>
+                        <a href="/products"
+                            class="ms-1 text-sm sm:text-base font-medium text-gray-700 hover:text-primary md:ms-2 dark:text-gray-400 dark:hover:text-white">Products</a>
+                    </div>
+                </li>
+            </ol>
+        </nav>
 
         {{-- if product found --}}
         @if ($products->count())
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5 ml-0 md:ml-48 lg:ml-64 mt-5">
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5 ml-0 md:ml-48 lg:ml-56 mt-5">
                 <!-- Carts -->
                 @foreach ($products as $product)
                     <div
@@ -106,14 +126,14 @@
             @endif
         @else
             {{-- if product not found --}}
-            <div class="h-screen ml-32 lg:ml-64 mb-20">
+            <div class="h-screen ml-32 lg:ml-56 mb-20">
                 <h1 class="text-2xl font-bold">No product(s) found...</h1>
             </div>
         @endif
 
-        <!-- Modal -->
+        {{-- Modal --}}
         <div id="product-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
-            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[1000] w-10/12 sm:w-full md:inset-0 h-[calc(100%)] max-h-full mx-auto my-auto">
+            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[1000] w-10/12 lg:w-full md:inset-0 h-[calc(100%)] max-h-full mx-auto my-auto">
             <div class="fixed inset-0 bg-black opacity-50 z-50"></div>
             <div class="relative p-4 w-full max-w-2xl max-h-full bg-white rounded-md z-[1000]">
                 <div class="absolute top-5 right-5">
@@ -123,21 +143,22 @@
                     </button>
                 </div>
                 <!-- Modal Body -->
-                <div id="modal-body" class="modal-body grid grid-cols-2 p-4 md:p-5">
+                <div id="modal-body" class="modal-body grid grid-cols-2 p-4 md:p-5 space-x-5">
                     <div class="w-full flex items-center justify-center">
-                        <img id="product-modal-image" src="" alt="product" class="max-w-[170px] max-h-[150px] sm:max-w-[300px] sm:max-h-[320px]">
+                        <img id="product-modal-image" src="" alt="product"
+                            class="max-w-[130px] max-h-[150px] sm:max-w-[300px] sm:max-h-[320px]">
                     </div>
                     <div class="w-full">
-                        <h3 id="product-modal-name" class="uppercase font-semibold text-sm md:text-base"></h3>
+                        <h3 id="product-modal-name" class="uppercase font-semibold text-xs sm:text-sm"></h3>
                         <h3 id="product-modal-description"
-                            class="uppercase font-medium text-sm sm:text-base mb-2 text-primary"></h3>
-                        <h3 id="product-modal-brand" class="font-medium text-sm sm:text-base mb-2"></h3>
+                            class="uppercase font-medium text-xs sm:text-sm mb-2 text-primary"></h3>
+                        <h3 id="product-modal-brand" class="font-medium text-xs sm:text-sm mb-2"></h3>
 
                         {{-- Modal Footer --}}
                         @auth
-                            <p id="product-modal-price" class="text-red-500 font-semibold text-xl">$</p>
+                            <p id="product-modal-price" class="text-red-500 font-semibold text-base sm:text-lg">$</p>
                             <button id="product-modal-addCart"
-                                class="addToCart w-1/2 mt-3 py-2 text-center text-white bg-primary border border-primary rounded-lg hover:bg-transparent hover:text-primary transition"
+                                class="addToCart w-2/3 mt-3 py-1 sm:py-2 text-sm sm:text-base text-center text-white bg-primary border border-primary rounded-lg hover:bg-transparent hover:text-primary transition"
                                 data-product-id="">Add to cart</button>
                         @else
                             <a href="/login"
@@ -189,12 +210,18 @@
                                     minimumFractionDigits: 2,
                                 }).format(product.price);
 
-                                document.getElementById('product-modal-image').src = product.photo_url;
-                                document.getElementById('product-modal-name').innerText = product.name;
-                                document.getElementById('product-modal-description').innerText = product.description;
-                                document.getElementById('product-modal-brand').innerText = "Brand : " + brand;
-                                document.getElementById('product-modal-price').innerText = formattedPrice
-                                document.getElementById('product-modal-addCart').setAttribute('data-product-id', productId);
+                                document.getElementById('product-modal-image').src = product
+                                    .photo_url;
+                                document.getElementById('product-modal-name').innerText =
+                                    product.name;
+                                document.getElementById('product-modal-description')
+                                    .innerText = product.description;
+                                document.getElementById('product-modal-brand').innerText =
+                                    "Brand : " + brand;
+                                document.getElementById('product-modal-price').innerText =
+                                    formattedPrice
+                                document.getElementById('product-modal-addCart')
+                                    .setAttribute('data-product-id', productId);
                             },
                             error: function(request, status, error) {
                                 $('.modal-body').html(request.responseText);
