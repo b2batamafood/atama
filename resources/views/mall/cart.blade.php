@@ -1,137 +1,145 @@
 <x-mall.layouts.app2>
     <x-slot:title>Cart</x-slot:title>
 
-    <div class="ml-8 mt-10 flex items-center capitalize text-2xl space-x-3">
-        <i class="ri-shopping-cart-2-line font-semibold"></i>
-        <h1 class="font-medium"><span>{{ auth()->user()->firstname }}'s</span> cart</h1>
-    </div>
+    <style>
+        @layer utilities {
 
-    <div class="relative overflow-x-auto px-8 py-4">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 text-center">
-                <tr>
-                    <th scope="col" class="px-6 py-3">
-                        Items
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Price
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Qty
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Total
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Action
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($cart as $item)
-                    <tr data-item-id="{{ $item->carts->first()->id }}"
-                        class="cart-item
-                            bg-white border-b dark:bg-gray-800 dark:border-gray-700
-                            hover:bg-gray-50 dark:hover:bg-gray-600 text-center">
-                        <th scope="row"
-                            class="flex items-center justify-center px-4 py-2 text-gray-900 whitespace-nowrap dark:text-white">
-                            <div class="flex items-center justify-start w-full lg:w-7/12">
-                                <img class="w-10 h-10 me-2 rounded-full" src="{{ $item->photo_url }}"
-                                    alt="{{ $item->name }}">
-                                <div class="text-start">
-                                    <div class="text-base font-semibold">{{ $item->name }}</div>
-                                    {{-- TODO: Fix unmatched with the other caused by DESCRIPTION data --}}
-                                    <div class="font-normal text-gray-500">{{ $item->description }}</div>
+            input[type="number"]::-webkit-inner-spin-button,
+            input[type="number"]::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+        }
+    </style>
+
+
+    <div class="min-h-screen bg-gray-100 py-20">
+        {{-- CART USER START --}}
+        <h1 class="mb-10 text-center text-xl sm:text-2xl font-bold capitalize">{{ auth()->user()->firstname }}'s Cart
+            Items</h1>
+        {{-- CART USER END --}}
+
+        {{-- CONTENT START --}}
+        @if ($cart->count())
+            <div class="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
+                <div class="rounded-lg md:w-2/3">
+                    @foreach ($cart as $item)
+                        <div data-item-id="{{ $item->carts->first()->id }}"
+                            class="cart-item justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
+                            <img src="{{ $item->photo_url }}" alt="{{ $item->name }}"
+                                class="max-w-10 sm:max-w-[70px] h-auto rounded-lg" />
+
+                            <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between sm:space-x-10">
+                                {{-- Item Description --}}
+                                <div class="mt-5 sm:mt-0">
+                                    <h2 class="text-base lg:text-lg font-bold text-gray-900">{{ $item->name }}</h2>
+                                    <h3 class="text-sm lg:text-base font-semibold text-gray-900">
+                                        {{ $item->description }}</h3>
+                                    <p class="price mt-1 text-base sm:text-lg text-gray-700">${{ $item->price }}</p>
+                                </div>
+
+                                <div class="mt-4 flex sm:block justify-between sm:space-y-6 sm:mt-0">
+                                    {{-- QTY Button --}}
+                                    <div class="flex items-center border-gray-100 w-full">
+                                        <form class="w-full flex-none sm:flex sm:justify-end">
+                                            <div class="relative flex items-center">
+                                                {{-- DECREMENT --}}
+                                                <button type="button"
+                                                    class="decrement flex-shrink-0 bg-gray-100 dark:bg-gray-700
+                                                dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 inline-flex
+                                                items-center justify-center border border-gray-300 rounded-md h-[22px] w-[22px]
+                                                 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                                                    <svg class="w-2.5 h-2.5 text-gray-900 dark:text-white"
+                                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                        fill="none" viewBox="0 0 18 2">
+                                                        <path stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
+                                                    </svg>
+                                                </button>
+                                                <input type="text"
+                                                    class="quantity flex-shrink-0 text-gray-900 dark:text-white border-0 bg-transparent
+                                               text-sm font-normal focus:outline-none focus:ring-0 max-w-[2.5rem] text-center"
+                                                    placeholder="" value="{{ $item->carts->first()->quantity }}"
+                                                    required>
+
+                                                {{-- INCREMENT --}}
+                                                <button type="button"
+                                                    class="increment flex-shrink-0 bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-md h-[22px] w-[22px] focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                                                    <svg class="w-2.5 h-2.5 text-gray-900 dark:text-white"
+                                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                        fill="none" viewBox="0 0 18 18">
+                                                        <path stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-width="2"
+                                                            d="M9 1v16M1 9h16" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    {{-- Total & Delete Button --}}
+                                    <div class="flex items-center justify-between space-x-4">
+                                        <p class="total-price text-base sm:text-lg">
+                                            ${{ $item->price * $item->carts->first()->quantity }}
+                                        </p>
+
+                                        {{-- Delete Button --}}
+                                        <div id="" class="text-base font-medium">
+                                            <button data-modal-target="popup-modal" data-modal-toggle="popup-modal"
+                                                class="data-delete-item text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                                type="button">
+                                                <i
+                                                    class="ri-delete-bin-5-line text-xl text-red-500 hover:text-red-700"></i>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </th>
-                        {{-- Price --}}
-                        <td class="px-6">
-                            <div class="price text-base font-medium">${{ $item->price }}</div>
-                        </td> {{-- End price --}}
-                        {{-- Quantity --}}
-                        <td class="px-6">
-                            <div class="flex items-center justify-center">
-                                {{-- QTY BUTTON --}}
-                                <form class="max-w-xs">
-                                    {{-- DECREMENT --}}
-                                    <div class="relative flex items-center">
-                                        <button type="button"
-                                            class="decrement flex-shrink-0 bg-gray-100 dark:bg-gray-700
-                                                dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 inline-flex
-                                                items-center justify-center border border-gray-300 rounded-md h-5 w-5
-                                                 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
-                                            <svg class="w-2.5 h-2.5 text-gray-900 dark:text-white" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
-                                            </svg>
-                                        </button>
-                                        <input type="text"
-                                            class="quantity flex-shrink-0 text-gray-900 dark:text-white border-0 bg-transparent
-                                               text-sm font-normal focus:outline-none focus:ring-0 max-w-[2.5rem] text-center"
-                                            placeholder="" value="{{ $item->carts->first()->quantity }}" required>
+                        </div>
+                    @endforeach
 
-                                        {{-- INCREMENT --}}
-                                        <button type="button"
-                                            class="increment flex-shrink-0 bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-md h-5 w-5 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
-                                            <svg class="w-2.5 h-2.5 text-gray-900 dark:text-white" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </td> {{-- End Quantity --}}
-                        {{-- Total price --}}
-                        <td class="px-6">
-                            <div class="total-price text-base font-bold">
-                                ${{ $item->price * $item->carts->first()->quantity }}</div>
-                        </td> {{-- End total price --}}
-                        <td class="px-6">
-                            <div id="" class="text-base font-medium">
-                                <button data-modal-target="popup-modal" data-modal-toggle="popup-modal"
-                                    class="data-delete-item text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                                    type="button">
-                                    <i class="ri-delete-bin-5-line text-xl text-red-500 hover:text-red-700"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
+                </div>
+                <!-- Sub total -->
+                <div class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
+                    <div class="mb-2 flex justify-between">
+                        <p class="text-gray-700">Subtotal</p>
+                        <p id="data-subtotal" class="text-gray-700">$0</p>
+                    </div>
+                    <div class="flex justify-between">
+                        <p class="text-gray-700">Tax</p>
+                        <p class="text-gray-700">$3.00</p>
+                    </div>
+                    {{-- <div class="flex justify-between">
+                    <p class="text-gray-700">Shipping</p>
+                    <p class="text-gray-700">$10.00</p>
+                </div> --}}
+                    <hr class="my-4" />
+                    <div class="flex justify-between">
+                        <p class="text-lg font-bold">Total</p>
+                        <div class="">
+                            <p id="data-grandtotal" class="mb-1 text-lg font-bold">$0 USD</p>
+                        </div>
+                    </div>
 
-            </tbody>
-        </table>
+                    <div class="mt-6 flex text-center">
+                        <a href="/checkout"
+                            class="w-full px-4 py-2 bg-primary text-white font-semibold rounded-md hover:brightness-75 transition ease-in-out">Check
+                            out</a>
+                    </div>
+                </div>
+            </div>
+            {{-- CONTENT END --}}
+        @else
+            <div class="h-screen flex justify-center items-center">
+                <div class="flex-none w-full text-center space-y-5">
+                    <i class="w-full ri-emotion-unhappy-line text-7xl sm:text-9xl font-normal text-gray-500"></i>
+                    <h1 class="text-base sm:text-2xl font-bold text-gray-500">Oops, it seems your cart is empty. Go buy
+                        something!
+                    </h1>
+                </div>
+            </div>
+        @endif
     </div>
 
-    <div class="flex justify-end mb-3 mx-8">
-        <div class="capitalize space-y-3">
-            <div class="flex justify-between space-x-20">
-                <div class="font-semibold">subtotal : </div>
-                <div id="data-subtotal">$0</div>
-            </div>
-            {{-- <div class="flex justify-between border-b-2 space-x-20">
-                <div class="font-semibold">Shipping : </div>
-                <div class="">$<span>5.00</span></div>
-            </div> --}}
-            <div class="flex justify-between border-b-2 space-x-20">
-                <div class="font-semibold">tax : </div>
-                <div class="">$<span>3.00</span></div>
-            </div>
-            <div class="flex justify-between space-x-20">
-                <div class="font-semibold">grand total : </div>
-                <div id="data-grandtotal">$0</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="flex justify-end mb-10 mx-8 capitalize">
-        <a href="/checkout"
-            class="px-4 py-2 bg-primary text-white rounded-lg shadow-md hover:brightness-75 transition ease-in-out">proceed
-            to checkout</a>
-    </div>
 
     {{-- Modal Delete Confirmation --}}
     <div id="popup-modal" tabindex="-1"
@@ -176,7 +184,8 @@
                 updatePriceInfo({!! auth()->user()->totalPrice !!});
 
                 $('.increment, .decrement').on('click', function() {
-                    var $item = $(this).closest('tr'); // Adjust the selector based on your actual structure
+                    var $item = $(this).closest(
+                        '.cart-item'); // Adjust the selector based on your actual structure
                     var itemId = $item.data('item-id');
                     var $quantityInput = $item.find('.quantity');
                     var $priceInput = $item.find('.price');
@@ -224,12 +233,14 @@
 
                 function updatePriceInfo(total) {
                     $('#data-subtotal').text('$' + total.toFixed(2));
-                    const grand_total = total + 3
+                    const grand_total = total + 3 // total + tax
                     $('#data-grandtotal').text('$' + grand_total.toFixed(2));
                 }
 
+                // DELETE ITEM
                 $('.data-delete-item').on('click', function() {
-                    var $item = $(this).closest('tr'); // Adjust the selector based on your actual structure
+                    var $item = $(this).closest(
+                        '.cart-item'); // Adjust the selector based on your actual structure
                     var itemId = $item.data('item-id');
 
                     // Show the confirmation modal
