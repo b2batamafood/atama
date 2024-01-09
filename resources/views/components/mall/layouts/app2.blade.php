@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ mix('css/mall/app.css') }}">
 </head>
 
-<body>
+<body data-theme="light">
     {{-- NAVBAR START --}}
     <div class="flex flex-col items-center border-b bg-gray-800 py-4 sm:flex-row sm:px-10 lg:px-20">
         <a href="/"><img src="../img/atama_logo.jpg" alt="Logo" class="w-32 max-w-[50px] max-h-[50px]"></a>

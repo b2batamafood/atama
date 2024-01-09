@@ -17,11 +17,19 @@ module.exports = {
     },
   },
   plugins: [
-    require('flowbite/plugin')
-  ]
+      require('flowbite/plugin'),
+      require("daisyui")
+  ],
 
-  // daisyui: {
-  //   themes: ['light', 'dark']
-  // }
+    daisyui: {
+        styled: true,
+        themes: true, // include all daisyui's theme
+        base: true,
+        utils: true,
+        logs: true,
+        rtl: false,
+        prefix: "",
+        //darkTheme: "forest",
+    },
 }
 
