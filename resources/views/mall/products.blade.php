@@ -42,25 +42,57 @@
     <!-- PRODUCTS START -->
     <main class="p-5 w-full h-fit">
         {{-- Breadcrumbs --}}
-        <nav class="w-full flex items-center ml-0 md:ml-48 lg:ml-56" aria-label="Breadcrumb">
+        <nav class="w-full flex items-center pl-0 md:pl-48 lg:pl-56" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
-                <li class="inline-flex items-center">
-                    <a href="/"
-                        class="inline-flex items-center text-sm sm:text-base font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
-                        Home
-                    </a>
-                </li>
-                <li>
-                    <div class="flex items-center">
-                        <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 9 4-4-4-4" />
-                        </svg>
-                        <a href="/products"
-                            class="ms-1 text-sm sm:text-base font-medium text-gray-700 hover:text-primary md:ms-2 dark:text-gray-400 dark:hover:text-white">Products</a>
-                    </div>
-                </li>
+                @if (!request('search'))
+                    <li class="inline-flex items-center">
+                        <a href="/"
+                            class="inline-flex items-center text-sm sm:text-base font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 9 4-4-4-4" />
+                            </svg>
+                            <a href="/products"
+                                class="ms-1 text-sm sm:text-base font-bold text-gray-700 hover:text-primary md:ms-2 dark:text-gray-400 dark:hover:text-white">Products</a>
+                        </div>
+                    </li>
+                @else
+                    <li class="inline-flex items-center">
+                        <a href="/"
+                            class="inline-flex items-center text-sm sm:text-base font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 9 4-4-4-4" />
+                            </svg>
+                            <a href="/products"
+                                class="ms-1 text-sm sm:text-base font-medium text-gray-700 hover:text-primary md:ms-2 dark:text-gray-400 dark:hover:text-white">Products</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 9 4-4-4-4" />
+                            </svg>
+                            <p
+                                class="ms-1 text-sm sm:text-base font-bold text-gray-700 md:ms-2 dark:text-gray-400 dark:hover:text-white">
+                                {{ request('search') }}</a>
+                        </div>
+                    </li>
+                @endif
             </ol>
         </nav>
 
@@ -115,7 +147,7 @@
                                 data-product-id="{{ $product->id }}">Add to cart</button>
                         @else
                             <button
-                                class="block w-full py-2 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition pointer-events-none cursor-pointer">Add
+                                class="block w-full py-2 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition cursor-pointer">Add
                                 to cart</button>
                         @endauth
                     </div>
@@ -126,8 +158,12 @@
             @endif
         @else
             {{-- if product not found --}}
-            <div class="h-screen ml-32 lg:ml-56 mb-20">
-                <h1 class="text-2xl font-bold">No product(s) found...</h1>
+            <div class="h-screen ml-0 mt-5 md:ml-48 lg:ml-56 mb-20 flex justify-center items-center">
+                <div class="flex-none w-full text-center space-y-5">
+                    <i class="w-full ri-close-circle-line text-7xl sm:text-9xl font-normal text-gray-500"></i>
+                    <h1 class="text-base sm:text-2xl font-bold text-gray-500">Oops, no result were found for "{{ request('search') }}"
+                    </h1>
+                </div>
             </div>
         @endif
 
@@ -248,7 +284,8 @@
                         success: function(response) {
                             alert(response.success);
                             console.log(response);
-                            location.reload();
+                            $('#data-cart-quantity').text(response.data)
+                            //location.reload();
                         },
                         error: function(error) {
                             console.error('Error adding to cart:', error);

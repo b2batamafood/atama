@@ -21,7 +21,7 @@
 <body>
     {{-- NAVBAR START --}}
     <nav class="bg-gray-800 sticky top-0 left-0 w-full z-[9999] py-4">
-        <div class="container flex items-center justify-between px-4">
+        <div class="container flex items-center justify-between px-5">
             <div class="items-center justify-center">
                 {{-- Logo --}}
                 <a href="/" class="mr-4 md:mr-8 hidden md:flex">
@@ -29,34 +29,40 @@
                 </a>
 
                 {{-- All Categories --}}
-                <div
-                    class="flex md:hidden items-center cursor-pointer relative group">
-                    <span class="text-white text-lg md:text-xl">
-                        <i class="ri-menu-line"></i>
+                <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" data-dropdown-offset-distance="15" data-dropdown-placement="bottom" data-dropdown-offset-skidding="75"
+                    class="flex md:hidden items-center cursor-pointer relative group" type="button">
+                    <span class="text-white text-xl md:text-2xl">
+                        <i class="ri-equalizer-line"></i>
                     </span>
+                </button>
 
-                    {{-- Dropdown --}}
-                    <div
-                        class="absolute min-w-40 left-0 top-full bg-white shadow-md py-1 divide-y divide-solid divide-gray-300 opacity-0 group-hover:opacity-100 transition duration-300 invisible group-hover:visible z-[9999] rounded-lg">
+                <!-- Dropdown menu -->
+                <div id="dropdownHover"
+                    class="z-[1000] hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200 divide-y divide-solid divide-gray-300"
+                        aria-labelledby="dropdownHoverButton">
                         @foreach ($categories as $item)
-                            <a href="/products?search={{ $item->name }}"
-                                class="flex items-center px-3 py-2 hover:bg-gray-100 transition">
-                                <span class="text-gray-600 text-xs capitalize">{{ $item->name }}</span>
-                            </a>
+                            <li>
+                                <a href="/products?search={{ $item->name }}"
+                                    class="flex items-center px-3 py-[10px] hover:bg-gray-100 transition">
+                                    <span class="text-gray-600 text-sm capitalize">{{ $item->name }}</span>
+                                </a>
+                            </li>
                         @endforeach
-                    </div>
+                    </ul>
                 </div>
             </div>
 
             {{-- Search --}}
             <div class="flex items-center justify-center space-x-4 capitalize w-3/5">
                 <form action="/products" class="w-full max-w-xl flex">
-                    <i class="ri-search-line flex items-center h-full absolute top-0 pl-[6px] sm:pl-2 md:pl-4 text-sm sm:text-base"></i>
+                    <i
+                        class="ri-search-line flex items-center h-full absolute top-0 pl-2 sm:pl-3 md:pl-4 text-sm sm:text-base"></i>
                     <input type="text" name="search" id="keyword"
-                        class="w-full border border-primary border-r-0 pl-6 sm:pl-8 md:pl-12 py-[6px] sm:py-2 md:py-3 pr-3 rounded-l-md focus:outline-none text-xs sm:text-sm md:text-base"
+                        class="w-full border border-primary border-r-0 pl-7 sm:pl-8 md:pl-12 py-2 sm:py-3 pr-3 rounded-l-md focus:outline-none text-sm sm:text-base"
                         placeholder="Search something" value="{{ request('search') }}">
                     <button type="submit"
-                        class="bg-primary text-white px-2 sm:px-4 md:px-6 rounded-r-md hover:opacity-80 transition text-xs sm:text-sm md:text-base">Search</button>
+                        class="bg-primary text-white px-2 sm:px-4 md:px-6 rounded-r-md hover:opacity-80 transition text-sm sm:text-base">Search</button>
                 </form>
             </div>
 
@@ -64,11 +70,11 @@
             @auth
                 <div class="flex items-center space-x-4">
                     <a href="/cart" class="text-center text-gray-200 hover:text-gray-500 transition relative">
-                        <div class="text-xl sm:text-2xl">
+                        <div class="text-2xl sm:text-3xl">
                             <i class="ri-shopping-cart-2-line"></i>
                         </div>
-                        <div class="text-xs sm:text-sm leading-3">Cart</div>
-                        <div
+                        <div class="text-sm sm:text-base leading-3 font-semibold">Cart</div>
+                        <div id="data-cart-quantity"
                             class="absolute -right-2 -top-0 sm:-right-3 sm:-top-1 w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs sm:text-sm">
                             @auth
                                 {{ $cartQuantity }}
@@ -79,10 +85,10 @@
                         </a>
                         <button type="button" class="text-center text-gray-200 hover:text-gray-500 transition relative"
                             onclick="toggleProfileMenu()">
-                            <div class="text-xl sm:text-2xl">
+                            <div class="text-2xl sm:text-3xl">
                                 <i class="ri-account-circle-line"></i>
                             </div>
-                            <div class="text-xs sm:text-sm leading-3 capitalize">
+                            <div class="text-sm sm:text-base leading-3 capitalize font-semibold">
                                 {{ auth()->user()->firstname }}
                             </div>
                         </button>
@@ -103,7 +109,7 @@
                         </ul>
                     </div>
                 @else
-                    <a href="/login" class="text-gray-200 hover:text-white transition">Login</a>
+                    <a href="/login" class="text-gray-200 hover:text-white transition text-base">Login</a>
                 @endauth
             </div>
         </nav>
@@ -118,46 +124,46 @@
             <div class="mx-auto w-full max-w-screen-xl">
                 <div class="grid grid-cols-2 gap-8 px-4">
                     <div>
-                        <h2 class="mb-3 md:mb-6 text-base font-bold uppercase text-gray-800">contact</h2>
+                        <h2 class="mb-3 md:mb-6 text-sm sm:text-base font-bold uppercase text-gray-800">contact</h2>
                         <ul class="text-opacity-70 font-medium">
-                            <li class="opacity-50 text-sm">
+                            <li class="opacity-50 text-xs sm:text-sm">
                                 4010 W Valley Blvd #109
                             </li>
-                            <li class="mb-2 md:mb-4 opacity-50 text-sm">
+                            <li class="mb-2 md:mb-4 opacity-50 text-xs sm:text-sm">
                                 Walnut, CA 91789
                             </li>
-                            <li class="mb-2 md:mb-4 opacity-50 text-sm">
+                            <li class="mb-2 md:mb-4 opacity-50 text-xs sm:text-sm">
                                 Phone : <span>213-320-0280</span>
                             </li>
-                            <li class="mb-1 opacity-50 text-sm">
+                            <li class="mb-1 opacity-50 text-xs sm:text-sm">
                                 Email :
                             </li>
-                            <li class="opacity-50 text-sm">
+                            <li class="opacity-50 text-xs sm:text-sm">
                                 <a href="mailto:sales@atamafood.com">sales@atamafood.com,</a>
                             </li>
-                            <li class="opacity-50 text-sm">
+                            <li class="opacity-50 text-xs sm:text-sm">
                                 <a href="mailto:online.atamafood@gmail.com">online.atamafood@gmail.com,</a>
                             </li>
-                            <li class="opacity-50 text-sm">
+                            <li class="opacity-50 text-xs sm:text-sm">
                                 <a href="mailto:helloiamwilliam@hotmail.com">helloiamwilliam@hotmail.com
                                 </a>
                             </li>
                         </ul>
                     </div>
                     <div>
-                        <h2 class="mb-3 md:mb-6 text-md font-bold uppercase text-gray-800">Company</h2>
+                        <h2 class="mb-3 md:mb-6 text-md font-bold uppercase text-gray-800 text-sm sm:text-base">Company</h2>
                         <ul class="font-medium">
                             <li class="mb-2 md:mb-4">
-                                <a href="#" class="text-sm opacity-50 capitalize">About</a>
+                                <a href="#" class="text-xs sm:text-sm opacity-50 capitalize">About</a>
                             </li>
                             <li class="mb-2 md:mb-4">
-                                <a href="#" class="text-sm opacity-50 capitalize">Location</a>
+                                <a href="#" class="text-xs sm:text-sm opacity-50 capitalize">Location</a>
                             </li>
                             <li class="mb-2 md:mb-4">
-                                <a href="#" class="text-sm opacity-50 capitalize">Shipping</a>
+                                <a href="#" class="text-xs sm:text-sm opacity-50 capitalize">Shipping</a>
                             </li>
                             <li class="mb-4">
-                                <a href="#" class="text-sm opacity-50 capitalize">Blog</a>
+                                <a href="#" class="text-xs sm:text-sm opacity-50 capitalize">Blog</a>
                             </li>
                         </ul>
                     </div>
