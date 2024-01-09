@@ -28,7 +28,7 @@ class loginController extends Controller
             return redirect()->intended('/');
         }
 
-        return back()->with('loginError', 'Login failed!');
+        return back()->with('loginError', 'Incorrect email or password!');
     }
 
     public function logout(Request $request)
