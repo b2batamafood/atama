@@ -11,7 +11,7 @@
         </div>
     @endif
     {{-- CONTENT START --}}
-    <form class="grid sm:px-10 lg:grid-cols-2 lg:px-20"
+    <form class="grid sm:px-10 lg:grid-cols-2 lg:px-20 mb-20"
             action="{{ route('checkout.create') }}" method="POST"> @csrf
         {{-- Order Summary + Shipping Method START --}}
         <div class="px-4 pt-8">

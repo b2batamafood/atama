@@ -8,7 +8,7 @@
     <title>{{ $title }} | Atama</title>
 </head>
 
-<body>
+<body data-theme="light">
     <nav class="bg-gray-800 sticky top-0 left-0 w-full z-[9999]">
         <div class="container flex items-center px-4">
             <a href="/" class="mr-4 md:mr-8 py-5">

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Mall;
 
 use App\Models\Cart;
 use App\Models\Product;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 

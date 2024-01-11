@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProductsController as AdminProductsController;
+use App\Http\Controllers\Admin\TransactionsController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\Mall\CartController;
@@ -63,6 +65,8 @@ Route::middleware('auth')->group(function () {
         Route::controller(UsersController::class)->group(function () {
             Route::get('users', 'index')->name('users');
         });
+        Route::get('products',[AdminProductsController::class, 'index']);
+        Route::get('transactions',[TransactionsController::class, 'index']);
     }); /* End Admin */
 
 });
