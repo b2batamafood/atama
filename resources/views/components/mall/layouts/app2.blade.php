@@ -30,7 +30,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                             </svg>
                         </p>
-                        <a href="/products"><span class="font-semibold text-white">Shop</span></a>
+                        <a href="/products"><span class="font-semibold text-white text-base">Shop</span></a>
                     </li>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -50,7 +50,7 @@
                                 class="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs font-semibold text-white ring ring-primary ring-offset-2">
                                 2</p>
                         @endif
-                        <a href="/cart"><span class="font-semibold text-white">Cart</span></a>
+                        <a href="/cart"><span class="font-semibold text-white text-base">Cart</span></a>
                     </li>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -61,12 +61,12 @@
                             <p
                                 class="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs font-semibold text-white ring ring-primary ring-offset-2">
                                 3</p>
-                            <a href="/checkout"><span class="font-semibold text-white">Checkout</span></a>
+                            <a href="/checkout"><span class="font-semibold text-white text-base">Checkout</span></a>
                         @else
                             <p
                                 class="flex h-6 w-6 items-center justify-center rounded-full bg-gray-400 text-xs font-semibold text-white">
                                 3</p>
-                            <p><span class="font-semibold text-white">Checkout</span></p>
+                            <p><span class="font-semibold text-white text-base">Checkout</span></p>
                         @endif
 
                     </li>

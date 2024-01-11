@@ -13,7 +13,7 @@ class DashboardController extends Controller
         return view(
             'admin.dashboard',
             [
-                "title" => "Dashboard"
+                "title" => "Dashboard",
             ]
         );
     }
