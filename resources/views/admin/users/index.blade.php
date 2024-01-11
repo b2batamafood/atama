@@ -1,45 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <link rel="stylesheet" href="{{ mix('css/mall/app.css') }}">
-
-    <title>{{ $title }} | Atama</title>
-</head>
-
-<body data-theme="light">
-    <nav class="bg-gray-800 sticky top-0 left-0 w-full z-[9999]">
-        <div class="container flex items-center px-4">
-            <a href="/" class="mr-4 md:mr-8 py-5">
-                <img src="img/atama_logo.jpg" alt="Logo" class="w-32 max-w-[50px] max-h-[50px]">
-            </a>
-        </div>
-    </nav>
-
-    <!-- REGISTER START -->
-    <div class="contain py-16">
-        @if ($errors->any())
-            <div class="max-w-lg mx-auto p-4 mb-4 text-sm text-white rounded-lg bg-red-400 text-center" role="alert">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+<x-admin.layouts.app>
+    <div class="card w-full p-6 bg-base-100 shadow-xl mt-2">
+        <div class="text-xl font-semibold inline-block capitalize">Member
+            <div class="inline-block float-right">
+                <div class="inline-block float-right">
+                    <button class="btn px-6 btn-sm bg-primary text-white capitalize" onclick="add_modal.showModal()">add
+                        new member</button>
+                </div>
             </div>
-        @endif
-        <div
-            class="max-w-[700px] mx-auto shadow-none sm:border-2 sm:shadow-lg px-4 sm:px-6 py-7 rounded overflow-hidden">
-            <h2 class="text-lg sm:text-xl uppercase font-medium text-center">Create an account</h2>
-            <p class="text-gray-600 mb-6 text-sm text-center">
-                Register for new customer
-            </p>
-            <form action="/register" method="post" autocomplete="on" enctype="multipart/form-data">
+        </div>
+        <div class="divider mt-2"></div>
+
+        {{-- TABLE START --}}
+        <div class="h-full w-full pb-6 bg-base-100">
+            <div class="overflow-x-auto w-full">
+                <table class="table w-full">
+                    <thead>
+                        <tr class="text-sm">
+                            <th>Name</th>
+                            <th>Company</th>
+                            <th>Email</th>
+                            <th>Country</th>
+                            <th>State</th>
+                            <th>City</th>
+                            <th>Zipcode</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                            <th>Tax ID</th>
+                            <th>Role</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($users as $user)
+                            <tr>
+                                <td class="capitalize font-bold">{{ $user->firstname . ' ' . $user->lastname }}</td>
+                                <td class="">{{ $user->company }}</td>
+                                <td class="">{{ $user->email }}</td>
+                                <td class="">{{ $user->country }}</td>
+                                <td class="">{{ $user->state }}</td>
+                                <td class="">{{ $user->city }}</td>
+                                <td class="">{{ $user->zipcode }}</td>
+                                <td class="">{{ $user->address }}</td>
+                                <td class="">{{ $user->phone }}</td>
+                                <td class="">{{ $user->tax_id }}</td>
+                                <td class="">
+                                    <div class="badge badge-primary capitalize text-white">Admin</div>
+                                </td>
+                                <td class="text-start">
+                                    <button data-modal-target="popup-modal" data-modal-toggle="popup-modal"
+                                        class="data-delete-item text-white font-medium rounded-lg text-sm text-center"
+                                        type="button">
+                                        <i class="ri-delete-bin-5-line text-xl text-red-500 hover:text-red-700"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {{-- TABLE END --}}
+    </div>
+
+
+    {{-- Add Member Modal --}}
+    <dialog id="add_modal" class="modal">
+        <div class="modal-box w-11/12 max-w-3xl">
+            <form method="dialog">
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <h3 class="font-bold text-lg capitalize text-center mb-7">Add New Member</h3>
+
+            <form action="" method="post" autocomplete="on" enctype="multipart/form-data">
                 @csrf
                 <div class="space-y-2">
                     <div class="flex">
@@ -47,7 +79,7 @@
                             <label for="company"
                                 class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Company<span
                                     class="text-red-500">*</span></label>
-                            <input type="company" name="company" id="company" value="{{ old('company') }}"
+                            <input type="company" name="company" id="company" value=""
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="Company name" required>
                         </div>
@@ -55,7 +87,7 @@
                             <label for="email"
                                 class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Email<span
                                     class="text-red-500">*</span></label>
-                            <input type="email" name="email" id="email" value="{{ old('email') }}"
+                            <input type="email" name="email" id="email" value=""
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="youremail.@domain.com" required>
                             @error('email')
@@ -65,21 +97,31 @@
                         </div>
                     </div>
                     <div class="flex">
-                        <div class="w-1/2 mr-4">
+                        <div class="w-1/3 mr-4">
                             <label for="firstname"
                                 class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">First
                                 name<span class="text-red-500">*</span></label>
-                            <input type="text" name="firstname" id="firstname" value="{{ old('firstname') }}"
+                            <input type="text" name="firstname" id="firstname" value=""
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="First Name" required>
                         </div>
-                        <div class="w-1/2 ml-4">
+                        <div class="w-1/3 mx-4">
                             <label for="lastname"
                                 class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Last
                                 name<span class="text-red-500">*</span></label>
-                            <input type="text" name="lastname" id="lastname" value="{{ old('lastname') }}"
+                            <input type="text" name="lastname" id="lastname" value=""
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="Last Name" required>
+                        </div>
+                        <div class="w-1/3 ml-4">
+                            <label for="role"
+                                class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Role<span
+                                    class="text-red-500">*</span></label>
+                            <select class="select select-bordered w-full max-w-xs" required>
+                                <option disabled selected>Role</option>
+                                <option>Admin</option>
+                                <option>Customer</option>
+                            </select>
                         </div>
                     </div>
 
@@ -88,7 +130,7 @@
                             <label for="address"
                                 class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Address<span
                                     class="text-red-500">*</span></label>
-                            <input type="text" name="address" id="address" value="{{ old('address') }}"
+                            <input type="text" name="address" id="address" value=""
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="Enter your address" required>
                         </div>
@@ -96,7 +138,7 @@
                             <label for="phone"
                                 class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Phone<span
                                     class="text-red-500">*</span></label>
-                            <input type="text" name="phone" id="phone" value="{{ old('phone') }}"
+                            <input type="text" name="phone" id="phone" value=""
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="Phone number" required>
                         </div>
@@ -124,7 +166,7 @@
                                 placeholder="City">
                         </div>
                         <div class="w-1/4 ml-2">
-                            <input type="text" name="zipcode" id="zipcode" value="{{ old('zipcode') }}"
+                            <input type="text" name="zipcode" id="zipcode" value=""
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="Zipcode" required>
                         </div>
@@ -136,7 +178,7 @@
                                 class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Tax ID,
                                 Seller
                                 Permit<span class="text-red-500">*</span></label>
-                            <input type="text" name="tax_id" id="tax_id" value="{{ old('tax_id') }}"
+                            <input type="text" name="tax_id" id="tax_id" value=""
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="Tax ID, Seller Permit" required>
                         </div>
@@ -160,40 +202,10 @@
                     </div>
                 </div>
                 <div class="mt-4">
-                    <button type="submit" name="register"
-                        class="block w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">create
-                        account</button>
+                    <input type="submit" value="Submit"
+                        class="btn bg-primary border border-primary hover:bg-transparent hover:text-primary text-white uppercase" />
                 </div>
             </form>
-
-            <p class="mt-4 text-center text-gray-600">Already have account? <a href="/login"
-                    class="text-primary font-semibold">Login now</a></p>
         </div>
-    </div>
-    <!-- REGISTER END -->
-
-
-    {{-- <link rel="stylesheet" href="../js/script.js"> --}}
-
-    {{-- COUNTRY, STATE, CITY DROPDOWN --}}
-    <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
-
-    <script type="text/javascript">
-        var countryInput = document.getElementById('country');
-        var stateInput = document.getElementById('state');
-        var cityInput = document.getElementById('city');
-
-        if (countryInput) {
-            countryInput.value = geoplugin_countryName();
-        }
-        if (stateInput) {
-            stateInput.value = geoplugin_regionName();
-        }
-        if (cityInput) {
-            cityInput.value = geoplugin_city();
-        }
-    </script>
-
-</body>
-
-</html>
+    </dialog>
+</x-admin.layouts.app>

@@ -18,7 +18,7 @@
     {{ $styles ?? '' }}
 </head>
 
-<body>
+<body data-theme="light">
     {{-- NAVBAR START --}}
     <nav class="bg-gray-800 sticky top-0 left-0 w-full z-[9999] py-4">
         <div class="container flex items-center justify-between px-5">
