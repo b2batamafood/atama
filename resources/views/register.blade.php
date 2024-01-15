@@ -16,7 +16,7 @@
 <body data-theme="light">
     <nav class="bg-gray-800 sticky top-0 left-0 w-full z-[9999]">
         <div class="container flex items-center px-4">
-            <a href="/" class="mr-4 md:mr-8 py-5">
+            <a href="/" class="mr-4 md:mr-8 py-3 sm:py-5">
                 <img src="img/atama_logo.jpg" alt="Logo" class="w-32 max-w-[50px] max-h-[50px]">
             </a>
         </div>
@@ -34,16 +34,16 @@
             </div>
         @endif
         <div
-            class="max-w-[700px] mx-auto shadow-none sm:border-2 sm:shadow-lg px-4 sm:px-6 py-7 rounded overflow-hidden">
+            class="max-w-[700px] mx-auto shadow-none sm:border-2 sm:shadow-lg px-6 py-7 rounded overflow-hidden">
             <h2 class="text-lg sm:text-xl uppercase font-medium text-center">Create an account</h2>
             <p class="text-gray-600 mb-6 text-sm text-center">
-                Register for new customer
+                Register for new customer 
             </p>
             <form action="/register" method="post" autocomplete="on" enctype="multipart/form-data">
                 @csrf
                 <div class="space-y-2">
-                    <div class="flex">
-                        <div class="w-1/2 mr-4">
+                    <div class="flex-none sm:flex space-y-2 sm:space-y-0">
+                        <div class="w-full sm:w-1/2 sm:mr-4">
                             <label for="company"
                                 class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Company<span
                                     class="text-red-500">*</span></label>
@@ -51,7 +51,7 @@
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="Company name" required>
                         </div>
-                        <div class="w-1/2 ml-4">
+                        <div class="w-full sm:w-1/2 sm:ml-4">
                             <label for="email"
                                 class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Email<span
                                     class="text-red-500">*</span></label>
@@ -64,8 +64,9 @@
                             @enderror
                         </div>
                     </div>
+
                     <div class="flex">
-                        <div class="w-1/2 mr-4">
+                        <div class="w-1/2 mr-2 sm:mr-4">
                             <label for="firstname"
                                 class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">First
                                 name<span class="text-red-500">*</span></label>
@@ -73,7 +74,7 @@
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="First Name" required>
                         </div>
-                        <div class="w-1/2 ml-4">
+                        <div class="w-1/2 ml-2 sm:ml-4">
                             <label for="lastname"
                                 class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Last
                                 name<span class="text-red-500">*</span></label>
@@ -83,8 +84,8 @@
                         </div>
                     </div>
 
-                    <div class="flex">
-                        <div class="w-1/2 mr-4">
+                    <div class="flex-none sm:flex space-y-2 sm:space-y-0">
+                        <div class="w-full sm:w-1/2 mr-0 sm:mr-4">
                             <label for="address"
                                 class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Address<span
                                     class="text-red-500">*</span></label>
@@ -92,7 +93,7 @@
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="Enter your address" required>
                         </div>
-                        <div class="w-1/2 ml-4">
+                        <div class="w-full sm:w-1/2 ml-0 sm:ml-4">
                             <label for="phone"
                                 class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Phone<span
                                     class="text-red-500">*</span></label>
@@ -102,36 +103,31 @@
                         </div>
                     </div>
 
-                    <div class="flex pt-2">
-                        <div class="w-1/4 mr-2">
-                            {{-- <select id="country" name="country"
-                                class="w-full px-2 py-3 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 text-sm"
-                                disabled>
-                                <option id="country" value="" selected>Loading...</option>
-                            </select> --}}
+                    <div class="grid grid-cols-2 sm:grid-cols-4 py-2 gap-4">
+                        <div class="">
                             <input type="text" name="country" id="country" value=""
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="Country">
                         </div>
-                        <div class="w-1/4 mx-2">
+                        <div class="">
                             <input type="text" name="state" id="state" value=""
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="State">
                         </div>
-                        <div class="w-1/4 mx-2">
+                        <div class="">
                             <input type="text" name="city" id="city" value=""
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="City">
                         </div>
-                        <div class="w-1/4 ml-2">
+                        <div class="">
                             <input type="text" name="zipcode" id="zipcode" value="{{ old('zipcode') }}"
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="Zipcode" required>
                         </div>
                     </div>
 
-                    <div class="flex">
-                        <div class="w-1/2 mr-4">
+                    <div class="flex-none sm:flex space-y-2 sm:space-y-0">
+                        <div class="w-full sm:w-1/2 mr-0 sm:mr-4">
                             <label for="tax_id"
                                 class="text-gray-600 mb-1 sm:mb-2 block font-semibold text-sm sm:text-base">Tax ID,
                                 Seller
@@ -140,7 +136,7 @@
                                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                 placeholder="Tax ID, Seller Permit" required>
                         </div>
-                        <div class="w-1/2 ml-4">
+                        <div class="w-full sm:w-1/2 ml-0 sm:ml-4">
                             <!-- File Input -->
                             <label for="file"
                                 class="block text-gray-600 text-sm sm:text-base font-semibold mb-1 sm:mb-2">Document</label>
@@ -150,15 +146,18 @@
                         </div>
                     </div>
                 </div>
+
+
                 <div class="mt-6">
                     <div class="flex items-center">
                         <input type="checkbox" id="agreement"
                             class="text-primary focus:ring-0 rounded-sm cursor-pointer" required>
-                        <label for="agreement" class="text-gray-600 ml-3 cursor-pointer">Check here to indicate that
+                        <label for="agreement" class="text-gray-600 ml-3 cursor-pointer text-sm">Check here to indicate that
                             you have read and agree to our <a href="#" class="text-primary capitalize">terms &
                                 conditions</a></label>
                     </div>
                 </div>
+
                 <div class="mt-4">
                     <button type="submit" name="register"
                         class="block w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">create

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
@@ -8,10 +8,10 @@
     <title>{{ $title }} | Atama</title>
 </head>
 
-<body data-theme="light">
+<body>
     <nav class="bg-gray-800 sticky top-0 left-0 w-full z-[9999]">
         <div class="container flex items-center px-4">
-            <a href="/" class="mr-4 md:mr-8 py-5">
+            <a href="/" class="mr-4 md:mr-8 py-3 sm:py-5">
                 <img src="img/atama_logo.jpg" alt="Logo" class="w-32 max-w-[50px] max-h-[50px]">
             </a>
         </div>
@@ -35,7 +35,7 @@
             </div>
         @endif
 
-        <div class="max-w-lg mx-auto shadow-none px-4 py-7 rounded overflow-hidden sm:border-2 sm:shadow-lg sm:px-6">
+        <div class="max-w-lg mx-auto shadow-none px-6 py-7 rounded overflow-hidden sm:border-2 sm:shadow-lg">
             <h2 class="text-lg sm:text-xl uppercase font-medium text-center">Login</h2>
             <p class="text-gray-600 mb-6 text-sm text-center">
                 Welcome back

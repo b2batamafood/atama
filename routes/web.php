@@ -29,14 +29,17 @@ use Illuminate\Support\Facades\Route;
 
 /* Testing */
 Route::get('test', [TestingController::class, 'index']);
-Route::get('/', [landingPageController::class, 'index'])->name('index');
 Route::get('mail', [registerController::class, 'mailTest'])->name('mail-test');
 
 /* Auth or Guest */
-Route::middleware(['auth', 'guest'])->group(function () {
-    Route::get('products', [ProductController::class, 'index']);
-    Route::post('modal-product', [ProductController::class, 'getProductById'])->name('modal-product');
-});
+// Route::middleware(['guest'])->group(function () {
+//     Route::get('products', [ProductController::class, 'index']);
+//     Route::post('modal-product', [ProductController::class, 'getProductById'])->name('modal-product');
+// });
+Route::get('/', [landingPageController::class, 'index'])->name('index');
+Route::get('products', [ProductController::class, 'index']);
+Route::post('modal-product', [ProductController::class, 'getProductById'])->name('modal-product');
+
 
 Route::middleware('auth')->group(function () {
     Route::post('logout', [loginController::class, 'logout']);
@@ -60,20 +63,20 @@ Route::middleware('auth')->group(function () {
 
 
     /* Admin */
-    Route::group(['prefix' => 'admin', 'name' => 'admin.'], function(){
+    Route::group(['prefix' => 'admin', 'name' => 'admin.'], function () {
         Route::get('dashboard', [DashboardController::class, 'index']);
         Route::controller(UsersController::class)->group(function () {
             Route::get('users', 'index')->name('users');
         });
-        Route::get('products',[AdminProductsController::class, 'index']);
-        Route::get('transactions',[TransactionsController::class, 'index']);
+        Route::get('products', [AdminProductsController::class, 'index']);
+        Route::get('transactions', [TransactionsController::class, 'index']);
+        Route::post('products/create', [AdminProductsController::class, 'createProduct']);
     }); /* End Admin */
-
 });
 
 Route::middleware('guest')->group(function () {
     Route::controller(loginController::class)->group(function () {
-        Route::get('login','index')->name('login');
+        Route::get('login', 'index')->name('login');
         Route::post('login', 'login');
     });
     Route::controller(registerController::class)->group(function () {
