@@ -11,7 +11,9 @@ use App\Http\Controllers\Mall\landingPageController;
 use App\Http\Controllers\Mall\ProductController;
 use App\Http\Controllers\Mall\profileController;
 use App\Http\Controllers\Mall\settingController;
+use App\Http\Controllers\QB\QuickbookTestingController;
 use App\Http\Controllers\registerController;
+use App\Http\Controllers\SoapController;
 use App\Http\Controllers\TestingController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +32,14 @@ use Illuminate\Support\Facades\Route;
 /* Testing */
 Route::get('test', [TestingController::class, 'index']);
 Route::get('mail', [registerController::class, 'mailTest'])->name('mail-test');
+Route::get('customers', [\App\Http\Controllers\Api\ApiCustomerController::class, 'index']);
+Route::get('test-auth', [\App\Http\Controllers\Api\ApiTestingController::class, 'auth']);
+Route::get('callback-quickbook-response', [\App\Http\Controllers\Api\ApiTestingController::class, 'callback']);
+
+Route::post('/quickbooks/send-request', [QuickbookTestingController::class, 'sendRequest']);
+Route::post('/quickbooks/receive-response', [QuickbookTestingController::class, 'receiveResponse']);
+
+Route::post('/quickbooks/soap', [SoapController::class, 'handleRequest']);
 
 /* Auth or Guest */
 // Route::middleware(['guest'])->group(function () {
