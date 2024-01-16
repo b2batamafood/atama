@@ -39,7 +39,7 @@ Route::get('callback-quickbook-response', [\App\Http\Controllers\Api\ApiTestingC
 Route::post('/quickbooks/send-request', [QuickbookTestingController::class, 'sendRequest']);
 Route::post('/quickbooks/receive-response', [QuickbookTestingController::class, 'receiveResponse']);
 
-Route::post('/quickbooks/soap', [SoapController::class, 'handleRequest']);
+Route::get('/quickbooks/soap', [SoapController::class, 'handleRequest']);
 
 /* Auth or Guest */
 // Route::middleware(['guest'])->group(function () {
