@@ -22,6 +22,6 @@ jobs:
 
       - name: Git Pull
         run: |
-          cd /path/to/your/app
+          cd ~/atama
           git pull origin main
           # Additional deployment steps (e.g., build, restart Nginx)
