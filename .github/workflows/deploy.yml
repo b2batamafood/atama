@@ -13,16 +13,15 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: SSH into GCE VM
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.GCE_HOST }}
-          username: ${{ secrets.GCE_USERNAME }}
-          key: ${{ secrets.GCE_PRIVATE_KEY }}
-          port: ${{ secrets.GCE_SSH_PORT }}
-          script: |
-            # Run deployment script on GCE VM
-            cd ~/atama
-            git pull origin main
-            # Additional deployment steps (e.g., build, restart Nginx)
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 
+      - name: Git Pull
+        run: |
+          cd /path/to/your/app
+          git pull origin main
+          # Additional deployment steps (e.g., build, restart Nginx)
