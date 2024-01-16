@@ -21,23 +21,20 @@ class SoapController extends Controller {
         $this->soapWrapper = $soapWrapper;
     }
 
-    public function handleRequest(Request $request)
-    {
-        $this->configureSoapClient();
+    public function handleRequest(Request $request) {
+        $this->soapWrapper->add(function ($service) {
+            $service
+                ->name('quickbooks_testme') // You can use any name you prefer
+                ->wsdl(asset('qbwebconnectorsvc.wsdl'))
+                ->trace(true);
+        });
+
         $soapRequest = $request->getContent();
         $responseXml = $this->processQuickBooksRequest($soapRequest);
 
         return response($responseXml)->header('Content-Type', 'text/xml');
     }
 
-    public function configureSoapClient() {
-        SoapWrapper::add(function ($service) {
-            $service
-                ->name('quickbooks_testme') // You can use any name you prefer
-                ->wsdl(asset('qbwebconnectorsvc.wsdl'))
-                ->trace(true);
-        });
-    }
 
     private function processQuickBooksRequest($requestXml)
     {
@@ -45,10 +42,14 @@ class SoapController extends Controller {
         // You can use the $requestXml to extract information
 
         // Example: Adding a customer
+        /*
         if (strpos($requestXml, '<CustomerAddRq>') !== false) {
             $responseXml = $this->addCustomer();
             return $responseXml;
         }
+        */
+
+        $this->addCustomer();
 
         // For other requests, return a generic success response
         return $this->successResponse();
