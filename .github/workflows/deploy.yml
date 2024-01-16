@@ -1,4 +1,4 @@
-name: Deploy Laravel
+name: CI/CD Pipeline
 
 on:
   push:
@@ -10,24 +10,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
+      - name: SSH into GCE VM
+        uses: appleboy/ssh-action@master
         with:
-          php-version: '8.2'
+          host: ${{ secrets.GCE_HOST }}
+          username: ${{ secrets.GCE_USERNAME }}
+          key: ${{ secrets.GCE_PRIVATE_KEY }}
+          port: ${{ secrets.GCE_SSH_PORT }}
+          script: |
+            # Run deployment script on GCE VM
+            cd ~/atama
+            git pull origin main
+            # Additional deployment steps (e.g., build, restart Nginx)
 
-      - name: Install Dependencies
-        run: composer install
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '21'
-
-      - name: Install Node.js Dependencies
-        run: npm install
-
-      - name: Build assets
-        run: npm run prod
