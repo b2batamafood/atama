@@ -23,6 +23,7 @@ class SoapController extends Controller {
 
     public function handleRequest(Request $request)
     {
+        $this->configureSoapClient();
         $soapRequest = $request->getContent();
         $responseXml = $this->processQuickBooksRequest($soapRequest);
 
