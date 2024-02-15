@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\QuickbookCredential;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -35,6 +36,7 @@ class DatabaseSeeder extends Seeder
             'password' => 'admin123'
         ]);
         $this->call([
+            QuickbookCredential::class,
             BrandSeeder::class,
             CategorySeeder::class,
             ProductSeeder::class,

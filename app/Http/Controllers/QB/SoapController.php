@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\QB;
 
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\GetConversionAmount;
+use App\Http\Controllers\GetConversionAmountResponse;
 use Artisaninweb\SoapWrapper\Facades\SoapWrapper;
 use Illuminate\Http\Request;
 
@@ -48,6 +51,7 @@ class SoapController extends Controller {
             return $responseXml;
         }
         */
+
 
         $this->addCustomer();
 

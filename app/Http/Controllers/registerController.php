@@ -57,12 +57,12 @@ class registerController extends Controller
         return redirect('/login')->with('success', 'Registration Success. Check your email for the password');
     }
 
-    // public function mailTest () {
-    //     $validatedData['password'] = $this->randomPassword();
+     public function mailTest () {
+         $validatedData['password'] = $this->randomPassword();
 
-    //     $password = $validatedData['password'];
+         $password = $validatedData['password'];
 
-    //     Notification::route('mail', 'vickyfarenza@gmail.com')
-    //         ->notify(new UserRegistrationNotification($password));
-    // }
+         Notification::route('mail', 'vickyfarenza@gmail.com')
+             ->notify(new UserRegistrationNotification($password));
+     }
 }
